@@ -1,0 +1,25 @@
+<div class="dialog">
+	<form name='url-sc-form' id='url-sc-form' action="includes/backends/soundcloud.php" method="post">
+		<div style="width: 500px;">
+			<span style="text-align: left;">Track URL</span>
+			<div style="float: right;">
+				<input type="text" name="mpdi_url" style="width: 404px;" required>
+			</div>
+		</div>
+		<input type="hidden" name="mode" value="add">
+		<div class="dialog_buttons">
+			<span class="button" onClick="document.forms['url-sc-form'].submit();">Add Track</span>
+			<span class="button" id="close_button_dg">Cancel</span>
+		</div>
+	</form>
+</div>
+<div class="dialog_bg"></div>
+
+<script>
+$(document).ready(function(){
+	$("#close_button_dg").on("click", function(){
+		$(".dialog").fadeOut(200)
+		$(".dialog_bg").fadeOut(200)
+	})
+});
+</script>

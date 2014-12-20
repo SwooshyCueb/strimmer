@@ -1,0 +1,335 @@
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
+
+body {
+	font-family: "Droid Sans", "Segoe UI", "Helvetica", sans-serif;
+	font-weight: 400;
+	font-size: 12pt;
+	color: #111;
+}
+
+hr {
+	border: 0;
+	border-bottom: 1px solid #999;
+}
+
+.header {
+	background-color: #333;
+	color: #fff;
+	height: 36px;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	line-height: 36px;
+	z-index: 200;
+}
+.header .title {
+	font-size: 15pt;
+	font-weight: 700;
+	line-height: 36px;
+}
+.header .left {
+	float: left;
+	display: inline-block;
+	padding-left: 8px;
+}
+.header .right {
+	float: right;
+	display: inline-block;
+	padding-right: 8px;
+}
+
+.header a {
+	color: #fff;
+	text-decoration: none;
+}
+.header a:hover {
+	color: #9cf;
+}
+
+.wrapper {
+	margin-top: 36px;
+	min-width: 1000px;
+}
+.wrapper .col1 {
+	width: 20%;
+	float: left;
+	border-right: 1px solid #999;
+	min-height: 100%;
+	box-shadow: 1px 0px 6px rgba(0,0,0,0.3);
+}
+.wrapper .col2 {
+	min-height: 100%;
+	font-size: 10pt;
+	position: absolute;
+	top: 36px;
+	right: 0;
+	width: 80%;
+}
+
+.wrapper .col1 {
+	line-height: 30px;
+	background-color: #eee;
+	z-index: 50;
+	position: relative;
+}
+.wrapper .col1 .col_wrapper {
+	padding-top: 8px;
+}
+.wrapper .col1 .col_wrapper div {
+	text-decoration: none;
+	color: #000;
+	padding-left: 4px;
+	transition: .05s;
+}
+.wrapper .col1 a, .wrapper .col2 a {
+	text-decoration: none;
+}
+.wrapper .col1 .col_wrapper div:hover {
+	background-color: #0af;
+	color: #fff;
+	transition: .05s;
+}
+.sel_text {
+	margin-left: 8px;
+}
+
+.sel_color {
+	color: #0af;
+	transition: .05s;
+}
+.sel_color_sc {
+	color: #f60 !important;
+	transition: .05s;
+}
+.sel_color_sc:hover {
+	background-color: #f60 !important;
+}
+.sel_color:hover, .sel_color_sc:hover {
+	color: #fff !important;
+	transition: .05s;
+}
+.col1 .col_wrapper {
+	padding: 0px;
+	width: 20%;
+	position: fixed;
+}
+
+.oi {
+	padding-right: 4px;
+}
+
+.user {
+	margin-top: 5px;
+	border: 1px solid #000;
+	height: 24px;
+	padding-right: 8px;
+	background-color: #111;
+	transition: .1s;
+}
+.user:hover {
+	border: 1px solid #fff;
+	transition: .1s;
+}
+.username {
+	line-height: 28px;
+	vertical-align: top;
+	font-size: 10pt;
+}
+.user img {
+	height: 24px;
+	width: 24px;
+	padding-right: 8px;
+}
+
+.footer {
+	border-top: 1px solid #999;
+	box-shadow: 0px 0px 6px rgba(0,0,0,0.3);
+	background-color: #fff;
+	z-index: 100;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 56px;
+	padding: 8px;
+	padding-left: 0;
+}
+.footer a, .list_info a {
+	color: #0af;
+	text-decoration: none;
+}
+.footer a:hover, .list_info a:hover {
+	color: #999;
+}
+
+.np_art {
+	height: 73px;
+	width: 73px;
+	padding-right: 8px;
+	float: left;
+	position: relative;
+	top: -8px;
+}
+.np_title {
+	font-size: 14pt;
+	font-weight: 700;
+	line-height: 20pt;
+}
+.np_artist {
+	font-size: 11pt;
+	line-height: 14pt;
+}
+.np_who {
+	font-size: 8pt;
+	line-height: 14pt;
+}
+
+.song_list {
+	border-collapse: separate;
+	width: 100%;
+	z-index: -1;
+	vertical-align: middle;
+}
+.h_row {
+	color: #fff;
+	font-weight: 700;
+	background-color: #0af;
+	padding: 8px;
+}
+.h_row td {
+	padding: 8px;
+}
+.song_row {
+	height: 32px;
+	line-height: 48px;
+}
+.song_row:hover {
+	background-color: #fff !important;
+}
+.song_row td {
+	vertical-align: middle;
+}
+.song_row td:nth-child(n+2) {
+	padding-left: 8px;
+}
+.song_row:nth-child(odd) {
+	background-color: #e5e5e5;
+}
+.song_row:nth-child(even) {
+	background-color: #ededed;
+}
+.song_row td:nth-child(1) {
+	width: 50%;
+}
+.song_row td:nth-child(2) {
+	width: 25%;
+}
+.song_row td:nth-child(3) {
+	width: 20%;
+}
+.list_info {
+	margin-top: 8px;
+	position: relative;
+	left: 8px;
+	line-height: 16px;
+}
+.list_art {
+	height: 48px;
+	width: 48px;
+	float: left;
+	position: relative;
+	z-index: 0;
+	display: inline-block;
+}
+.list_title {
+	font-size: 12pt;
+	font-weight: 700;
+}
+
+.dropdown {
+	background-color: #111;
+	border: 1px solid #000;
+	border-top: none;
+	font-size: 10pt;
+	position: fixed;
+	right: 8px;
+	top: 31px;
+	z-index: 300;
+	padding: 4px;
+	display: none;
+}
+.dropdown_sel {
+	padding: 4px;
+	color: #fff;
+}
+.dropdown_sel:hover {
+	color: #000;
+	background-color: #fff;
+}
+
+.dialog {
+	box-shadow: 0px 12px 64px rgba(0,0,0,0.7);
+	padding: 32px;
+	max-width: 700px;
+	z-index: 400;
+	background-color: #111;
+	line-height: 16px;
+	color: #fff;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.dialog_bg {
+	position: fixed;
+	z-index: 399;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.7);
+	filter: blur(10px);
+}
+.dialog_buttons {
+	width: 100%;
+	text-align: center;
+	padding-top: 32px;
+}
+.dialog_buttons .button {
+	padding: 12px;
+	margin: 6px;
+	border-radius: 8px;
+	background-color: #666;
+	color: #fff;
+}
+.dialog_buttons .button:hover {
+	background-color: #0af;
+	color: #fff;
+}
+.dialog_buttons .button:active {
+	color: #fff;
+	background-color: #000;
+}
+
+.dialog input {
+	background-color: #000;
+	color: #0af;
+	padding: 4px;
+	border: 1px solid #999;
+	font-family: "Droid Sans", "Segoe UI", "Helvetica", sans-serif;
+}
+.dialog form {
+	line-height: 24px;
+}
+#list_delete {
+	float: left;
+	font-size: 14pt;
+	padding: 8px;
+	padding-left: 0px;
+	color: #a00;
+	text-decoration: none;
+}
+#list_delete:hover {
+	color: #f00;
+}
