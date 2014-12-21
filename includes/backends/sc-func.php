@@ -1,9 +1,9 @@
 <?php
 
-include_once dirname(dirname(__FILE__)) . "/settings.php";
-
 function soundcloud_resolveFromURL($track_url) {
 	if(isset($track_url)) {
+		include dirname(dirname(__FILE__)) . "/settings.php";
+
 		$url = "http://api.soundcloud.com/resolve.json?url=" . $track_url . "&client_id=" . $sc_api_key;
 
 		$curl = curl_init();
@@ -34,6 +34,8 @@ function soundcloud_getStreamVars($location) {
 
 function soundcloud_getDirectStream($location) {
 	if(isset($location)) {
+		include dirname(dirname(__FILE__)) . "/settings.php";
+
 		echo '<span style="color: #090;">' . $location . "?client_id=" . $sc_api_key . '</span>';
 
 		$curl = curl_init();

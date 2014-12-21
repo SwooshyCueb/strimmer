@@ -25,7 +25,6 @@ if(isset($_POST['mode'])) {
 					"' . $_SESSION['username'] . '",
 					' . $time . '
 					)';
-				echo $query;
 				$result = mysqli_query($mysqli,$query);
 				if($result) {
 					
