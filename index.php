@@ -61,6 +61,15 @@ $result = mysqli_query($mysqli,$query);
 				$(".dialog_bg").fadeIn(200)
 			})
 		})
+		$("#add_we").on("click",function(){
+			$(".dialog_load_spot").empty()
+			$(".dialog_load_spot").load("includes/dialog/weasyl.html", function() {
+				$(".dialog").fadeOut(0)
+				$(".dialog_bg").fadeOut(0)
+				$(".dialog").fadeIn(200)
+				$(".dialog_bg").fadeIn(200)
+			})
+		})
 		$("#drop_set").on("click",function(){
 			$(".dialog_load_spot").empty()
 			$(".dialog_load_spot").load("includes/dialog/settings.php", function() {
@@ -107,6 +116,7 @@ $result = mysqli_query($mysqli,$query);
 				<a href="#"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="people"></span> Userlist</span></div></a>
 				<hr/>
 				<a href="#"><div class="sel_color_sc" id="add_sc"><span class="sel_text"><span class="oi" data-glyph="plus"></span> SoundCloud Track</span></div></a>
+				<a href="#"><div class="sel_color_we" id="add_we"><span class="sel_text"><span class="oi" data-glyph="plus"></span> Weasyl Submission</span></div></a>
 			</div>
 		</div>
 		<div class="col2">

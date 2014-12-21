@@ -104,6 +104,15 @@ hr {
 }
 .sel_color_sc:hover {
 	background-color: #f60 !important;
+	color: #fff !important;
+}
+.sel_color_we {
+	color: #980000 !important;
+	transition: .05s;
+}
+.sel_color_we:hover {
+	background-color: #980000 !important;
+	color: #fff !important;
 }
 .sel_color:hover, .sel_color_sc:hover {
 	color: #fff !important;
