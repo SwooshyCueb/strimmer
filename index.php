@@ -7,10 +7,7 @@ ini_set("html_errors", "On");
 ini_set("log_errors", "On");
 
 if ((stripos(($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']), 'index.php') !== FALSE)) {
-	?>
-	<strong>Error</strong>: Direct navigation to index.php.
-	Eventually this will have a redirect, but for now, remove index.php from the end of the url and try again.
-	<?php
+	header("Location: http://" . dirname($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']));
 	exit;
 }
 

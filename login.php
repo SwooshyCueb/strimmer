@@ -2,10 +2,8 @@
 
 session_start();
 
-if (!isset($_SESSION['mpdidx'])) {?>
-	<strong>Error</strong>: Premature navigation to login page.
-	Please go to the MPD interface home page before trying to login.
-	<?php
+if (!isset($_SESSION['mpdidx'])) {
+	header("Location: http://" . dirname($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']));
 	exit;
 }
 
