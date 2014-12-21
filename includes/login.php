@@ -2,7 +2,7 @@
 	include_once dirname(__FILE__) . "/settings.php";
 
 	if(isset($_SESSION['username'])) {
-		header("Location: http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+		header("Location: http://" . $_SESSION['loginrefer']);
 		die();
 	}
 
@@ -18,7 +18,7 @@
 				$_SESSION['login'] = "1";
 				$_SESSION['username'] = $username;
 				$_SESSION['user_id'] = $row['ID'];
-				header("Location: http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+				header("Location: ". $_SESSION['loginrefer']);
 				exit;
 			}
 			else {

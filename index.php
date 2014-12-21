@@ -6,9 +6,21 @@ ini_set("error_reporting", "E_ALL");
 ini_set("html_errors", "On");
 ini_set("log_errors", "On");
 
+if ((stripos(($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']), 'index.php') !== FALSE)) {
+	?>
+	<strong>Error</strong>: Direct navigation to index.php.
+	Eventually this will have a redirect, but for now, remove index.php from the end of the url and try again.
+	<?php
+	exit;
+}
+
+session_start();
+$_SESSION['mpdidx'] = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+include_once "includes/session.php";
 include "includes/settings.php";
 include "includes/functions.php";
-include_once "includes/session.php";
+
 
 $query = "SELECT * FROM db_cache";
 $result = mysqli_query($mysqli,$query);
