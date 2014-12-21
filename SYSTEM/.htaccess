@@ -1,0 +1,9 @@
+<Files "metadata_upd">
+Order Allow,Deny
+Deny from all
+</Files>
+
+<Files "streamer.php">
+Order Allow,Deny
+Deny from all
+</Files>

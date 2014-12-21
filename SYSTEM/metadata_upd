@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sleep 5
+curl -u "$ICADMIN_USER:$ICADMIN_PASS" --get --data "mount=/$ICMOUNT\&mode=updinfo" --data-urlencode "song=\"$1\"" "http://$ICHOST:$ICPORT/admin/metadata"

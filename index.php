@@ -1,11 +1,5 @@
 <?php
 
-ini_set("display_errors", "On");
-ini_set("display_startup_errors", "On");
-ini_set("error_reporting", "E_ALL");
-ini_set("html_errors", "On");
-ini_set("log_errors", "On");
-
 if ((stripos(($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']), 'index.php') !== FALSE)) {
 	header("Location: http://" . dirname($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']));
 	exit;
@@ -24,6 +18,7 @@ $result = mysqli_query($mysqli,$query);
 <html>
 
 <head>
+	<title><?php echo $prog_title; ?></title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="css/main.css"/>
 	<link rel="stylesheet" type="text/css" href="css/open-iconic.css"/>
@@ -103,7 +98,7 @@ $result = mysqli_query($mysqli,$query);
 	<div class="dialog_load_spot"></div>
 	<div class="header">
 		<div class="left">
-			<span class="title">MPD Interface</span>
+			<span class="title"><?php echo $prog_title; ?></span>
 		</div>
 		<div class="right">
 			<div class="user">

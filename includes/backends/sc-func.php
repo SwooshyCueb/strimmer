@@ -1,9 +1,10 @@
 <?php
 
+include_once dirname(dirname(__FILE__)) . "/settings.php";
+
 function soundcloud_resolveFromURL($track_url) {
 	if(isset($track_url)) {
-		$client_id = "SOMEKEY";
-		$url = "http://api.soundcloud.com/resolve.json?url=" . $track_url . "&client_id=" . $client_id;
+		$url = "http://api.soundcloud.com/resolve.json?url=" . $track_url . "&client_id=" . $sc_api_key;
 
 		$curl = curl_init();
 		curl_setopt($curl, CURLOPT_URL, $url);
@@ -33,11 +34,10 @@ function soundcloud_getStreamVars($location) {
 
 function soundcloud_getDirectStream($location) {
 	if(isset($location)) {
-		$client_id = "SOMEKEY";
-		echo '<span style="color: #090;">' . $location . "?client_id=" . $client_id . '</span>';
+		echo '<span style="color: #090;">' . $location . "?client_id=" . $sc_api_key . '</span>';
 
 		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $location . "?client_id=" . $client_id);
+		curl_setopt($curl, CURLOPT_URL, $location . "?client_id=" . $sc_api_key);
 		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, false);
 		curl_setopt($curl, CURLOPT_HEADER, true);  
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

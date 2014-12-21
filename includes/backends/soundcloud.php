@@ -1,11 +1,4 @@
 <?php
-
-ini_set("display_errors", "On");
-ini_set("display_startup_errors", "On");
-ini_set("error_reporting", "E_ALL");
-ini_set("html_errors", "On");
-ini_set("log_errors", "On");
-
 include_once dirname(dirname(__FILE__)) . "/settings.php";
 include_once dirname(dirname(__FILE__)) . "/session.php";
 include_once dirname(dirname(__FILE__)) . "/functions.php";
@@ -68,7 +61,7 @@ if(isset($_POST['mode'])) {
 							' . $time . '
 							)';
 						$result = mysqli_query($mysqli,$query);
-						exec("mpc -h " . $mpd['password'] . "@" . $mpd['host'] . " -p " . $mpd['port'] . " add " . $stream_vars['stream_url'] . "?client_id=SOMEKEY");
+						exec("mpc -h " . $mpd['password'] . "@" . $mpd['host'] . " -p " . $mpd['port'] . " add " . $stream_vars['stream_url'] . "?client_id=" . $sc_api_key);
 					}
 					header("Location: " . $_SERVER['HTTP_REFERER']);
 					exit;

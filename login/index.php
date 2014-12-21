@@ -11,7 +11,7 @@ if ((stripos(($here), 'index.php') !== FALSE)) {
 	$here = 'http://'.dirname($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']).'/';
 }
 
-if (((!isset($_SESSION['loginrefer'])) && ((stripos($_server['HTTP_REFERER'], 'login') !== FALSE )))
+if (((!isset($_SESSION['loginrefer'])) && ((stripos($_SERVER['HTTP_REFERER'], 'login') !== FALSE )))
 		|| (empty($_SERVER['HTTP_REFERER']))) {
 	$_SESSION['loginrefer'] = dirname($here);
 } elseif (!isset($_SESSION['loginrefer'])) {
@@ -55,10 +55,10 @@ if (!empty($_POST)) {
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TBP MPD Interface</title>
+<title><?php echo $prog_title; ?></title>
 </head>
 <body>
-<strong>Please login to access the MPD interface</strong>
+<strong>Please login to access the <?php echo $prog_title; ?></strong>
 <form action=<?php echo '"'.$here.'"'; ?> method="post">
 	Username<br/>
 	<div><input type="text" name="username" style="width: 256px;" placeholder="Username" required></div><br/>
