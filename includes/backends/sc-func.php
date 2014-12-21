@@ -1,0 +1,58 @@
+<?php
+
+include_once dirname(__FILE__) . "/settings.php";
+
+function soundcloud_resolveFromURL($track_url) {
+	if(isset($track_url)) {
+		$client_id = "SOMEKEY";
+		$url = "http://api.soundcloud.com/resolve.json?url=" . $track_url . "&client_id=" . $client_id;
+
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_HEADER, 0);  
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);   
+
+		$output = curl_exec($curl);
+		curl_close($curl);
+
+		return $output;
+	}
+}
+
+function soundcloud_getStreamVars($location) {
+	if(isset($location)) {
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, $location);
+		curl_setopt($curl, CURLOPT_HEADER, 0);  
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);   
+
+		$output = curl_exec($curl);
+		curl_close($curl);
+
+		return $output;
+	}
+}
+
+function soundcloud_getDirectStream($location) {
+	if(isset($location)) {
+		$client_id = "SOMEKEY";
+		echo '<span style="color: #090;">' . $location . "?client_id=" . $client_id . '</span>';
+
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, $location . "?client_id=" . $client_id);
+		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, false);
+		curl_setopt($curl, CURLOPT_HEADER, true);  
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (X11; Linux x86_64; rv:21.0) Gecko/20100101 Firefox/21.0");
+
+		$output = curl_exec($curl);
+		echo '<span style="color: #f00;">' . $output . '</span>';
+		preg_match_all('/^Location:(.*)$/mi', $output, $matches);
+
+		curl_close($curl);
+
+		return $matches;
+	}
+}
+
+?>
