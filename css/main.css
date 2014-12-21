@@ -48,38 +48,45 @@ hr {
 }
 
 .wrapper {
-	margin-top: 36px;
+	position: relative;
+	top: 36px;
 	min-width: 1000px;
 }
 .wrapper .col1 {
-	width: 20%;
+	width: 220px;
 	float: left;
 	border-right: 1px solid #999;
-	min-height: 100%;
+	height: calc(100vh - 109px);
 	box-shadow: 1px 0px 6px rgba(0,0,0,0.3);
 }
 .wrapper .col2 {
-	min-height: 100%;
+	height: calc(100vh - 109px);
 	font-size: 10pt;
 	position: absolute;
-	top: 36px;
 	right: 0;
-	width: 80%;
+	width: calc(100% - 220px);
+	overflow-y: hidden;
 }
 
 .wrapper .col1 {
 	line-height: 30px;
 	background-color: #eee;
 	z-index: 50;
-	position: relative;
+	position: static;
 }
 .wrapper .col1 .col_wrapper {
 	padding-top: 8px;
+}
+.wrapper .col1 .col_wrapper hr {
+	width: 220px;
+	margin-left: 0px;
+	margin-right: 0px;
 }
 .wrapper .col1 .col_wrapper div {
 	text-decoration: none;
 	color: #000;
 	padding-left: 4px;
+	width: 216px;
 	transition: .05s;
 }
 .wrapper .col1 a, .wrapper .col2 a {
@@ -89,6 +96,10 @@ hr {
 	background-color: #0af;
 	color: #fff;
 	transition: .05s;
+}
+.wrapper .col2 .col_wrapper {
+	height: 100%;
+	overflow-y: scroll;
 }
 .sel_text {
 	margin-left: 8px;
@@ -120,8 +131,8 @@ hr {
 }
 .col1 .col_wrapper {
 	padding: 0px;
-	width: 20%;
-	position: fixed;
+	width: 220px;
+	position: static;
 }
 
 .oi {
