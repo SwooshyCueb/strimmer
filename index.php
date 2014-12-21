@@ -134,6 +134,7 @@ $result = mysqli_query($mysqli,$query);
 						<td>Song</td>
 						<td>Added by</td>
 						<td>Added on</td>
+						<td></td>
 					</tr>
 					<?php
 						while($row = mysqli_fetch_array($result)) {

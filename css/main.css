@@ -240,13 +240,20 @@ hr {
 	background-color: #ededed;
 }
 .song_row td:nth-child(1) {
-	width: 50%;
+	width: 55%;
 }
 .song_row td:nth-child(2) {
 	width: 25%;
 }
 .song_row td:nth-child(3) {
-	width: 20%;
+	width: 15%;
+}
+.song_row td:nth-child(4) {
+	width: 4%;
+}
+.song_row td:nth-child(4) img {
+	height: 24px;
+	width: 24px;
 }
 .list_info {
 	margin-top: 8px;

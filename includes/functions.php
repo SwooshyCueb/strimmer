@@ -26,6 +26,7 @@ function getListRow_Service($row) {
 				echo '</td>';
 				echo '<td>' . $row['ADDED_BY'] . '</td>';
 				echo '<td>' . date('M. d, Y g:i A',$row['ADDED_ON']) . '</td>';
+				echo '<td><img src="assets/services/soundcloud.png"></td>';
 			echo '</tr>';
 			break;
 
@@ -43,6 +44,7 @@ function getListRow_Service($row) {
 				echo '</td>';
 				echo '<td>' . $row['ADDED_BY'] . '</td>';
 				echo '<td>' . date('M. d, Y g:i A',$row['ADDED_ON']) . '</td>';
+				echo '<td><img src="assets/services/weasyl.png"></td>';
 			echo '</tr>';
 			break;
 
