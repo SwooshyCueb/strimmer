@@ -1,7 +1,5 @@
 <?php
 
-include_once dirname(__FILE__) . "/settings.php";
-
 function soundcloud_resolveFromURL($track_url) {
 	if(isset($track_url)) {
 		$client_id = "SOMEKEY";
@@ -54,5 +52,3 @@ function soundcloud_getDirectStream($location) {
 		return $matches;
 	}
 }
-
-?>

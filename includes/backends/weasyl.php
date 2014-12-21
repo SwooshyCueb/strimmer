@@ -1,7 +1,7 @@
 <?php
 include_once dirname(dirname(__FILE__)) . "/settings.php";
 include_once dirname(dirname(__FILE__)) . "/functions.php";
-include_once dirname(dirname(__FILE__)) . "/backends/wzl-func.php";
+include_once dirname(__FILE__) . "/wzl-func.php";
 include_once dirname(dirname(__FILE__)) . "/session.php";
 
 if(isset($_POST['mode'])) {

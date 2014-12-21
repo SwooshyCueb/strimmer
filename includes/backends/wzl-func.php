@@ -1,7 +1,5 @@
 <?php
 
-include_once dirname(__FILE__) . "/settings.php";
-
 function wzl_subIDFromURL($sub_url) {
 	if(isset($sub_url)) {
 		if (preg_match("/\/([0-9]+)/", $sub_url, $matches)) {

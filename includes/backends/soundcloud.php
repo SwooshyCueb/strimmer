@@ -1,7 +1,14 @@
 <?php
+
+ini_set("display_errors", "On");
+ini_set("display_startup_errors", "On");
+ini_set("error_reporting", "E_ALL");
+ini_set("html_errors", "On");
+ini_set("log_errors", "On");
+
 include_once dirname(dirname(__FILE__)) . "/settings.php";
 include_once dirname(dirname(__FILE__)) . "/functions.php";
-include_once dirname(dirname(__FILE__)) . "/backends/sc-func.php";
+include dirname(__FILE__) . "/sc-func.php";
 include_once dirname(dirname(__FILE__)) . "/session.php";
 
 if(isset($_POST['mode'])) {
@@ -20,8 +27,8 @@ if(isset($_POST['mode'])) {
 					"' . $_SESSION['username'] . '",
 					' . $time . '
 					)';
+				echo $query;
 				$result = mysqli_query($mysqli,$query);
-
 				if($result) {
 					
 					$user_vars = $stream_vars['user'];
