@@ -3,7 +3,7 @@
 	include_once dirname(dirname(__FILE__)) . "/settings.php";
 
 	if(!isset($_SESSION['username'])) {
-		header("Location: http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . "login.php");
+		header("Location: http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . "login/");
 		die();
 	}
 

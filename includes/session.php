@@ -15,7 +15,7 @@
 			date_default_timezone_set($row['TIMEZONE']);
 		}
 	} else {
-		header("Location: http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . "login.php");
+		header("Location: http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . "login/");
 		die();
 	}
 ?>
