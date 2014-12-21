@@ -2,7 +2,7 @@
 // -- SQL --
 // hostname to connect to
 $hostname = "theblackparrot.us";
-$port = 3306
+$port = 3306;
 // SQL credentials
 $user = "mpd_user";
 $password = "SOMEPASS";
