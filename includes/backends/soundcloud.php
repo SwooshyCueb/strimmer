@@ -8,7 +8,7 @@ if(isset($_POST['mode'])) {
 		switch ($_POST['mode']) {
 			case 'add':
 				$time = time();
-				$query = 'INSERT INTO db ( SERVICE,SERVICE_ARG1,ADDED_BY,ADDED_ON ) VALUES ( "SDCL", "' . $_POST['mpdi_url'] . '", "TheBlackParrot", ' . $time . ' )';
+				$query = 'INSERT INTO db ( SERVICE,SERVICE_ARG1,ADDED_BY,ADDED_ON ) VALUES ( "SDCL", "' . $_POST['mpdi_url'] . '", "' . $_SESSION['username'] . '", ' . $time . ' )';
 				$result = mysqli_query($mysqli,$query);
 
 				if($result) {
