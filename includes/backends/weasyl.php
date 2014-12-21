@@ -21,12 +21,19 @@ if(isset($_POST['mode'])) {
 					<?php
 					exit;
 				}
-				$query = 'INSERT INTO db ( SERVICE,SERVICE_ARG1,ADDED_BY,ADDED_ON ) VALUES ( "WYZL", "' . $wzl_sub_id . '", "' . $_SESSION['username'] . '", ' . $time . ' )';
+				$query = 'INSERT INTO db ( TRACKID,SERVICE,SERVICE_ARG1,ADDED_BY,ADDED_ON ) VALUES (
+					"WYZL' . $wzl_sub_id . '",
+					"WYZL",
+					"' . $wzl_sub_id . '",
+					"' . $_SESSION['username'] . '",
+					' . $time . '
+					)';
 				$result = mysqli_query($mysqli,$query);
 
 				if($result) {
-					$query = 'INSERT INTO db_cache ( SERVICE,RETURN_ARG1,RETURN_ARG2,RETURN_ARG3,RETURN_ARG4,RETURN_ARG5,RETURN_ARG6,RETURN_ARG7,ADDED_BY,ADDED_ON ) VALUES (
+					$query = 'INSERT INTO db_cache ( TRACKID,SERVICE,RETURN_ARG1,RETURN_ARG2,RETURN_ARG3,RETURN_ARG4,RETURN_ARG5,RETURN_ARG6,RETURN_ARG7,ADDED_BY,ADDED_ON ) VALUES (
 						"WYZL",
+						"WYZL' . $wzl_sub_id . '",
 						'  . $wzl_sub_id . ',
 						"' . $sub_data['title'] . '",
 						"' . $sub_data['owner'] . '",

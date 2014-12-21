@@ -21,7 +21,7 @@ function getListRow_Service($row) {
 				echo '<td>';
 					echo '<img src="' . $row['RETURN_ARG7'] . '" class="list_art"/>';
 					echo '<div class="list_info">';
-						echo '<a href="includes/delete_song.php?id=' . $row['ID'] . '&user=' . $_SESSION['username'] . '"/><span class="oi" data-glyph="delete" id="list_delete"></span></a>';
+						echo '<a href="includes/delete_song.php?id=' . $row['TRACKID'] . '&user=' . $_SESSION['username'] . '"/><span class="oi" data-glyph="delete" id="list_delete"></span></a>';
 						echo '<span class="list_title">' . $row['RETURN_ARG2'] . '</span><br/>';
 						echo '<span class="list_artist"><a href="' . $row['RETURN_ARG4'] . '">' . $row['RETURN_ARG3'] . '</a></span>';
 					echo '</div>';
@@ -36,7 +36,7 @@ function getListRow_Service($row) {
 				echo '<td>';
 					echo '<img src="' . $row['RETURN_ARG7'] . '" class="list_art"/>';
 					echo '<div class="list_info">';
-						echo '<a href="includes/delete_song.php?id=' . $row['ID'] . '&user=' . $_SESSION['username'] . '"/><span class="oi" data-glyph="delete" id="list_delete"></span></a>';
+						echo '<a href="includes/delete_song.php?id=' . $row['TRACKID'] . '&user=' . $_SESSION['username'] . '"/><span class="oi" data-glyph="delete" id="list_delete"></span></a>';
 						echo '<span class="list_title">' . $row['RETURN_ARG2'] . '</span><br/>';
 						echo '<span class="list_artist"><a href="' . $row['RETURN_ARG4'] . '">' . $row['RETURN_ARG3'] . '</a></span>';
 					echo '</div>';

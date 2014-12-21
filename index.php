@@ -22,7 +22,7 @@ include "includes/settings.php";
 include "includes/functions.php";
 
 
-$query = "SELECT * FROM db_cache";
+$query = "SELECT * FROM db_cache ORDER BY ADDED_ON;";
 $result = mysqli_query($mysqli,$query);
 
 ?>

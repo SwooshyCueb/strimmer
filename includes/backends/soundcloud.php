@@ -9,12 +9,21 @@ if(isset($_POST['mode'])) {
 		switch ($_POST['mode']) {
 			case 'add':
 				$time = time();
-				$query = 'INSERT INTO db ( SERVICE,SERVICE_ARG1,ADDED_BY,ADDED_ON ) VALUES ( "SDCL", "' . $_POST['mpdi_url'] . '", "' . $_SESSION['username'] . '", ' . $time . ' )';
+				$resolved_vars = json_decode(soundcloud_resolveFromURL($_POST['mpdi_url']),true);
+				$stream_vars = json_decode(soundcloud_getStreamVars($resolved_vars['location']),true);
+				$sc_trk_id = $stream_vars['id'];
+				$query = 'INSERT INTO db ( TRACKID,SERVICE,SERVICE_ARG1,SERVICE_ARG2,ADDED_BY,ADDED_ON ) VALUES (
+					"SDCL' . $sc_trk_id . '",
+					"SDCL",
+					"' . $_POST['mpdi_url'] . '",
+					"' . $sc_trk_id . '",
+					"' . $_SESSION['username'] . '",
+					' . $time . '
+					)';
 				$result = mysqli_query($mysqli,$query);
 
 				if($result) {
-					$resolved_vars = json_decode(soundcloud_resolveFromURL($_POST['mpdi_url']),true);
-					$stream_vars = json_decode(soundcloud_getStreamVars($resolved_vars['location']),true);
+					
 					$user_vars = $stream_vars['user'];
 
 					if(isset($stream_vars['stream_url'])) {
@@ -33,9 +42,10 @@ if(isset($_POST['mode'])) {
 						} else {
 							$artwork_url = $stream_vars['artwork_url'];
 						}
-						$query = 'INSERT INTO db_cache ( SERVICE,RETURN_ARG1,RETURN_ARG2,RETURN_ARG3,RETURN_ARG4,RETURN_ARG5,RETURN_ARG6,RETURN_ARG7,ADDED_BY,ADDED_ON ) VALUES (
+						$query = 'INSERT INTO db_cache ( TRACKID,SERVICE,RETURN_ARG1,RETURN_ARG2,RETURN_ARG3,RETURN_ARG4,RETURN_ARG5,RETURN_ARG6,RETURN_ARG7,ADDED_BY,ADDED_ON ) VALUES (
+							"SDCL' . $sc_trk_id . '",
 							"SDCL",
-							' . $stream_vars['id'] . ',
+							' . $sc_trk_id . ',
 							"' . $stream_vars['title'] . '",
 							"' . $user_vars['username'] . '",
 							"' . $user_vars['permalink_url'] . '",
