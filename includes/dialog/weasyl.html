@@ -1,0 +1,25 @@
+<div class="dialog">
+	<form name='url-sc-form' id='url-sc-form' action="includes/backends/weasyl.php" method="post">
+		<div style="width: 500px;">
+			<div style="text-align: left;">Submission URL or numerical Submission ID</div>
+			<div>
+				<input type="text" name="wzl_sub_str" style="width: 500px;" required>
+			</div>
+		</div>
+		<input type="hidden" name="mode" value="add">
+		<div class="dialog_buttons">
+			<span class="button" onClick="document.forms['url-sc-form'].submit();">Add Submission</span>
+			<span class="button" id="close_button_dg">Cancel</span>
+		</div>
+	</form>
+</div>
+<div class="dialog_bg"></div>
+
+<script>
+$(document).ready(function(){
+	$("#close_button_dg").on("click", function(){
+		$(".dialog").fadeOut(200)
+		$(".dialog_bg").fadeOut(200)
+	})
+});
+</script>
