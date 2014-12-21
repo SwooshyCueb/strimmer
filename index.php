@@ -11,11 +11,8 @@ if ((stripos(($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']), 'index.php') !==
 	exit;
 }
 
-session_start();
-$_SESSION['mpdidx'] = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-
-include_once "includes/session.php";
 include "includes/settings.php";
+include_once "includes/session.php";
 include "includes/functions.php";
 
 
@@ -91,6 +88,9 @@ $result = mysqli_query($mysqli,$query);
 		$("#drop_logout").on("click",function(){
 			window.location.href = "includes/logout.php";
 		})
+		$("#drop_login").on("click",function(){
+			window.location.href = "login/";
+		})
 		$("#close_button_dg").on("click", function(){
 			$(".dialog").fadeOut(200)
 			$(".dialog_bg").fadeOut(200)
@@ -117,15 +117,19 @@ $result = mysqli_query($mysqli,$query);
 		<!-- column 2: selected panel -->
 		<div class="col1">
 			<div class="col_wrapper">
+				<?php if ($_SESSION['login']) { ?>
 				<a href="#"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="person"></span> My Items</span></div></a>
 				<hr/>
+				<?php } ?>
 				<a href="#"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="headphones"></span> Library</span></div></a>
 				<a href="#"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="list"></span> Play Queue</span></div></a>
+				<?php if ($_SESSION['login']) { ?>
 				<hr/>
 				<a href="#"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="people"></span> Userlist</span></div></a>
 				<hr/>
 				<a href="#"><div class="sel_color_sc" id="add_sc"><span class="sel_text"><span class="oi" data-glyph="plus"></span> SoundCloud Track</span></div></a>
 				<a href="#"><div class="sel_color_we" id="add_we"><span class="sel_text"><span class="oi" data-glyph="plus"></span> Weasyl Submission</span></div></a>
+				<?php } ?>
 			</div>
 		</div>
 		<div class="col2">
@@ -153,12 +157,18 @@ $result = mysqli_query($mysqli,$query);
 	</div>
 
 	<div class="dropdown">
+		<?php if ($_SESSION['login']) { ?>
 		<div class="dropdown_sel" id="drop_set">
 			<span class="oi" data-glyph="wrench"></span> Settings
 		</div>
 		<div class="dropdown_sel" id="drop_logout">
 			<span class="oi" data-glyph="account-logout"></span> Logout
 		</div>
+		<?php } else { ?>
+		<div class="dropdown_sel" id="drop_login">
+			<span class="oi" data-glyph="account-login"></span> Login
+		</div>
+		<?php } ?>
 	</div>
 </body>
 

@@ -1,8 +1,8 @@
 <?php
-	include_once dirname(dirname(__FILE__)) . "/session.php";
 	include_once dirname(dirname(__FILE__)) . "/settings.php";
+	include_once dirname(dirname(__FILE__)) . "/session.php";
 
-	if(!isset($_SESSION['username'])) {
+	if ($_SESSION['login'] == FALSE) {
 		header("Location: http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . "login/");
 		die();
 	}

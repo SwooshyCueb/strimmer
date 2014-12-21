@@ -7,9 +7,14 @@ ini_set("html_errors", "On");
 ini_set("log_errors", "On");
 
 include_once dirname(dirname(__FILE__)) . "/settings.php";
+include_once dirname(dirname(__FILE__)) . "/session.php";
 include_once dirname(dirname(__FILE__)) . "/functions.php";
 include dirname(__FILE__) . "/sc-func.php";
-include_once dirname(dirname(__FILE__)) . "/session.php";
+
+if($_SESSION['login'] == FALSE) {
+	header('HTTP/1.0 401 Unauthorized');
+	die();
+}
 
 if(isset($_POST['mode'])) {
 	if(isset($_POST['mpdi_url'])) {

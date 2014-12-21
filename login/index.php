@@ -1,8 +1,7 @@
 <?php
 
 include_once dirname(dirname(__FILE__)) . "/includes/settings.php";
-
-session_start();
+include_once dirname(dirname(__FILE__)) . "/includes/session.php";
 
 $invalid_cred = FALSE;
 
@@ -12,14 +11,16 @@ if ((stripos(($here), 'index.php') !== FALSE)) {
 	$here = 'http://'.dirname($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']).'/';
 }
 
-if (isset($_SESSION['username'])) {
-	header("Location: http://" . $_SESSION['loginrefer']);
-	die();
-} elseif (((!isset($_SESSION['loginrefer'])) && ((stripos($_server['HTTP_REFERER'], 'login') !== FALSE )))
+if (((!isset($_SESSION['loginrefer'])) && ((stripos($_server['HTTP_REFERER'], 'login') !== FALSE )))
 		|| (empty($_SERVER['HTTP_REFERER']))) {
 	$_SESSION['loginrefer'] = dirname($here);
 } elseif (!isset($_SESSION['loginrefer'])) {
 	$_SESSION['loginrefer'] = $_SERVER['HTTP_REFERER'];
+}
+
+if (isset($_SESSION['login']) && $_SESSION['login']) {
+	header("Location: http://" . $_SESSION['loginrefer']);
+	die();
 }
 
 if (!empty($_POST)) {
@@ -33,7 +34,7 @@ if (!empty($_POST)) {
 			$row = mysqli_fetch_array($result);
 			if($row['PASSWORD'] == hash("sha512",$password . "-:-" . $username)) {
 				session_start();
-				$_SESSION['login'] = "1";
+				$_SESSION['login'] = TRUE;
 				$_SESSION['username'] = $username;
 				$_SESSION['user_id'] = $row['ID'];
 				header("Location: ". $_SESSION['loginrefer']);
