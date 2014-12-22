@@ -1,6 +1,6 @@
 <?php
 	header("Content-type: text/css");
-	include "themes/dark.php";
+	include "themes/solarized_light.php";
 ?>
 
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
