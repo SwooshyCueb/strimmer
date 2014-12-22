@@ -20,6 +20,7 @@
 		$row = mysqli_fetch_array($result);
 
 		$url_str = $row['RETURN_ARG3'] . " - " . $row['RETURN_ARG2'];
+		echo $url_str;
 		/*
 		$url = "http://" . $icecast['admin_user'] . ":" . $icecast['admin_pass'] . "@" . $icecast['host'] . ":" . $icecast['port'] . "/admin/metadata?mount=/ " . $icecast['mount'] . "&mode=updinfo&song=" . $url_str;
 		// $icecast['mount']="silence.mp3" ????
@@ -41,7 +42,12 @@
 		putenv("ICMOUNT=" . $icecast['mount']);
 		putenv("ICADMIN_USER=" . $icecast['admin_user']);
 		putenv("ICADMIN_PASS=" . $icecast['admin_pass']);
-		exec('./metadata_upd \'' . $row['RETURN_ARG3'] . " - " . $row['RETURN_ARG2'] . '\' > /dev/null 2>&1 &');
+
+		// anything i'm trying to do involving escaping flat out fails, so i caved and i'm doing this -.-
+		$cmd_str = str_replace('\\', '\\\\', $url_str);
+		$cmd_str = str_replace('$', '\$', $cmd_str);
+		$cmd_str = str_replace('"', '\"', $cmd_str);
+		exec('./metadata_upd "' . $cmd_str . '" > metadata_log 2>&1 &');
 
 		switch ($row['SERVICE']) {
 			case 'SDCL':
@@ -58,7 +64,7 @@
 
 		$time = time();
 
-		exec($icecast['ffmpeg'] . ' -re -i \'' . $stream_link . '\' -acodec libmp3lame -q ' . $icecast['qual'] . ' -content_type "audio/mpeg3" -metadata title=\'' . $row['RETURN_ARG3'] . ' - ' . $row['RETURN_ARG2'] . '\' "icecast://source:' . $icecast['pass'] . '@' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mount'] . '"');
+		exec($icecast['ffmpeg'] . ' -re -i \'' . $stream_link . '\' -acodec libmp3lame -q ' . $icecast['qual'] . ' -content_type "audio/mpeg3" -metadata title="' . $cmd_str . '" "icecast://source:' . $icecast['pass'] . '@' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mount'] . '"');
 
 	}
 ?>
