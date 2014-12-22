@@ -27,6 +27,7 @@ if(!mysqli_num_rows($result)) {
 <head>
 	<title><?php echo $prog_title; ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="css/main.php"/>
 	<link rel="stylesheet" type="text/css" href="css/open-iconic.css"/>
