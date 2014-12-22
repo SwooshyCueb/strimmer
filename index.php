@@ -19,6 +19,7 @@ $result = mysqli_query($mysqli,$query);
 
 <head>
 	<title><?php echo $prog_title; ?></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="css/main.php"/>
 	<link rel="stylesheet" type="text/css" href="css/open-iconic.css"/>
