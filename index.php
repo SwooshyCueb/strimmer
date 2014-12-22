@@ -20,7 +20,7 @@ $result = mysqli_query($mysqli,$query);
 <head>
 	<title><?php echo $prog_title; ?></title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
-	<link rel="stylesheet" type="text/css" href="css/main.css"/>
+	<link rel="stylesheet" type="text/css" href="css/main.php"/>
 	<link rel="stylesheet" type="text/css" href="css/open-iconic.css"/>
 	<script src="js/jquery.js"></script>
 	<script>
