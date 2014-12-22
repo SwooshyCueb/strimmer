@@ -34,8 +34,8 @@ function getListRow_Service($row) {
 						if ($_SESSION['login']) {
 							echo '<a href="includes/delete_song.php?id=' . $row['TRACKID'] . '&user=' . $_SESSION['username'] . '"/><span class="oi" data-glyph="delete" id="list_delete"></span></a>';
 						}
-						echo '<span class="list_title">' . $row['RETURN_ARG2'] . '</span><br/>';
-						echo '<span class="list_artist"><a href="' . $row['RETURN_ARG4'] . '">' . $row['RETURN_ARG3'] . '</a></span>';
+						echo '<div class="list_title">' . $row['RETURN_ARG2'] . '</div>';
+						echo '<div class="list_artist"><a href="' . $row['RETURN_ARG4'] . '">' . $row['RETURN_ARG3'] . '</a></div>';
 					echo '</div>';
 				echo '</td>';
 				echo '<td>' . $row['ADDED_BY'] . '</td>';
@@ -52,8 +52,8 @@ function getListRow_Service($row) {
 						if ($_SESSION['login']) {
 							echo '<a href="includes/delete_song.php?id=' . $row['TRACKID'] . '&user=' . $_SESSION['username'] . '"/><span class="oi" data-glyph="delete" id="list_delete"></span></a>';
 						}
-						echo '<span class="list_title">' . $row['RETURN_ARG2'] . '</span><br/>';
-						echo '<span class="list_artist"><a href="' . $row['RETURN_ARG4'] . '">' . $row['RETURN_ARG3'] . '</a></span>';
+						echo '<div class="list_title">' . $row['RETURN_ARG2'] . '</div>';
+						echo '<div class="list_artist"><a href="' . $row['RETURN_ARG4'] . '">' . $row['RETURN_ARG3'] . '</a></div>';
 					echo '</div>';
 				echo '</td>';
 				echo '<td>' . $row['ADDED_BY'] . '</td>';

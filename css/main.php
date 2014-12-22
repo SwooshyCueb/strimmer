@@ -362,10 +362,10 @@ hr {
 	line-height: 24px;
 }
 #list_delete {
-	float: left;
+	float: right;
 	font-size: 14pt;
 	padding: 8px;
-	padding-left: 0px;
+	padding-right: 8px;
 	color: <?php echo $font_color['list_delete']; ?>;
 	text-decoration: none;
 }
