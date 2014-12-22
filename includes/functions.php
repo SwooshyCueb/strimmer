@@ -11,11 +11,25 @@ function mpd_getPlaylist() {
 // --= ALL LIST ROWS WILL BE DRAWN BY THIS FUNCTION =--
 //
 function getListRow_Service($row) {
+	$filename = dirname(dirname(__FILE__)) . "/cache" . "/" . $row['TRACKID'] . ".jpg";
+	if(!file_exists($filename)) {
+		$image = new Imagick();
+		$image->readImage($row['RETURN_ARG7']);
+		$image->setFormat("jpg");
+		$image->setImageCompression(Imagick::COMPRESSION_JPEG);
+		$image->setImageCompressionQuality(97);
+		$image->thumbnailImage(100,100);
+		$image->writeImage($filename);
+		$image->clear();
+	}
+	// sublime is saying /cache/ is escaped, so it's separated in case
+	// unsure if it /actually is/ but w/e
+	
 	switch ($row['SERVICE']) {
 		case 'SDCL':
 			echo '<tr class="song_row">';
 				echo '<td>';
-					echo '<img src="' . $row['RETURN_ARG7'] . '" class="list_art"/>';
+					echo '<img src="cache/' . $row['TRACKID'] . '.jpg" class="list_art"/>';
 					echo '<div class="list_info">';
 						if ($_SESSION['login']) {
 							echo '<a href="includes/delete_song.php?id=' . $row['TRACKID'] . '&user=' . $_SESSION['username'] . '"/><span class="oi" data-glyph="delete" id="list_delete"></span></a>';
@@ -33,7 +47,7 @@ function getListRow_Service($row) {
 		case 'WYZL':
 			echo '<tr class="song_row">';
 				echo '<td>';
-					echo '<img src="' . $row['RETURN_ARG7'] . '" class="list_art"/>';
+					echo '<img src="cache/' . $row['TRACKID'] . '.jpg" class="list_art"/>';
 					echo '<div class="list_info">';
 						if ($_SESSION['login']) {
 							echo '<a href="includes/delete_song.php?id=' . $row['TRACKID'] . '&user=' . $_SESSION['username'] . '"/><span class="oi" data-glyph="delete" id="list_delete"></span></a>';
