@@ -360,3 +360,8 @@ hr {
 #list_delete:hover {
 	color: #f00;
 }
+
+.list_svc {
+	width: 24px;
+	height: 24px;
+}
