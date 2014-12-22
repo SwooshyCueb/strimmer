@@ -9,9 +9,16 @@ include "includes/settings.php";
 include_once "includes/session.php";
 include "includes/functions.php";
 
+if(isset($_GET['user'])) {
+	$query = 'SELECT * FROM db_cache WHERE ADDED_BY="' . $_GET['user'] . '" ORDER BY ADDED_ON';
+} else {
+	$query = "SELECT * FROM db_cache ORDER BY ADDED_ON;";
+}
 
-$query = "SELECT * FROM db_cache ORDER BY ADDED_ON;";
 $result = mysqli_query($mysqli,$query);
+if(!mysqli_num_rows($result)) {
+	$user_nonexistant = 1;
+}
 
 ?>
 
@@ -113,43 +120,6 @@ $result = mysqli_query($mysqli,$query);
 		</div>
 	</div>
 
-	<div class="wrapper">
-		<!-- column 1: panel selections -->
-		<!-- column 2: selected panel -->
-		<div class="col1">
-			<div class="col_wrapper">
-				<?php if ($_SESSION['login']) { ?>
-				<a href="#"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="person"></span> My Items</span></div></a>
-				<hr/>
-				<?php } ?>
-				<a href="#"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="headphones"></span> Library</span></div></a>
-				<a href="#"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="list"></span> Play Queue</span></div></a>
-				<?php if ($_SESSION['login']) { ?>
-				<hr/>
-				<a href="#"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="people"></span> Userlist</span></div></a>
-				<hr/>
-				<a href="#"><div class="sel_color_sc" id="add_sc"><span class="sel_text"><span class="oi" data-glyph="plus"></span> SoundCloud Track</span></div></a>
-				<a href="#"><div class="sel_color_we" id="add_we"><span class="sel_text"><span class="oi" data-glyph="plus"></span> Weasyl Submission</span></div></a>
-				<?php } ?>
-			</div>
-		</div>
-		<div class="col2">
-			<div class="col_wrapper">
-				<table class="song_list">
-					<tr class="h_row">
-						<td>Song</td>
-						<td>Added by</td>
-						<td>Added on</td>
-						<td></td>
-					</tr>
-					<?php
-						while($row = mysqli_fetch_array($result)) {
-							getListRow_Service($row);
-						}
-					?>
-			</div>
-		</div>
-	</div>
 
 	<div class="footer">
 		<img src="images/icon.png" class="np_art"/>
@@ -171,6 +141,51 @@ $result = mysqli_query($mysqli,$query);
 			<span class="oi" data-glyph="account-login"></span> Login
 		</div>
 		<?php } ?>
+	</div>
+
+	<div class="wrapper">
+		<!-- column 1: panel selections -->
+		<!-- column 2: selected panel -->
+		<div class="col1">
+			<div class="col_wrapper">
+				<?php if ($_SESSION['login']) { ?>
+				<a href="?user=<?php echo $_SESSION['username']; ?>"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="person"></span> My Items</span></div></a>
+				<hr/>
+				<?php } ?>
+				<a href="#"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="headphones"></span> Library</span></div></a>
+				<a href="#"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="list"></span> Play Queue</span></div></a>
+				<?php if ($_SESSION['login']) { ?>
+				<hr/>
+				<a href="#"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="people"></span> Userlist</span></div></a>
+				<hr/>
+				<a href="#"><div class="sel_color_sc" id="add_sc"><span class="sel_text"><span class="oi" data-glyph="plus"></span> SoundCloud Track</span></div></a>
+				<a href="#"><div class="sel_color_we" id="add_we"><span class="sel_text"><span class="oi" data-glyph="plus"></span> Weasyl Submission</span></div></a>
+				<?php } ?>
+			</div>
+		</div>
+		<div class="col2">
+			<div class="col_wrapper">
+				<table class="song_list">
+					<?php
+						if(!$user_nonexistant) {
+						?>
+							<tr class="h_row">
+								<td>Song</td>
+								<td>Added by</td>
+								<td>Added on</td>
+								<td></td>
+							</tr>
+						<?php
+							while($row = mysqli_fetch_array($result)) {
+								getListRow_Service($row);
+							}
+						} else {
+							echo "<p>Specified user " . $_GET['user'] . " does not exist.</p>";
+						}
+					?>
+				</table>
+			</div>
+		</div>
 	</div>
 </body>
 
