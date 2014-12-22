@@ -59,8 +59,7 @@ hr {
 }
 .wrapper .col1 {
 	width: 220px;
-	position: fixed;
-	top: 36px;
+	float: left;
 	border-right: 1px solid <?php echo $border_color['col1']; ?>;
 	height: calc(100vh - 109px);
 	box-shadow: 1px 0px 6px rgba(0,0,0,0.3);
@@ -70,7 +69,7 @@ hr {
 	font-size: 10pt;
 	position: absolute;
 	right: 0;
-	width: 100%;
+	width: calc(100% - 220px);
 	overflow-y: hidden;
 }
 
@@ -78,6 +77,7 @@ hr {
 	line-height: 30px;
 	background-color: <?php echo $bg_color['col1']; ?>;
 	z-index: 50;
+	position: static;
 }
 .wrapper .col1 .col_wrapper {
 	padding-top: 8px;
@@ -129,7 +129,7 @@ hr {
 
 .col1 .col_wrapper {
 	padding: 0px;
-	width: 0px;
+	width: 220px;
 	position: static;
 }
 

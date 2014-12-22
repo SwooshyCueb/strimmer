@@ -23,8 +23,10 @@ $result = mysqli_query($mysqli,$query);
 	<link rel="stylesheet" type="text/css" href="css/main.php"/>
 	<link rel="stylesheet" type="text/css" href="css/open-iconic.css"/>
 	<script src="js/jquery.js"></script>
+	<script src="js/jquery-ui.js"></script>
 	<script>
 	$(document).ready(function(){
+		$('.col1').toggle()
 		$(".dropdown").css("width",$(".user").css("width"))
 		$(".user").on("click",function(){
 			$(".dropdown").fadeIn(100)
@@ -80,6 +82,9 @@ $result = mysqli_query($mysqli,$query);
 				$(".dialog_bg").fadeIn(200)
 			})
 		})
+		$("#col1_toggle").on("click",function(){
+	        $('.col1').toggle("slide", "direction: left", 300);
+		})
 		$("#drop_logout").on("click",function(){
 			window.location.href = "includes/logout.php";
 		})
@@ -98,7 +103,7 @@ $result = mysqli_query($mysqli,$query);
 	<div class="dialog_load_spot"></div>
 	<div class="header">
 		<div class="left">
-			<span class="title"><?php echo $prog_title; ?></span>
+			<span class="title"><span class="oi" data-glyph="menu" id="col1_toggle" style="font-size: 12pt;"></span> <?php echo $prog_title; ?></span>
 		</div>
 		<div class="right">
 			<div class="user">
