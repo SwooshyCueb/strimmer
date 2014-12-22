@@ -3,10 +3,10 @@
 	include "themes/default.php";
 ?>
 
-@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
 
 body {
-	font-family: "Droid Sans", "Segoe UI", "Helvetica", sans-serif;
+	font-family: "Roboto", "Segoe UI", "Helvetica", sans-serif;
 	font-weight: 400;
 	font-size: 12pt;
 	color: <?php echo $font_color['body']; ?>;
