@@ -16,6 +16,8 @@ if(isset($_GET['user'])) {
 }
 
 $result = mysqli_query($mysqli,$query);
+
+$user_nonexistant = 0;
 if(!mysqli_num_rows($result)) {
 	$user_nonexistant = 1;
 }
