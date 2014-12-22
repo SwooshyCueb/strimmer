@@ -1,5 +1,7 @@
 <?php
 	include_once dirname(dirname(__FILE__)) . "/includes/settings.php";
+	include_once dirname(dirname(__FILE__)) . "/config.php";
+
 	$time = 0;
 	$previous_song = "";
 
@@ -26,6 +28,39 @@
 			$result = mysqli_query($mysqli,$query);
 			$row = mysqli_fetch_array($result);
 		}
+
+		switch ($row['SERVICE']) {
+			case 'SDCL':
+				$stream_link = $row['RETURN_ARG5'] . "?client_id=" . $sc_api_key;
+				break;
+
+			case 'WYZL':
+				$stream_link = $row['RETURN_ARG5'];
+				break;
+			default:
+				# code...
+				break;
+		}
+
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, $stream_link);
+		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, false);
+		curl_setopt($curl, CURLOPT_HEADER, true);  
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (X11; Linux x86_64; rv:21.0) Gecko/20100101 Firefox/21.0");
+		$output = curl_exec($curl);
+
+		$httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+		if($httpCode == 404) {
+			echo "RETURNED 404: " . $stream_link;
+			// should we go ahead and remove the track from the DB, or mark it with a warning?
+			$time = 0;
+			curl_close($curl);
+			continue;
+		}
+
+		curl_close($curl);
+
 		$previous_song = $row['TRACKID'];
 
 		$url_str = $row['RETURN_ARG3'] . " - " . $row['RETURN_ARG2'];
@@ -43,22 +78,9 @@
 		$cmd_str = str_replace('"', '\"', $cmd_str);
 		exec('./metadata_upd "' . $cmd_str . '" > metadata_log 2>&1 &');
 
-		switch ($row['SERVICE']) {
-			case 'SDCL':
-				$stream_link = $row['RETURN_ARG5'] . "?client_id=" . $sc_api_key;
-				break;
-
-			case 'WYZL':
-				$stream_link = $row['RETURN_ARG5'];
-				break;
-			default:
-				# code...
-				break;
-		}
-
 		$time = time();
 
-		exec($icecast['ffmpeg'] . ' -re -i \'' . $stream_link . '\' -acodec libmp3lame -q ' . $icecast['qual'] . ' -content_type "audio/mpeg3" -metadata title="' . $cmd_str . '" "icecast://source:' . $icecast['pass'] . '@' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mount'] . '"');
+		exec($icecast['ffmpeg'] . ' -loglevel panic -hide_banner -re -i \'' . $stream_link . '\' -acodec libmp3lame -q ' . $icecast['qual'] . ' -content_type "audio/mpeg3" -metadata title="' . $cmd_str . '" "icecast://source:' . $icecast['pass'] . '@' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mount'] . '"');
 
 	}
 ?>
