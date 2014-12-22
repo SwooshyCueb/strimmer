@@ -99,7 +99,7 @@ hr {
 }
 .wrapper .col1 .col_wrapper div:hover {
 	background-color: <?php echo $bg_color['col1_hover']; ?>;
-	color: <?php echo $font_color['header_hover']; ?>;
+	color: <?php echo $font_color['col1_hover']; ?>;
 	transition: .05s;
 }
 .wrapper .col2 .col_wrapper {
