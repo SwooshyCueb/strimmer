@@ -335,23 +335,23 @@ hr {
 	text-align: center;
 	padding-top: 32px;
 }
-.dialog_buttons .button {
+.button {
 	padding: 12px;
 	margin: 6px;
 	border-radius: 8px;
 	background-color: <?php echo $bg_color['dialog_buttons']; ?>;
 	color: <?php echo $font_color['dialog_buttons']; ?>;
 }
-.dialog_buttons .button:hover {
+.button:hover {
 	background-color: <?php echo $bg_color['dialog_buttons_hover']; ?>;
 	color: <?php echo $font_color['dialog_buttons_hover']; ?>;
 }
-.dialog_buttons .button:active {
+.button:active {
 	background-color: <?php echo $bg_color['dialog_buttons_clicked']; ?>;
 	color: <?php echo $font_color['dialog_buttons_clicked']; ?>;
 }
 
-.dialog input {
+.dialog input, .dialog select {
 	background-color: <?php echo $bg_color['dialog_input']; ?>;
 	color: <?php echo $font_color['dialog_input']; ?>;
 	padding: 4px;

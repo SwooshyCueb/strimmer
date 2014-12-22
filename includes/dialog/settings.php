@@ -33,12 +33,12 @@
 			<span class="button" id="close_button_dg">Cancel</span>
 		</div>
 	</form>
-	<form action="includes/change_avatar.php" method="POST" enctype="multipart/form-data" style="padding-top: 28px;">
+	<form name="avatar-change-form" action="includes/change_avatar.php" method="POST" enctype="multipart/form-data" style="padding-top: 28px;">
 		<span style="text-align: left;">Avatar/Icon</span>
 		<div style="float: right;">
 			<input type="file" name="userfile" required/>
 			<input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>"/>
-			<input type="submit" value="Upload" class="button" style="width: 121px;"/>
+			<span class="button" onClick="document.forms['avatar-change-form'].submit();">Upload</span>
 		</div>
 	</form>
 </div>
