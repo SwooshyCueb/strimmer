@@ -46,6 +46,22 @@ if(isset($_POST['mode'])) {
 						} else {
 							$artwork_url = $stream_vars['artwork_url'];
 						}
+
+						$curl = curl_init();
+						curl_setopt($curl, CURLOPT_URL, $artwork_url);
+						curl_setopt($curl, CURLOPT_FOLLOWLOCATION, false);
+						curl_setopt($curl, CURLOPT_HEADER, true);  
+						curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+						curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (X11; Linux x86_64; rv:21.0) Gecko/20100101 Firefox/21.0");
+						$output = curl_exec($curl);
+
+						$httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+						if($httpCode == 403) {
+							$artwork_url = $user_vars['avatar_url'];
+						}
+
+						curl_close($curl);
+
 						$query = 'INSERT INTO db_cache ( TRACKID,SERVICE,RETURN_ARG1,RETURN_ARG2,RETURN_ARG3,RETURN_ARG4,RETURN_ARG5,RETURN_ARG6,RETURN_ARG7,ADDED_BY,ADDED_ON ) VALUES (
 							"SDCL' . $sc_trk_id . '",
 							"SDCL",
@@ -60,7 +76,6 @@ if(isset($_POST['mode'])) {
 							' . $time . '
 							)';
 						$result = mysqli_query($mysqli,$query);
-						exec("mpc -h " . $mpd['password'] . "@" . $mpd['host'] . " -p " . $mpd['port'] . " add " . $stream_vars['stream_url'] . "?client_id=" . $sc_api_key);
 					}
 					header("Location: " . $_SERVER['HTTP_REFERER']);
 					exit;
