@@ -1,6 +1,7 @@
 <?php
 	include_once dirname(dirname(__FILE__)) . "/includes/settings.php";
 	$time = 0;
+	$previous_song = "";
 
 	while(true) {
 		//emergency end
@@ -19,23 +20,16 @@
 		
 		$row = mysqli_fetch_array($result);
 
+		// temporary fix to the repetition issue
+		// this'll have to be reworked when we add in the play queue
+		while($row['TRACKID'] == $previous_song) {
+			$result = mysqli_query($mysqli,$query);
+			$row = mysqli_fetch_array($result);
+		}
+		$previous_song = $row['TRACKID'];
+
 		$url_str = $row['RETURN_ARG3'] . " - " . $row['RETURN_ARG2'];
 		echo $url_str;
-		/*
-		$url = "http://" . $icecast['admin_user'] . ":" . $icecast['admin_pass'] . "@" . $icecast['host'] . ":" . $icecast['port'] . "/admin/metadata?mount=/ " . $icecast['mount'] . "&mode=updinfo&song=" . $url_str;
-		// $icecast['mount']="silence.mp3" ????
-
-		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $url);
-		curl_setopt($curl, CURLOPT_HEADER, 0);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($curl, CURLOPT_USERPWD, $icecast['admin_user'] . ":" . $icecast['admin_pass']);
-		curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-		$output = curl_exec($curl);
-		echo $url . "\r\n";
-		echo $output . "\r\n";
-		curl_close($curl);
-		*/
 
 		putenv("ICHOST=" . $icecast['host']);
 		putenv("ICPORT=" . $icecast['port']);
