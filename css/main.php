@@ -7,7 +7,7 @@
 
 @media only screen and (max-device-width: 480px) {
 	.col2, .col_wrapper, .wrapper, { max-width: 100vw; min-width: 0 !important; }
-	.song_list { max-width: calc(100vw - 32px); min-width: 0 !important; }
+	.song_list { max-width: calc(100vw - 32px); min-width: 0 !important; table-layout: fixed; }
 	.song_list .song_row td:nth-child(1), .song_list .h_row td:nth-child(1) { width: calc(100vw - 56px); }
 	.song_list .song_row td:nth-child(2), .song_list .h_row td:nth-child(2) { display: none; }
 	.song_list .song_row td:nth-child(3), .song_list .h_row td:nth-child(3) { display: none; }
@@ -227,7 +227,6 @@ hr {
 
 .song_list {
 	border-collapse: separate;
-	table-layout: fixed;
 	width: 100%;
 	z-index: -1;
 	vertical-align: middle;
