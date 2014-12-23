@@ -50,11 +50,12 @@ function getListRow_Service($row) {
 				echo '<td>';
 					echo '<img src="cache/' . $row['TRACKID'] . '.jpg" class="list_art"/>';
 					echo '<div class="list_info">';
+						echo '<div class="overflow_grd"></div>';
 						if ($_SESSION['login']) {
 							echo '<a href="includes/delete_song.php?id=' . $row['TRACKID'] . '&user=' . $_SESSION['username'] . '"/><span class="oi" data-glyph="delete" id="list_delete"></span></a>';
 						}
-						echo '<div class="list_title">' . $row['RETURN_ARG2'] . '</div>';
-						echo '<div class="list_artist"><a href="' . $row['RETURN_ARG4'] . '">' . $row['RETURN_ARG3'] . '</a></div>';
+						echo '<div class="list_title" style="z-index: 0;">' . $row['RETURN_ARG2'] . '</div>';
+						echo '<div class="list_artist" style="z-index: 0;"><a href="' . $row['RETURN_ARG4'] . '">' . $row['RETURN_ARG3'] . '</a></div>';
 					echo '</div>';
 				echo '</td>';
 				echo '<td>' . $row['ADDED_BY'] . '</td>';
