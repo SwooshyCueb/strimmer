@@ -55,3 +55,10 @@ $service_color['soundcloud'] = "#cb4b16";
 $service_color['soundcloud_hover'] = "#fdf6e3";
 $service_color['weasyl'] = "#992321";
 $service_color['weasyl_hover'] = "#fdf6e3";
+
+$balloon_color['general'] = "#fdf6e3";
+$balloon_color['new'] = "#fdf6e3";
+$balloon_color['error'] = "#fdf6e3";
+$balloon_color['font_general'] = "#073642";
+$balloon_color['font_new'] = "#073642";
+$balloon_color['font_error'] = "#073642";
