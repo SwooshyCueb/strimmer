@@ -1,6 +1,6 @@
 <?php
 
-include_once dirname(__FILE__) . "/settings.php";
+include dirname(__FILE__) . "/settings.php";
 
 function mpd_getPlaylist() {
 	$playlist = explode("\n",str_replace("\n\r","\n",shell_exec("mpc -f \"%file%\" -h " . $mpd['host'] . " -p " . $mpd['port'] . " playlist")));
@@ -11,6 +11,10 @@ function mpd_getPlaylist() {
 // --= ALL LIST ROWS WILL BE DRAWN BY THIS FUNCTION =--
 //
 function getListRow_Service($row) {
+
+	// apparently this php script is called before /css/main.php?
+	include dirname(dirname(__FILE__)) . "/css/themes/default.php";
+
 	$filename = dirname(dirname(__FILE__)) . "/cache" . "/" . $row['TRACKID'] . ".jpg";
 	if(!file_exists($filename)) {
 		$image = new Imagick();
@@ -34,6 +38,15 @@ function getListRow_Service($row) {
 						echo '<div class="overflow_grd"></div>';
 						if ($_SESSION['login']) {
 							echo '<a href="includes/delete_song.php?id=' . $row['TRACKID'] . '&user=' . $_SESSION['username'] . '"/><span class="oi" data-glyph="delete" id="list_delete"></span></a>';
+							// uncomment once LASTACTIVE is tracked again
+							/* if($row['ADDED_ON'] >= $_SESSION['LASTACTIVE']) {
+								echo '<span class="balloon" style="background-color: ' . $balloon_color['new'] . '; color: ' . $balloon_color['font_new'] . ';">NEW</span>';
+							} /*
+
+							// it's there when we add it, if ever
+							/* if(isset($row['ERROR'])) {
+								echo '<span class="balloon" style="background-color: ' . $balloon_color['error'] . '; color: ' . $balloon_color['font_error'] . ';">ERROR</span>';
+							} */
 						}
 						echo '<div class="list_title" style="z-index: 0;">' . $row['RETURN_ARG2'] . '</div>';
 						echo '<div class="list_artist" style="z-index: 0;"><a href="' . $row['RETURN_ARG4'] . '">' . $row['RETURN_ARG3'] . '</a></div>';

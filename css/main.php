@@ -409,3 +409,13 @@ hr {
 	width: 24px;
 	height: 24px;
 }
+
+.balloon {
+	font-weight: 700;
+	font-size: 7pt;
+	padding-left: 4px;
+	padding-right: 4px;
+	border-radius: 3px;
+	float: left;
+	margin-right: 4px;
+}
