@@ -283,11 +283,11 @@ hr {
 }
 .list_title {
 	font-size: 12pt;
-	font-weight: 700;
 }
 .list_title, .list_artist {
 	white-space: nowrap;
 	overflow: hidden;
+	padding-bottom: 2px;
 }
 .overflow_grd {
 	width: calc(100% - 83px);
