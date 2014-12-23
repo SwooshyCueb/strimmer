@@ -285,6 +285,26 @@ hr {
 	font-size: 12pt;
 	font-weight: 700;
 }
+.list_title, .list_artist {
+	white-space: nowrap;
+	overflow: hidden;
+}
+.overflow_grd {
+	width: calc(100% - 83px);
+	position: absolute;
+	left: 48px;
+	height: 100%;
+	z-index: 49;
+}
+.song_row:nth-child(even) .overflow_grd {
+	background: linear-gradient(to left, <?php echo $bg_color['list_evenrows']; ?>, transparent 10%);
+}
+.song_row:nth-child(odd) .overflow_grd {
+	background: linear-gradient(to left, <?php echo $bg_color['list_oddrows']; ?>, transparent 10%);
+}
+.song_row:hover .overflow_grd {
+	background: linear-gradient(to left, <?php echo $bg_color['list_hover']; ?>, transparent 10%);
+}
 
 .dropdown {
 	background-color: <?php echo $bg_color['user']; ?>;
