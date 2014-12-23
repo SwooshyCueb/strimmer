@@ -5,6 +5,17 @@
 
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
 
+@media only screen and (max-device-width: 480px) {
+	.col2, .col_wrapper, .wrapper, .song_list { max-width: 100vw; min-width: 0 !important; }
+	.song_list .song_row td:nth-child(1), .song_list .h_row td:nth-child(1) { width: calc(100vw - 48px); }
+	.song_list .song_row td:nth-child(2), .song_list .h_row td:nth-child(2) { display: none; }
+	.song_list .song_row td:nth-child(3), .song_list .h_row td:nth-child(3) { display: none; }
+	.song_list .song_row td:nth-child(4), .song_list .h_row td:nth-child(4) { width: 48px; }
+}
+@media only screen and (min-device-width: 481px) {
+	.col2, .col_wrapper, .wrapper, .song_list { min-width: 1000px !important; }
+}
+
 body {
 	font-family: "Roboto", "Segoe UI", "Helvetica", sans-serif;
 	font-weight: 400;
@@ -55,7 +66,6 @@ hr {
 .wrapper {
 	position: relative;
 	top: 36px;
-	min-width: 1000px;
 }
 .wrapper .col1 {
 	width: 220px;
