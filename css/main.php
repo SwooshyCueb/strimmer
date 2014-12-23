@@ -306,6 +306,7 @@ hr {
 	left: 48px;
 	height: 100%;
 	z-index: 49;
+	pointer-events: none;
 }
 .song_row:nth-child(even) .overflow_grd {
 	background: linear-gradient(to left, <?php echo $bg_color['list_evenrows']; ?>, transparent 10%);
