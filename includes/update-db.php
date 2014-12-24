@@ -30,9 +30,37 @@ function update_1() {
 	mysqli_free_result($result);
 }
 
+function update_2() {
+	include dirname(__FILE__) . "/settings.php";
+	$query = "ALTER TABLE user_db ADD COLUMN SC_API_ID varchar(64);";
+	$result = mysqli_query($mysqli,$query);
+	// Error checking 'n' shit
+	var_dump($result);
+	mysqli_free_result($result);
+	$query = "ALTER TABLE user_db ADD COLUMN SC_API_SECRET varchar(64);";
+	$result = mysqli_query($mysqli,$query);
+	// Error checking 'n' shit
+	var_dump($result);
+	mysqli_free_result($result);
+	$query = "ALTER TABLE user_db ADD COLUMN PASS_VER int(8);";
+	$result = mysqli_query($mysqli,$query);
+	// Error checking 'n' shit
+	var_dump($result);
+	mysqli_free_result($result);
+	$query = "UPDATE user_db SET PASS_VER=1;";
+	$result = mysqli_query($mysqli,$query);
+	// Error checking 'n' shit
+	var_dump($result);
+	mysqli_free_result($result);
+	$query = "UPDATE strimmer_db SET DB_VER='2';";
+	$result = mysqli_query($mysqli,$query);
+	// Error checking 'n' shit
+	var_dump($result);
+	mysqli_free_result($result);
+}
+
 $query = "SELECT * FROM mpdi_db;";
 $dbver_res = mysqli_query($mysqli,$query);
-var_dump($dbver_res);
 if ($dbver_res !== FALSE) {
 	// This probably means we don't have the table containing
 	// database schema version information, so let's create it.
@@ -42,7 +70,6 @@ mysqli_free_result($dbver_res);
 
 $query = "SELECT * FROM strimmer_db WHERE FIELD='DB_VER';";
 $dbver_res = mysqli_query($mysqli,$query);
-var_dump($dbver_res);
 if ($dbver_res == FALSE) {
 	// This probably means we don't have the table containing
 	// database schema version information, so let's create it.
@@ -52,6 +79,8 @@ if ($dbver_res == FALSE) {
 	$dbver_row = mysqli_fetch_array($dbver_res);
 	switch ($dbver_row['VALUE']) {
 		case '1':
+			update_2();
+		case '2':
 			// We're good.
 			break;
 		default:
