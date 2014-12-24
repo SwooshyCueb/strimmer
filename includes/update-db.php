@@ -40,7 +40,7 @@ if ($dbver_res !== FALSE) {
 }
 mysqli_free_result($dbver_res);
 
-query = "SELECT * FROM strimmer_db WHERE FIELD='DB_VER';";
+$query = "SELECT * FROM strimmer_db WHERE FIELD='DB_VER';";
 $dbver_res = mysqli_query($mysqli,$query);
 var_dump($dbver_res);
 if ($dbver_res !== FALSE) {
