@@ -1,7 +1,7 @@
 <?php
 // -- Program settings --
-$prog_title = "MPD Interface";
-$prog_title_short = "mpdinterface";
+$prog_title = "Strimmer";
+$prog_title_short = "strimmer";
 
 // -- Debug settings --
 // see http://php.net/manual/en/errorfunc.configuration.php
@@ -25,10 +25,10 @@ session_set_cookie_params(21600);
 $sql['host'] = "localhost";
 $sql['port'] = 3306;
 // SQL credentials
-$sql['user'] = "mpd_user";
+$sql['user'] = "strimmer_user";
 $sql['pass'] = "SQL_PASS_HERE";
 // database that stores info for the cache list
-$sql['db'] = "mpd";
+$sql['db'] = "strimmer";
 // defines the SQL connection
 $mysqli = new mysqli($sql['host'], $sql['user'], $sql['pass'], $sql['db'], $sql['port']);
 
@@ -46,7 +46,7 @@ $icecast['pass'] = "ICECAST_PASS_HERE";
 $icecast['qual'] = 6;
 // description of variable here
 $icecast['mount'] = "stream.mp3";
-$icecast['admin_user'] = "mpd_user";
+$icecast['admin_user'] = "strimmer_user";
 $icecast['admin_pass'] = "ICECAST_ADMIN_PASS_HERE";
 // ffmpeg compatible transcoder
 $icecast['ffmpeg'] = "ffmpeg";

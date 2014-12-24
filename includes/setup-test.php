@@ -13,10 +13,10 @@ if ((!empty($_POST)) && ($_POST['setup'] == 'test')) {
 			<html>
 			<head>
 			<meta charset="UTF-8">
-			<title>MPD Interface setup</title>
+			<title>Strimmer setup</title>
 			</head>
 			<body>
-			<h1>MPD Interface setup</h1>
+			<h1>Strimmer setup</h1>
 			<hr />
 			<h2>MySQL Testing</h2>
 			<table>

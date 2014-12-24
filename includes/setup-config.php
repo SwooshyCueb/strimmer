@@ -62,10 +62,10 @@ if ((!empty($_POST)) && ($_POST['setup'] == 'config')) {
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MPD Interface setup</title>
+<title>Strimmer setup</title>
 </head>
 <body>
-<h1>MPD Interface setup</h1>
+<h1>Strimmer setup</h1>
 <hr />
 <h2>Generated config.php</h2>
 <?php echo nl2br( htmlspecialchars($config_str)); ?>
@@ -89,19 +89,19 @@ if ((!empty($_POST)) && ($_POST['setup'] == 'config')) {
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MPD Interface setup</title>
+<title>Strimmer setup</title>
 </head>
 <body>
-<h1>MPD Interface setup</h1>
+<h1>Strimmer setup</h1>
 <hr />
 <form action=<?php echo '"'.$here.'"'; ?> method="post">
 <input type="hidden" name="setup" value="config">
 <h2>General Settings</h2>
-<div>MPD Interface Title:
-<input type="text" name="title" value="MPD Interface"><br />
+<div>Strimmer Title:
+<input type="text" name="title" value="Strimmer"><br />
 The name of this interface. You'll see it a lot.<br /><br /></div>
-<div>MPD Interface ID String:
-<input type="text" name="idstr" value="mpdinterface"><br />
+<div>Strimmer ID String:
+<input type="text" name="idstr" value="strimmer"><br />
 This interface's ID string. For internal use. Not used yet. Alphanumeric characters only, please.<br /><br /></div>
 <hr />
 <h2>Session Settings</h2>

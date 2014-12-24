@@ -12,7 +12,7 @@
 ?>
 
 <div class="dialog">
-	<form name='mpd-set-form' id='mpd-set-form' action="includes/settings.php" method="post">
+	<form name='strimmer-set-form' id='strimmer-set-form' action="includes/settings.php" method="post">
 		<div style="width: 500px;">
 			<span style="text-align: left;">Timezone</span>
 			<div style="float: right;">
@@ -29,7 +29,7 @@
 			</div>
 		</div>
 		<div class="dialog_buttons">
-			<span class="button" onClick="document.forms['mpd-set-form'].submit();">Save</span>
+			<span class="button" onClick="document.forms['strimmer-set-form'].submit();">Save</span>
 			<span class="button" id="close_button_dg">Cancel</span>
 		</div>
 	</form>

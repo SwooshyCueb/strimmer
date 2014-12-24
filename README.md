@@ -1,4 +1,4 @@
-mpdinterface
+Strimmer
 ============
 
 &lt;3

@@ -3,9 +3,9 @@
 
 include dirname(__FILE__) . "/settings.php";
 
-function update_0() {
+function install_1() {
 	include dirname(__FILE__) . "/settings.php";
-	$query = "CREATE TABLE mpdi_db (
+	$query = "CREATE TABLE strimmer_db (
 		FIELD varchar(128) NOT NULL,
 		VALUE varchar(2048),
 		PRIMARY KEY (FIELD)
@@ -13,26 +13,45 @@ function update_0() {
 	$result = mysqli_query($mysqli,$query);
 	// Error checking 'n' shit
 	mysqli_free_result($result);
-	$query = 'INSERT INTO mpdi_db ( FIELD,VALUE ) VALUES (
+	$query = 'INSERT INTO strimmer_db ( FIELD,VALUE ) VALUES (
 		"DB_VER",
-		"0"
+		"1"
 		);';
 	$result = mysqli_query($mysqli,$query);
 	// Error checking 'n' shit
 	mysqli_free_result($result);
 }
 
-$query = "SELECT * FROM mpdi_db WHERE FIELD='DB_VER'";
+function update_1() {
+	include dirname(__FILE__) . "/settings.php";
+	$query = "DROP TABLE mpdi_db;";
+	$result = mysqli_query($mysqli,$query);
+	// Error checking 'n' shit
+	mysqli_free_result($result);
+}
+
+$query = "SELECT * FROM mpdi_db;";
 $dbver_res = mysqli_query($mysqli,$query);
 var_dump($dbver_res);
-if ($dbver_res == FALSE) {
+if ($dbver_res !== FALSE) {
 	// This probably means we don't have the table containing
 	// database schema version information, so let's create it.
-	update_0();
+	update_1();
+}
+mysqli_free_result($dbver_res);
+
+query = "SELECT * FROM strimmer_db WHERE FIELD='DB_VER';";
+$dbver_res = mysqli_query($mysqli,$query);
+var_dump($dbver_res);
+if ($dbver_res !== FALSE) {
+	// This probably means we don't have the table containing
+	// database schema version information, so let's create it.
+	install_1();
+	mysqli_free_result($dbver_res);	
 } else {
 	$dbver_row = mysqli_fetch_array($dbver_res);
 	switch ($dbver_row['VALUE']) {
-		case '0':
+		case '1':
 			// We're good.
 			break;
 		default:
