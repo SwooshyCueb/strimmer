@@ -24,10 +24,6 @@ if ((!empty($_POST)) && ($_POST['setup'] == 'config')) {
 	$config_str = preg_replace("/(sql\['pass'\] = )\".+(\";)/", "\\1\"" . $_POST['sql_pass'] . "\\2", $config_str);
 	$config_str = preg_replace("/(sql\['db'\] = )\".+(\";)/", "\\1\"" . $_POST['sql_db'] . "\\2", $config_str);
 
-	$config_str = preg_replace("/(mpd\['host'\] = )\".+(\";)/", "\\1\"" . $_POST['mpd_host'] . "\\2", $config_str);
-	$config_str = preg_replace("/(mpd\['port'\] =) [0-9]{1,5}(;)/", "\\1 " . $_POST['mpd_port'] . "\\2", $config_str);
-	$config_str = preg_replace("/(mpd\['password'\] = )\".+(\";)/", "\\1\"" . $_POST['mpd_pass'] . "\\2", $config_str);
-
 	$config_str = preg_replace("/(icecast\['host'\] = )\".+(\";)/", "\\1\"" . $_POST['ic_host'] . "\\2", $config_str);
 	$config_str = preg_replace("/(icecast\['port'\] =) [0-9]{1,5}(;)/", "\\1 " . $_POST['ic_port'] . "\\2", $config_str);
 	$config_str = preg_replace("/(icecast\['pass'\] = )\".+(\";)/", "\\1\"" . $_POST['ic_stream_pass'] . "\\2", $config_str);
@@ -118,19 +114,11 @@ This is how long the cookies will remain on the client's machine. 0 means until 
 <div>Port:
 <input type="number" name="sql_port" min="0" max="65536" value="3306"><br /><br /></div>
 <div>User:
-<input type="text" name="sql_user" value="mpd_user"><br /><br /></div>
+<input type="text" name="sql_user" value="strimmer_user"><br /><br /></div>
 <div>Password:
 <input type="password" name="sql_pass" value=""><br /><br /></div>
 <div>Database name:
-<input type="text" name="sql_db" value="mpd"><br /><br /></div>
-<hr />
-<h2>MPD</h2>
-<div>Hostname/IP:
-<input type="text" name="mpd_host" value="localhost"><br /><br /></div>
-<div>Port:
-<input type="number" name="mpd_port" min="0" max="65536" value="6600"><br /><br /></div>
-<div>Password:
-<input type="password" name="mpd_pass" value=""><br /><br /></div>
+<input type="text" name="sql_db" value="strimmer"><br /><br /></div>
 <hr />
 <h2>Icecast</h2>
 <div>Hostname/IP:
@@ -147,7 +135,7 @@ Quality (bitrate range) of the stream. Lower numbers are higher quality. See <a 
 <input type="text" name="ic_mount" value="stream.mp3"><br />
 Where to put publicly accessuble stream.<br /><br /></div>
 <div>Admin Username:
-<input type="text" name="ic_admin_user" value="mpd_user"><br />
+<input type="text" name="ic_admin_user" value="strimmer_user"><br />
 Username for accessing admin functions of Icecast.<br /><br /></div>
 <div>Admin Password:
 <input type="password" name="ic_admin_pass" value=""><br />

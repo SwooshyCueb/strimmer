@@ -32,11 +32,6 @@ $sql['db'] = "strimmer";
 // defines the SQL connection
 $mysqli = new mysqli($sql['host'], $sql['user'], $sql['pass'], $sql['db'], $sql['port']);
 
-// -- MPD --
-$mpd['host'] = "localhost";
-$mpd['port'] = 6600;
-$mpd['password'] = "MPD_PASS_HERE";
-
 // -- Icecast --
 $icecast['host'] = "localhost";
 $icecast['port'] = 8000;

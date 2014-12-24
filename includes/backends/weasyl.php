@@ -50,7 +50,6 @@ if(isset($_POST['mode'])) {
 						' . $time . '
 						)';
 					$result = mysqli_query($mysqli,$query);
-					exec("mpc -h " . $mpd['password'] . "@" . $mpd['host'] . " -p " . $mpd['port'] . " add " . $sub_data['media']['submission'][0]['url']);
 				}
 				header("Location: " . $_SERVER['HTTP_REFERER']);
 				exit;

@@ -2,11 +2,6 @@
 
 include dirname(__FILE__) . "/settings.php";
 
-function mpd_getPlaylist() {
-	$playlist = explode("\n",str_replace("\n\r","\n",shell_exec("mpc -f \"%file%\" -h " . $mpd['host'] . " -p " . $mpd['port'] . " playlist")));
-	return $playlist;
-}
-
 //
 // --= ALL LIST ROWS WILL BE DRAWN BY THIS FUNCTION =--
 //
