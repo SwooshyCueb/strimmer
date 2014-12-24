@@ -43,7 +43,7 @@ mysqli_free_result($dbver_res);
 $query = "SELECT * FROM strimmer_db WHERE FIELD='DB_VER';";
 $dbver_res = mysqli_query($mysqli,$query);
 var_dump($dbver_res);
-if ($dbver_res !== FALSE) {
+if ($dbver_res == FALSE) {
 	// This probably means we don't have the table containing
 	// database schema version information, so let's create it.
 	install_1();
