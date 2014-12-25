@@ -36,7 +36,6 @@ function soundcloud_resolveFromID($track_id) {
 	}
 }
 
-$url = "http://api.soundcloud.com/tracks/" . $track_id . ".json?client_id=" . 
 function soundcloud_getStreamVars($location) {
 	if(isset($location)) {
 		$curl = curl_init();
