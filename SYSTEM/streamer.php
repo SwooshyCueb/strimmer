@@ -89,6 +89,19 @@
 
 		$time = time();
 
+		$query = 'SELECT TRACKID FROM play_history';
+		$result = mysqli_query($mysqli,$query);
+		$records = mysqli_num_rows($result);
+
+		if($records >= 100) {
+			$query = "DELETE FROM play_history LIMIT 1 OFFSET 0";
+			$result = mysqli_query($mysqli,$query);
+		}
+
+		// we'll add in ADDED_BY once we get the play queue going, for now everything there should be blank.
+		$query = 'INSERT INTO play_history ( TRACKID, SERVICE, PLAYED_ON ) VALUES ( "' . $row['TRACKID'] . '", "' . $row['SERVICE'] . '", ' . time() . ')';
+		$result = mysqli_query($mysqli,$query);
+
 		exec($icecast['ffmpeg'] . ' -hide_banner -re -i \'' . $stream_link . '\' -acodec libmp3lame -q ' . $icecast['qual'] . ' -content_type "audio/mpeg3" -metadata title="' . $cmd_str . '" "icecast://source:' . $icecast['pass'] . '@' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mount'] . '"');
 
 	}
