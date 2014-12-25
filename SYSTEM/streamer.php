@@ -12,7 +12,14 @@
 			break;
 		}
 
-		$query = "SELECT * FROM db_cache ORDER BY RAND() LIMIT 1";
+		// seems a tad tad bit less optimized, but it should be more randomized now.
+		$query = "SELECT COUNT(*) FROM db_cache";
+		$result = mysqli_query($mysqli,$query);
+		$temp = mysqli_fetch_array($result);
+		// initial index in OFFSET is 0, so we have to take 1 off
+		$rand_max = $temp[0] - 1;
+
+		$query = "SELECT * FROM db_cache LIMIT 1 OFFSET " . mt_rand(0,$rand_max);
 		$result = mysqli_query($mysqli,$query);
 
 		if(!isset($result)) {
@@ -25,7 +32,9 @@
 		// temporary fix to the repetition issue
 		// this'll have to be reworked when we add in the play queue
 		while($row['TRACKID'] == $previous_song) {
-			$result = mysqli_query($mysqli,$query);
+			// had to add this in place of $query so it stays random
+			// we REALLY need to get the play queue going ffs
+			$result = mysqli_query($mysqli,"SELECT * FROM db_cache LIMIT 1 OFFSET " . mt_rand(0,$rand_max));
 			$row = mysqli_fetch_array($result);
 		}
 
@@ -80,7 +89,7 @@
 
 		$time = time();
 
-		exec($icecast['ffmpeg'] . ' -loglevel panic -hide_banner -re -i \'' . $stream_link . '\' -acodec libmp3lame -q ' . $icecast['qual'] . ' -content_type "audio/mpeg3" -metadata title="' . $cmd_str . '" "icecast://source:' . $icecast['pass'] . '@' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mount'] . '"');
+		exec($icecast['ffmpeg'] . ' -hide_banner -re -i \'' . $stream_link . '\' -acodec libmp3lame -q ' . $icecast['qual'] . ' -content_type "audio/mpeg3" -metadata title="' . $cmd_str . '" "icecast://source:' . $icecast['pass'] . '@' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mount'] . '"');
 
 	}
 ?>
