@@ -125,7 +125,14 @@ if(!mysqli_num_rows($result)) {
 				})
 			})
 		})
-
+		$("#queue").on("click",function(){
+			$(".col2").fadeOut(100,function(){
+				$(".col2").empty();
+				$(".col2").load("includes/sections/queue.php", function(){
+					$(".col2").fadeIn(100);
+				})
+			})
+		})
 	});
 	</script>
 </head>
