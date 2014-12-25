@@ -2,6 +2,11 @@
 
 include dirname(__FILE__) . "/settings.php";
 
+function mpd_getPlaylist() {
+	$playlist = explode("\n",str_replace("\n\r","\n",shell_exec("mpc -f \"%file%\" -h " . $mpd['host'] . " -p " . $mpd['port'] . " playlist")));
+	return $playlist;
+}
+
 //
 // --= ALL LIST ROWS WILL BE DRAWN BY THIS FUNCTION =--
 //
@@ -48,7 +53,11 @@ function getListRow_Service($row) {
 					echo '</div>';
 				echo '</td>';
 				echo '<td>' . $row['ADDED_BY'] . '</td>';
-				echo '<td>' . date('M. d, Y g:i A',$row['ADDED_ON']) . '</td>';
+				// injected from includes/sections/history.php
+				if(!isset($row['PLAYED_ON']))
+					echo '<td>' . date('M. d, Y g:i A',$row['ADDED_ON']) . '</td>';
+				else
+					echo '<td>' . date('M. d, Y g:i A',$row['PLAYED_ON']) . '</td>';
 				echo '<td><img src="assets/services/soundcloud.png" class="list_svc"></td>';
 			echo '</tr>';
 			break;

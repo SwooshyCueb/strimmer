@@ -108,6 +108,24 @@ if(!mysqli_num_rows($result)) {
 		})
 		// we need to add $_GET['user'] back to this eventually
 		$(".col2").load("includes/sections/browser.php");
+
+		$("#library").on("click",function(){
+			$(".col2").fadeOut(100,function(){
+				$(".col2").empty();
+				$(".col2").load("includes/sections/browser.php", function(){
+					$(".col2").fadeIn(100);
+				})
+			})
+		})
+		$("#history").on("click",function(){
+			$(".col2").fadeOut(100,function(){
+				$(".col2").empty();
+				$(".col2").load("includes/sections/history.php", function(){
+					$(".col2").fadeIn(100);
+				})
+			})
+		})
+
 	});
 	</script>
 </head>
@@ -154,16 +172,17 @@ if(!mysqli_num_rows($result)) {
 		<div class="col1">
 			<div class="col_wrapper">
 				<?php if ($_SESSION['login']) { ?>
-					<a href="?user=<?php echo $_SESSION['username']; ?>"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="person"></span> My Items</span></div></a>
+					<a href="?user=<?php echo $_SESSION['username']; ?>"><div class="panel_sel" id="myitems"><span class="sel_text"><span class="oi" data-glyph="person"></span> My Items</span></div></a>
 					<hr/>
 				<?php } ?>
 
-				<a href="#"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="headphones"></span> Library</span></div></a>
-				<a href="#"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="list"></span> Play Queue</span></div></a>
+				<a href="#"><div class="panel_sel" id="library"><span class="sel_text"><span class="oi" data-glyph="headphones"></span> Library</span></div></a>
+				<a href="#"><div class="panel_sel" id="queue"><span class="sel_text"><span class="oi" data-glyph="list"></span> Play Queue</span></div></a>
+				<a href="#"><div class="panel_sel" id="history"><span class="sel_text"><span class="oi" data-glyph="book"></span> Play History</span></div></a>
 
 				<?php if ($_SESSION['login']) { ?>
 					<hr/>
-					<a href="#"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="people"></span> Userlist</span></div></a>
+					<a href="#"><div class="panel_sel" id="userlist"><span class="sel_text"><span class="oi" data-glyph="people"></span> Userlist</span></div></a>
 				<?php } ?>
 
 				<hr/>
