@@ -24,8 +24,8 @@ $font_color['dialog_buttons'] = "#fff";
 $font_color['dialog_buttons_hover'] = "#fff";
 $font_color['dialog_buttons_clicked'] = "#fff";
 $font_color['dialog_input'] = "#0af";
-$font_color['list_delete'] = "#a00";
-$font_color['list_delete_hover'] = "#f00";
+$font_color['list_delete'] = "#333";
+$font_color['list_delete_hover'] = "#555";
 
 $bg_color['header'] = "#333";
 $bg_color['col1'] = "#eee";
