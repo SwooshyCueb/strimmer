@@ -29,11 +29,7 @@ if(isset($_POST['mode'])) {
 					
 					$user_vars = $stream_vars['user'];
 
-					if(isset($stream_vars['download_url'])) {
-						$sc_trk_url = $stream_vars['download_url'];
-					} elseif(isset($stream_vars['stream_url'])) {
-						$sc_trk_url = $stream_vars['stream_url'];
-					} else {
+					if(!isset($stream_vars['stream_url'])) {
 						header("Location: " . $_SERVER['HTTP_REFERER']);
 						exit;
 					}
@@ -75,7 +71,7 @@ if(isset($_POST['mode'])) {
 						"' . $stream_vars['title'] . '",
 						"' . $user_vars['username'] . '",
 						"' . $user_vars['permalink_url'] . '",
-						"' . $sc_trk_url . '",
+						"' . $stream_vars['stream_url'] . '",
 						"' . $stream_vars['permalink_url'] . '",
 						"' . $artwork_url . '",
 						"' . $_SESSION['username'] . '",
