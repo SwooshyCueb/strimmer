@@ -106,6 +106,8 @@ if(!mysqli_num_rows($result)) {
 			$(".dialog").fadeOut(200)
 			$(".dialog_bg").fadeOut(200)
 		})
+		// we need to add $_GET['user'] back to this eventually
+		$(".col2").load("includes/sections/browser.php");
 	});
 	</script>
 </head>
@@ -165,7 +167,7 @@ if(!mysqli_num_rows($result)) {
 				<?php } ?>
 
 				<hr/>
-				<a href="<?php echo $icecast['url']; ?>"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="play-circle"></span> Listen</span></div></a>
+				<a href="http://theblackparrot.us:8000/stream.mp3"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="play-circle"></span> Listen</span></div></a>
 				<a href="http://theblackparrot.us:8000/streamlq.mp3"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="play-circle"></span> Listen (LQ)</span></div></a>
 
 				<?php if ($_SESSION['login']) { ?>
@@ -176,27 +178,6 @@ if(!mysqli_num_rows($result)) {
 			</div>
 		</div>
 		<div class="col2">
-			<div class="col_wrapper">
-				<table class="song_list">
-					<?php
-						if(!$user_nonexistant) {
-						?>
-							<tr class="h_row">
-								<td>Song</td>
-								<td>Added by</td>
-								<td>Added on</td>
-								<td></td>
-							</tr>
-						<?php
-							while($row = mysqli_fetch_array($result)) {
-								getListRow_Service($row);
-							}
-						} else {
-							echo "<p>Specified user " . $_GET['user'] . " does not exist.</p>";
-						}
-					?>
-				</table>
-			</div>
 		</div>
 	</div>
 </body>
