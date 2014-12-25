@@ -12,6 +12,8 @@
 			break;
 		}
 
+		/* OLD STREAMER CODE, KEEPING IN CASE OF THINGS
+		// PRE-PLAY-QUEUE UPDATE
 		// seems a tad tad bit less optimized, but it should be more randomized now.
 		$query = "SELECT COUNT(*) FROM db_cache";
 		$result = mysqli_query($mysqli,$query);
@@ -36,6 +38,73 @@
 			// we REALLY need to get the play queue going ffs
 			$result = mysqli_query($mysqli,"SELECT * FROM db_cache LIMIT 1 OFFSET " . mt_rand(0,$rand_max));
 			$row = mysqli_fetch_array($result);
+		}
+		*/
+
+		// BECAUSE I CAN'T CONCENTRATE (delete this later)
+		// get the row count in the main cache
+		$query = "SELECT COUNT(*) FROM db_cache";
+		$result_init1 = mysqli_query($mysqli,$query);
+		$temp = mysqli_fetch_array($result_init1);
+		$rand_max = $temp[0] - 1;
+
+		// get a track
+		$query = 'SELECT * FROM play_queue LIMIT 1 OFFSET 0';
+		$result = mysqli_query($mysqli,$query);
+		// if one isn't obtained, assume the queue is empty
+		if(!mysqli_num_rows($result)) {
+			// initiate the play queue, basically
+			// use this as a fallback in case of an emergency, /actually/ initiate this in the setup eventually
+
+			// go ahead and add 15 tracks to it
+			for ($i=0;$i<15;$i++) { 
+				$rand = mt_rand(0,$rand_max);
+
+				while ($rand == $previous_song) {
+					$previous_song = mt_rand(0,$rand_max);
+				}
+
+				$query = "SELECT * FROM db_cache LIMIT 1 OFFSET " . $rand;
+				$result_init2 = mysqli_query($mysqli,$query);
+
+				// if something really is wrong, quit entirely
+				if(!mysqli_num_rows($result_init2)) {
+					echo "NO SQL RESULT GIVEN (QUEUE INIT FALLBACK)";
+					die();
+				}
+
+				// get a random track
+				$row = mysqli_fetch_array($result_init2);
+				// add it
+				$query = 'INSERT INTO play_queue ( TRACKID, SERVICE, ADDED_ON ) VALUES ( "' . $row['TRACKID'] . '", "' . $row['SERVICE'] . '", ' . time() . ')';
+				$result = mysqli_query($mysqli,$query);
+			}
+			// restart the loop
+			$time = 0;
+			continue;
+		} else {
+			// if one is obtained, grab it
+			$selection = mysqli_fetch_array($result);
+
+			// find the track in the db
+			$query = 'SELECT * FROM db_cache WHERE TRACKID="' . $selection['TRACKID'] . '"';
+			$result = mysqli_query($mysqli,$query);
+			// selected track's info, THIS IS USED IN THE REST OF THE SCRIPT
+			$row = mysqli_fetch_array($result);
+
+			// delete it from the queue
+			$query = 'DELETE FROM play_queue LIMIT 1';
+			mysqli_query($mysqli,$query);
+
+			// if it WAS NOT ADDED MANUALLY
+			if(!isset($selection['ADDED_BY'])) {
+				// select a new random track to add
+				$query = "SELECT * FROM db_cache LIMIT 1 OFFSET " . mt_rand(0,$rand_max);
+				$result = mysqli_query($mysqli,$query);
+				$temp_row = mysqli_fetch_array($result);
+				$query = 'INSERT INTO play_queue ( TRACKID, SERVICE, ADDED_ON ) VALUES ( "' . $temp_row['TRACKID'] . '", "' . $temp_row['SERVICE'] . '", ' . time() . ')';
+				$result = mysqli_query($mysqli,$query);
+			}
 		}
 
 		switch ($row['SERVICE']) {
@@ -70,8 +139,6 @@
 
 		curl_close($curl);
 
-		$previous_song = $row['TRACKID'];
-
 		$url_str = $row['RETURN_ARG3'] . " - " . $row['RETURN_ARG2'];
 		echo $url_str;
 
@@ -93,8 +160,8 @@
 		$result = mysqli_query($mysqli,$query);
 		$records = mysqli_num_rows($result);
 
-		if($records >= 100) {
-			$query = "DELETE FROM play_history LIMIT 1 OFFSET 0";
+		if($records > 100) {
+			$query = "DELETE FROM play_history LIMIT 1";
 			$result = mysqli_query($mysqli,$query);
 		}
 
