@@ -167,7 +167,7 @@ if(!mysqli_num_rows($result)) {
 				<?php } ?>
 
 				<hr/>
-				<a href="http://theblackparrot.us:8000/stream.mp3"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="play-circle"></span> Listen</span></div></a>
+				<a href="<?php echo $icecast['url']; ?>"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="play-circle"></span> Listen</span></div></a>
 				<a href="http://theblackparrot.us:8000/streamlq.mp3"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="play-circle"></span> Listen (LQ)</span></div></a>
 
 				<?php if ($_SESSION['login']) { ?>
