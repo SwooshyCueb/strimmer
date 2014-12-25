@@ -17,10 +17,9 @@ if(isset($_POST['mode'])) {
 				$resolved_vars = json_decode(soundcloud_resolveFromURL($_POST['sc_url']),true);
 				$stream_vars = json_decode(soundcloud_getStreamVars($resolved_vars['location']),true);
 				$sc_trk_id = $stream_vars['id'];
-				$query = 'INSERT INTO db ( TRACKID,SERVICE,SERVICE_ARG1,SERVICE_ARG2,ADDED_BY,ADDED_ON ) VALUES (
+				$query = 'INSERT INTO db ( TRACKID,SERVICE,SERVICE_ARG1,ADDED_BY,ADDED_ON ) VALUES (
 					"SDCL' . $sc_trk_id . '",
 					"SDCL",
-					"' . $_POST['sc_url'] . '",
 					"' . $sc_trk_id . '",
 					"' . $_SESSION['username'] . '",
 					' . $time . '

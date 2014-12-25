@@ -73,6 +73,26 @@ function update_3() {
 	mysqli_free_result($result);
 }
 
+function update_4() {
+	include dirname(__FILE__) . "/settings.php";
+	$query = "SELECT TRACKID,SERVICE_ARG2 FROM db WHERE SERVICE='SDCL';";
+	$result = mysqli_query($mysqli,$query);
+	// Error checking 'n' shit
+	var_dump($result);
+	while ($entry = mysqli_fetch_array($result)) {
+		$query = "UPDATE db SET SERVICE_ARG1='" . $entry['SERVICE_ARG2'] . "', SERVICE_ARG2=NULL WHERE TRACKID='" . $entry['TRACKID'] . "';";
+		$result2 = mysqli_query($mysqli,$query);
+		var_dump($result2);
+		mysqli_free_result($result2);
+	}
+	mysqli_free_result($result);
+	$query = "UPDATE strimmer_db SET DB_VER='4';";
+	$result = mysqli_query($mysqli,$query);
+	// Error checking 'n' shit
+	var_dump($result);
+	mysqli_free_result($result);
+}
+
 $query = "SELECT * FROM mpdi_db;";
 $dbver_res = mysqli_query($mysqli,$query);
 if ($dbver_res !== FALSE) {
@@ -97,6 +117,8 @@ if ($dbver_res == FALSE) {
 		case '2':
 			update_3();
 		case '3':
+			update_4();
+		case '4':
 			// We're good.
 			break;
 		default:
