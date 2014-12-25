@@ -30,4 +30,28 @@ $db_schema['user_db']['LASTACTIVE']['Key'] = "";
 $db_schema['user_db']['LASTACTIVE']['Default'] = "0";
 $db_schema['user_db']['LASTACTIVE']['Extra'] = "";
 
+$db_schema['user_db']['SC_API_ID']['Type'] = "varchar(64)";
+$db_schema['user_db']['SC_API_ID']['Null'] = "YES";
+$db_schema['user_db']['SC_API_ID']['Key'] = "";
+$db_schema['user_db']['SC_API_ID']['Default'] = "0";
+$db_schema['user_db']['SC_API_ID']['Extra'] = "";
+
+$db_schema['user_db']['SC_API_SECRET']['Type'] = "varchar(64)";
+$db_schema['user_db']['SC_API_SECRET']['Null'] = "YES";
+$db_schema['user_db']['SC_API_SECRET']['Key'] = "";
+$db_schema['user_db']['SC_API_SECRET']['Default'] = "0";
+$db_schema['user_db']['SC_API_SECRET']['Extra'] = "";
+
+$db_schema['user_db']['PASS_VER']['Type'] = "int(8)";
+$db_schema['user_db']['PASS_VER']['Null'] = "YES";
+$db_schema['user_db']['PASS_VER']['Key'] = "";
+$db_schema['user_db']['PASS_VER']['Default'] = "0";
+$db_schema['user_db']['PASS_VER']['Extra'] = "";
+
+$db_schema['user_db']['ADMIN']['Type'] = "int(4)";
+$db_schema['user_db']['ADMIN']['Null'] = "YES";
+$db_schema['user_db']['ADMIN']['Key'] = "";
+$db_schema['user_db']['ADMIN']['Default'] = "0";
+$db_schema['user_db']['ADMIN']['Extra'] = "";
+
 ?>

@@ -59,6 +59,20 @@ function update_2() {
 	mysqli_free_result($result);
 }
 
+function update_3() {
+	include dirname(__FILE__) . "/settings.php";
+	$query = "ALTER TABLE user_db ADD COLUMN ADMIN int(4);";
+	$result = mysqli_query($mysqli,$query);
+	// Error checking 'n' shit
+	var_dump($result);
+	mysqli_free_result($result);
+	$query = "UPDATE strimmer_db SET DB_VER='3';";
+	$result = mysqli_query($mysqli,$query);
+	// Error checking 'n' shit
+	var_dump($result);
+	mysqli_free_result($result);
+}
+
 $query = "SELECT * FROM mpdi_db;";
 $dbver_res = mysqli_query($mysqli,$query);
 if ($dbver_res !== FALSE) {
@@ -81,6 +95,8 @@ if ($dbver_res == FALSE) {
 		case '1':
 			update_2();
 		case '2':
+			update_3();
+		case '3':
 			// We're good.
 			break;
 		default:
