@@ -110,7 +110,7 @@ if(!mysqli_num_rows($result)) {
 		})
 		// we need to add $_GET['user'] back to this eventually
 		$(".col2").load("includes/sections/browser.php");
-		$(".footer").load("includes/sections/dynamic/song_info.php");
+		$(".footer_load").load("includes/sections/dynamic/song_info.php");
 
 		setInterval(function(){
 			$.get('includes/sections/dynamic/simple/trackid.php', function(data){
@@ -118,9 +118,9 @@ if(!mysqli_num_rows($result)) {
 					oldTrackID = data;
 				}
 				if(oldTrackID != data){
-					$(".footer").fadeOut(100, function(){
-						$(".footer").load("includes/sections/dynamic/song_info.php", function(){
-							$(".footer").fadeIn(100);
+					$(".footer_load").fadeOut(100, function(){
+						$(".footer_load").load("includes/sections/dynamic/song_info.php", function(){
+							$(".footer_load").fadeIn(100);
 						});
 					})
 				}
@@ -175,6 +175,8 @@ if(!mysqli_num_rows($result)) {
 
 
 	<div class="footer">
+		<div class="footer_load">
+		</div>
 	</div>
 
 	<div class="dropdown">
