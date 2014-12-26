@@ -49,7 +49,7 @@
 		$rand_max = $temp[0] - 1;
 
 		// get a track
-		$query = 'SELECT * FROM play_queue LIMIT 1 OFFSET 0';
+		$query = 'SELECT * FROM play_queue ORDER BY ISNULL(play_queue.ADDED_BY) LIMIT 1 OFFSET 0';
 		$result = mysqli_query($mysqli,$query);
 		// if one isn't obtained, assume the queue is empty
 		if(!mysqli_num_rows($result)) {
@@ -93,7 +93,7 @@
 			$row = mysqli_fetch_array($result);
 
 			// delete it from the queue
-			$query = 'DELETE FROM play_queue LIMIT 1';
+			$query = 'DELETE FROM play_queue ORDER BY ISNULL(play_queue.ADDED_BY) LIMIT 1';
 			mysqli_query($mysqli,$query);
 
 			// if it WAS NOT ADDED MANUALLY
@@ -166,7 +166,17 @@
 		}
 
 		// we'll add in ADDED_BY once we get the play queue going, for now everything there should be blank.
-		$query = 'INSERT INTO play_history ( TRACKID, SERVICE, PLAYED_ON ) VALUES ( "' . $row['TRACKID'] . '", "' . $row['SERVICE'] . '", ' . time() . ')';
+		if(isset($selection['ADDED_BY'])) {
+			$query = 'INSERT INTO play_history ( TRACKID, SERVICE, PLAYED_ON, ADDED_BY ) VALUES ( "' . $row['TRACKID'] . '", "' . $row['SERVICE'] . '", ' . time() . ', "' . $selection['ADDED_BY'] . '")';
+		} else {
+			$query = 'INSERT INTO play_history ( TRACKID, SERVICE, PLAYED_ON ) VALUES ( "' . $row['TRACKID'] . '", "' . $row['SERVICE'] . '", ' . time() . ')';
+		}
+		$result = mysqli_query($mysqli,$query);
+
+		$query = 'UPDATE db_cache SET PLAYING=0 WHERE PLAYING=1';
+		$result = mysqli_query($mysqli,$query);
+
+		$query = 'UPDATE db_cache SET PLAYING=1 WHERE TRACKID="' . $row['TRACKID'] . '"';
 		$result = mysqli_query($mysqli,$query);
 
 		exec($icecast['ffmpeg'] . ' -hide_banner -re -i \'' . $stream_link . '\' -acodec libmp3lame -q ' . $icecast['qual'] . ' -content_type "audio/mpeg3" -metadata title="' . $cmd_str . '" "icecast://source:' . $icecast['pass'] . '@' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mount'] . '"');
