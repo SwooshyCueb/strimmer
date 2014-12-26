@@ -36,6 +36,8 @@ if(!mysqli_num_rows($result)) {
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery-ui.js"></script>
 	<script>
+	var oldTrackID;
+
 	$(document).ready(function(){
 		$('.col1').toggle()
 		$(".dropdown").css("width",$(".user").css("width"))
@@ -94,7 +96,7 @@ if(!mysqli_num_rows($result)) {
 			})
 		})
 		$("#col1_toggle").on("click",function(){
-	        $('.col1').toggle("slide", "direction: left", 300);
+			$('.col1').toggle("slide", "direction: left", 300);
 		})
 		$("#drop_logout").on("click",function(){
 			window.location.href = "includes/logout.php";
@@ -109,9 +111,22 @@ if(!mysqli_num_rows($result)) {
 		// we need to add $_GET['user'] back to this eventually
 		$(".col2").load("includes/sections/browser.php");
 		$(".footer").load("includes/sections/dynamic/song_info.php");
+
 		setInterval(function(){
-			$(".footer").load("includes/sections/dynamic/song_info.php");
-		}, 5000);
+			$.get('includes/sections/dynamic/simple/trackid.php', function(data){
+				if(!oldTrackID){
+					oldTrackID = data;
+				}
+				if(oldTrackID != data){
+					$(".footer").fadeOut(100, function(){
+						$(".footer").load("includes/sections/dynamic/song_info.php", function(){
+							$(".footer").fadeIn(100);
+						});
+					})
+				}
+				oldTrackID = data;
+			})
+		}, 5000)
 
 		$("#library").on("click",function(){
 			$('.col1').toggle("slide", "direction: left", 300);
