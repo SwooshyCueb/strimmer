@@ -114,6 +114,7 @@ if(!mysqli_num_rows($result)) {
 		}, 5000);
 
 		$("#library").on("click",function(){
+			$('.col1').toggle("slide", "direction: left", 300);
 			$(".col2").fadeOut(100,function(){
 				$(".col2").empty();
 				$(".col2").load("includes/sections/browser.php", function(){
@@ -122,6 +123,7 @@ if(!mysqli_num_rows($result)) {
 			})
 		})
 		$("#history").on("click",function(){
+			$('.col1').toggle("slide", "direction: left", 300);
 			$(".col2").fadeOut(100,function(){
 				$(".col2").empty();
 				$(".col2").load("includes/sections/history.php", function(){
@@ -130,6 +132,7 @@ if(!mysqli_num_rows($result)) {
 			})
 		})
 		$("#queue").on("click",function(){
+			$('.col1').toggle("slide", "direction: left", 300);
 			$(".col2").fadeOut(100,function(){
 				$(".col2").empty();
 				$(".col2").load("includes/sections/queue.php", function(){
