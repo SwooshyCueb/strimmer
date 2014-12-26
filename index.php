@@ -108,6 +108,10 @@ if(!mysqli_num_rows($result)) {
 		})
 		// we need to add $_GET['user'] back to this eventually
 		$(".col2").load("includes/sections/browser.php");
+		$(".footer").load("includes/sections/dynamic/song_info.php");
+		setInterval(function(){
+			$(".footer").load("includes/sections/dynamic/song_info.php");
+		}, 5000);
 
 		$("#library").on("click",function(){
 			$(".col2").fadeOut(100,function(){
@@ -133,6 +137,7 @@ if(!mysqli_num_rows($result)) {
 				})
 			})
 		})
+
 	});
 	</script>
 </head>
@@ -152,10 +157,6 @@ if(!mysqli_num_rows($result)) {
 
 
 	<div class="footer">
-		<img src="images/icon.png" class="np_art"/>
-		<span class="np_title">Title</span><br/>
-		<span class="np_artist"><a href="#">[SC Account]</a></span><br/>
-		<span class="np_who">Added by <a href="#">[username]</a></span>
 	</div>
 
 	<div class="dropdown">
