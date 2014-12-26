@@ -8,7 +8,7 @@ include dirname(dirname(__FILE__)) . "/settings.php";
 include_once dirname(dirname(__FILE__)) . "/session.php";
 include dirname(dirname(__FILE__)) . "/functions.php";
 
-$query = "SELECT * FROM play_queue";
+$query = "SELECT * FROM play_queue ORDER BY ISNULL(play_queue.ADDED_BY)";
 $result_queue = mysqli_query($mysqli,$query);
 
 ?>

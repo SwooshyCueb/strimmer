@@ -301,7 +301,7 @@ hr {
 	padding-bottom: 2px;
 }
 .overflow_grd {
-	width: calc(100% - 83px);
+	width: calc(100% - 106px);
 	position: absolute;
 	left: 48px;
 	height: 100%;
@@ -402,6 +402,17 @@ hr {
 	text-decoration: none;
 }
 #list_delete:hover {
+	color: <?php echo $font_color['list_delete_hover']; ?>;
+}
+#list_queue {
+	float: right;
+	font-size: 14pt;
+	padding: 8px;
+	padding-right: 4px;
+	color: <?php echo $font_color['list_delete']; ?>;
+	text-decoration: none;
+}
+#list_queue:hover {
 	color: <?php echo $font_color['list_delete_hover']; ?>;
 }
 
