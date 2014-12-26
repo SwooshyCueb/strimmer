@@ -418,7 +418,6 @@ hr {
 
 .list_svc {
 	width: 24px;
-	height: 24px;
 }
 
 .balloon {
