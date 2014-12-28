@@ -8,8 +8,7 @@
 	while(true) {
 		//emergency end
 		if(time() - $time <= 10) {
-			echo "EMERGENCY END";
-			break;
+			sleep(15);
 		}
 
 		/* OLD STREAMER CODE, KEEPING IN CASE OF THINGS
