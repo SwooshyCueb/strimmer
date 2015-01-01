@@ -39,7 +39,6 @@ if(!mysqli_num_rows($result)) {
 	var oldTrackID;
 
 	$(document).ready(function(){
-		$('.col1').toggle()
 		$(".dropdown").css("width",$(".user").css("width"))
 		$(".user").on("click",function(){
 			$(".dropdown").fadeIn(100)
@@ -71,32 +70,32 @@ if(!mysqli_num_rows($result)) {
 		$("#add_sc").on("click",function(){
 			$(".dialog_load_spot").empty()
 			$(".dialog_load_spot").load("includes/dialog/soundcloud.html", function() {
-				$(".dialog").fadeOut(0)
-				$(".dialog_bg").fadeOut(0)
-				$(".dialog").fadeIn(200)
+				$(".dialog").hide()
+				$(".dialog_bg").hide()
+				$(".dialog").toggle("drop", {direction: "down"}, 300)
 				$(".dialog_bg").fadeIn(200)
 			})
 		})
 		$("#add_we").on("click",function(){
 			$(".dialog_load_spot").empty()
 			$(".dialog_load_spot").load("includes/dialog/weasyl.html", function() {
-				$(".dialog").fadeOut(0)
-				$(".dialog_bg").fadeOut(0)
-				$(".dialog").fadeIn(200)
+				$(".dialog").hide()
+				$(".dialog_bg").hide()
+				$(".dialog").toggle("drop", {direction: "down"}, 300)
 				$(".dialog_bg").fadeIn(200)
 			})
 		})
 		$("#drop_set").on("click",function(){
 			$(".dialog_load_spot").empty()
 			$(".dialog_load_spot").load("includes/dialog/settings.php", function() {
-				$(".dialog").fadeOut(0)
-				$(".dialog_bg").fadeOut(0)
-				$(".dialog").fadeIn(200)
+				$(".dialog").hide()
+				$(".dialog_bg").hide()
+				$(".dialog").toggle("drop", {direction: "down"}, 300);
 				$(".dialog_bg").fadeIn(200)
 			})
 		})
 		$("#col1_toggle").on("click",function(){
-			$('.col1').toggle("slide", "direction: left", 300);
+			$('.col1').toggle("drop", {direction: "left"}, 300);
 		})
 		$("#drop_logout").on("click",function(){
 			window.location.href = "includes/logout.php";
@@ -104,8 +103,8 @@ if(!mysqli_num_rows($result)) {
 		$("#drop_login").on("click",function(){
 			window.location.href = "login/";
 		})
-		$("#close_button_dg").on("click", function(){
-			$(".dialog").fadeOut(200)
+		$(".dialog_load_spot").on("click", "#close_button_dg", function(){
+			$(".dialog").toggle("drop", {direction: "down"}, 300);
 			$(".dialog_bg").fadeOut(200)
 		})
 		// we need to add $_GET['user'] back to this eventually

@@ -69,6 +69,7 @@ hr {
 	top: 36px;
 }
 .wrapper .col1 {
+	display: none;
 	width: 220px;
 	position: fixed;
 	top: 36px;
