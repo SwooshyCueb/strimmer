@@ -37,6 +37,11 @@ if(!mysqli_num_rows($result)) {
 	<script src="js/jquery-ui.js"></script>
 	<script>
 	var oldTrackID;
+	<?php
+		if(isset($_SESSION['username'])) {
+			echo 'var usern = "' . $_SESSION['username'] . '";';
+		}
+	?>
 
 	$(document).ready(function(){
 		$(".dropdown").css("width",$(".user").css("width"))
@@ -173,6 +178,15 @@ if(!mysqli_num_rows($result)) {
 				})
 			})
 		})
+		$("#myitems").on("click",function(){
+			$('.col1').toggle("drop", {direction: "left"}, 300);
+			$(".col2").fadeOut(100,function(){
+				$(".col2").empty();
+				$(".col2").load("includes/sections/browser.php?" + $.param({user: usern}), function(){
+					$(".col2").fadeIn(100);
+				})
+			})
+		})
 	});
 	</script>
 </head>
@@ -217,7 +231,7 @@ if(!mysqli_num_rows($result)) {
 		<div class="col1">
 			<div class="col_wrapper">
 				<?php if ($_SESSION['login']) { ?>
-					<a href="?user=<?php echo $_SESSION['username']; ?>"><div class="panel_sel" id="myitems"><span class="sel_text"><span class="oi" data-glyph="person"></span> My Items</span></div></a>
+					<a href="#"><div class="panel_sel" id="myitems"><span class="sel_text"><span class="oi" data-glyph="person"></span> My Items</span></div></a>
 					<hr/>
 				<?php } ?>
 
