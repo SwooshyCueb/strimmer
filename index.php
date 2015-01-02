@@ -128,7 +128,7 @@ if(!mysqli_num_rows($result)) {
 		}, 5000)
 
 		$("#library").on("click",function(){
-			$('.col1').toggle("slide", "direction: left", 300);
+			$('.col1').toggle("drop", {direction: "left"}, 300);
 			$(".col2").fadeOut(100,function(){
 				$(".col2").empty();
 				$(".col2").load("includes/sections/browser.php", function(){
@@ -137,7 +137,7 @@ if(!mysqli_num_rows($result)) {
 			})
 		})
 		$("#history").on("click",function(){
-			$('.col1').toggle("slide", "direction: left", 300);
+			$('.col1').toggle("drop", {direction: "left"}, 300);
 			$(".col2").fadeOut(100,function(){
 				$(".col2").empty();
 				$(".col2").load("includes/sections/history.php", function(){
@@ -146,7 +146,7 @@ if(!mysqli_num_rows($result)) {
 			})
 		})
 		$("#queue").on("click",function(){
-			$('.col1').toggle("slide", "direction: left", 300);
+			$('.col1').toggle("drop", {direction: "left"}, 300);
 			$(".col2").fadeOut(100,function(){
 				$(".col2").empty();
 				$(".col2").load("includes/sections/queue.php", function(){
@@ -154,7 +154,11 @@ if(!mysqli_num_rows($result)) {
 				})
 			})
 		})
-
+		$("#test_panel").on("click",function(){
+			$('.col3').toggle("drop", {direction: "right"}, 300);
+			$(".col3").empty();
+			$(".col3").load("includes/sections/selected_info.php")
+		})
 	});
 	</script>
 </head>
@@ -220,10 +224,14 @@ if(!mysqli_num_rows($result)) {
 					<hr/>
 					<a href="#"><div class="sel_color_sc" id="add_sc"><span class="sel_text"><span class="oi" data-glyph="plus"></span> SoundCloud Track</span></div></a>
 					<a href="#"><div class="sel_color_we" id="add_we"><span class="sel_text"><span class="oi" data-glyph="plus"></span> Weasyl Submission</span></div></a>
+					<hr/>
+					<a href="#"><div class="panel_sel" id="test_panel"><span class="sel_text">.col3 test (info/ctrls)</span></div></a>
 				<?php } ?>
 			</div>
 		</div>
 		<div class="col2">
+		</div>
+		<div class="col3">
 		</div>
 	</div>
 </body>

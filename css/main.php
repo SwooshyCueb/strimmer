@@ -85,28 +85,43 @@ hr {
 	width: 100%;
 	overflow-y: hidden;
 }
+.wrapper .col3 {
+	display: none;
+	width: 500px;
+	position: fixed;
+	top: 36px;
+	right: 0;
+	border-left: 1px solid <?php echo $border_color['col1']; ?>;
+	height: calc(100vh - 109px);
+	box-shadow: -1px 0px 6px rgba(0,0,0,0.3);
+	z-index: 51;
+	background-color: #000;
+}
 
 .wrapper .col1 {
 	line-height: 30px;
 	background-color: <?php echo $bg_color['col1']; ?>;
 	z-index: 50;
 }
-.wrapper .col1 .col_wrapper {
+.wrapper .col3 {
+	line-height: 30px;
+}
+.wrapper .col1 .col_wrapper, .wrapper .col3 .col_wrapper {
 	padding-top: 8px;
 }
-.wrapper .col1 .col_wrapper hr {
+.wrapper .col1 .col_wrapper hr, .wrapper .col3 .col_wrapper hr {
 	width: 220px;
 	margin-left: 0px;
 	margin-right: 0px;
 }
-.wrapper .col1 .col_wrapper div {
+.wrapper .col1 .col_wrapper div, .wrapper .col3 .col_wrapper {
 	text-decoration: none;
 	color: <?php echo $font_color['col1']; ?>;;
 	padding-left: 4px;
 	width: 216px;
 	transition: .05s;
 }
-.wrapper .col1 a, .wrapper .col2 a {
+.wrapper .col1 a, .wrapper .col2 a, .wrapper .col3 a {
 	text-decoration: none;
 }
 .wrapper .col1 .col_wrapper div:hover {
@@ -429,4 +444,34 @@ hr {
 	border-radius: 3px;
 	float: left;
 	margin-right: 4px;
+}
+
+.col3_bg {
+	position: fixed;
+	z-index: 49;
+	display: block;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.col3_bg img {
+	width: 120%;
+	height: auto;
+	-webkit-filter: blur(25px);
+	-moz-filter: blur(25px);
+	-o-filter: blur(25px);
+	-ms-filter: blur(25px);
+	filter: blur(25px);
+	margin-left: -50px;
+	margin-top: -50px;
+	opacity: 0.5;
+}
+#col3_wrapper {
+	position: fixed;
+	z-index: 51;
+}
+
+.selected_info_art {
+	float: left;
+	padding-right: 8px;
 }
