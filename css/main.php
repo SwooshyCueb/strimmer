@@ -14,7 +14,7 @@
 	.song_list .song_row td:nth-child(4), .song_list .h_row td:nth-child(4) { width: 24px; }
 }
 @media only screen and (min-device-width: 481px) {
-	.col2, .col_wrapper, .wrapper, .song_list { min-width: 1000px !important; }
+	.col2 .col_wrapper, .wrapper, .song_list { min-width: 1000px !important; }
 }
 
 body {
@@ -88,6 +88,7 @@ hr {
 .wrapper .col3 {
 	display: none;
 	width: 500px;
+	max-width: 500px;
 	position: fixed;
 	top: 36px;
 	right: 0;
@@ -450,13 +451,13 @@ hr {
 	position: fixed;
 	z-index: 49;
 	display: block;
-	width: 100%;
+	width: 500px;
 	height: 100%;
 	overflow: hidden;
 }
 .col3_bg img {
-	width: 120%;
-	height: auto;
+	width: auto;
+	height: 110%;
 	-webkit-filter: blur(25px);
 	-moz-filter: blur(25px);
 	-o-filter: blur(25px);
@@ -469,9 +470,32 @@ hr {
 #col3_wrapper {
 	position: fixed;
 	z-index: 51;
+	width: 468px;
+	padding: 16px;
 }
 
 .selected_info_art {
 	float: left;
 	padding-right: 8px;
+}
+.selected_info_title {
+	color: #fff;
+	font-weight: 700;
+	font-size: 14pt;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 360px;
+	text-overflow: ellipsis;
+	text-shadow: 0px 1px 4px rgba(0,0,0,0.5);
+}
+.selected_info_artist {
+	font-size: 14pt;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 360px;
+	text-overflow: ellipsis;
+	text-shadow: 0px 1px 2px rgba(0,0,0,0.5);
+}
+.selected_info_artist a {
+	color: #8cf;
 }
