@@ -187,6 +187,15 @@ if(!mysqli_num_rows($result)) {
 				})
 			})
 		})
+		$("#userlist").on("click",function(){
+			$('.col1').toggle("drop", {direction: "left"}, 300);
+			$(".col2").fadeOut(100,function(){
+				$(".col2").empty();
+				$(".col2").load("includes/sections/userlist.php", function(){
+					$(".col2").fadeIn(100);
+				})
+			})
+		})
 	});
 	</script>
 </head>

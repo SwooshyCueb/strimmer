@@ -477,7 +477,7 @@ hr {
 .selected_info_art {
 	float: left;
 	margin-right: 8px;
-	box-shadow: 0px 4px 8px rgba(0,0,0,0.4)
+	box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
 }
 .selected_info_title {
 	color: #fff;
@@ -523,4 +523,31 @@ hr {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+#userlist_wrapper {
+	padding: 16px;
+	background-color: <?php echo $bg_color['list_oddrows']; ?>;
+}
+.userdiv {
+	float: left;
+	width: 102px;
+	padding: 8px;
+	margin: 8px;
+	text-align: center;
+	background-color: <?php echo $bg_color['list_evenrows']; ?>;
+	box-shadow: 0px 2px 4px rgba(0,0,0,0.4)
+}
+.userdiv:hover {
+	background-color: <?php echo $bg_color['list_hover']; ?>;
+}
+.userdiv_name {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: <?php echo $font_color['list_evenrows']; ?>;
+}
+.userdiv_av {
+	margin-bottom: 8px;
+	border: 1px solid #000;
 }
