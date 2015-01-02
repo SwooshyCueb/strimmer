@@ -98,4 +98,16 @@ if(is_file($filename)) {
 			<td><?php echo $row['ADDED_BY']; ?></td>
 		</tr>
 	</table>
+	<div class="col3_closer"><span class="oi" data-glyph="x"></span></div>
 </div>
+
+<script>
+$(document).ready(function(){
+	$(".col3_closer").on("click",function(){
+		$('.col3').toggle("drop", {direction: "right"}, 300, function(){
+			$(this).fadeOut(100);
+			$(".col3").empty()
+		});
+	})
+});
+</script>

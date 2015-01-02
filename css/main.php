@@ -551,3 +551,22 @@ hr {
 	margin-bottom: 8px;
 	border: 1px solid #000;
 }
+
+.col3_closer {
+	font-size: 9pt;
+	background-color: #000;
+	color: #fff;
+	transition: .25s;
+	padding: 4px;
+	position: fixed;
+	top: 36;
+	right: 0;
+}
+.col3_closer .oi {
+	padding: 0;
+}
+.col3_closer:hover {
+	color: #000;
+	background-color: #fff;
+	transition: .25s;
+}
