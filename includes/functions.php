@@ -7,6 +7,22 @@ function mpd_getPlaylist() {
 	return $playlist;
 }
 
+function getLongService($service) {
+	switch ($service) {
+		case 'SDCL':
+			return "SoundCloud";
+			break;
+
+		case 'WYZL':
+			return "Weasyl";
+			break;
+		
+		default:
+			return "N/A";
+			break;
+	}
+}
+
 //
 // --= ALL LIST ROWS WILL BE DRAWN BY THIS FUNCTION =--
 //

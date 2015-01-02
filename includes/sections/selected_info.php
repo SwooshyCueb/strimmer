@@ -17,7 +17,7 @@ $filename = dirname(dirname(dirname(__FILE__))) . "/" . "cache/" . $row['TRACKID
 if(is_file($filename)) {
 	$image = new Imagick($filename);
 	$image->setImageAlphaChannel(Imagick::ALPHACHANNEL_DEACTIVATE);
-	$image->quantizeImage(8,Imagick::COLORSPACE_RGB,0,true,false);
+	$image->quantizeImage(6,Imagick::COLORSPACE_RGB,0,false,false);
 	$image->gammaImage(3);
 	$pixels = $image->getImageHistogram();
 
@@ -41,6 +41,8 @@ if(is_file($filename)) {
 	}
 	$image->clear();
 	$link_color = "#" . $hex[key($counts)];
+	asort($counts);
+	$secondary_color = "#" . $hex[key($counts)];
 	// echo key($counts);
 	// echo("<pre>" . var_export($hex,true) . "</pre>");
 	// echo("<pre>" . var_export($counts,true) . "</pre>");
@@ -53,4 +55,44 @@ if(is_file($filename)) {
 	<div class="selected_info_art"><img src="cache/<?php echo $row['TRACKID']; ?>.jpg"/></div>
 	<div class="selected_info_title"><?php echo $row['RETURN_ARG2']; ?></div>
 	<div class="selected_info_artist"><a style="color: <?php echo $link_color; ?>;" href="<?php echo $row['RETURN_ARG4']; ?>"><?php echo $row['RETURN_ARG3']; ?></a></div>
+	<table class="selected_info_various">
+		<tr>
+			<td style="color: <?php echo $secondary_color; ?>;">Service</td>
+			<td><?php echo getLongService($row['SERVICE']); ?></td>
+		</tr>
+		<tr>
+			<td style="color: <?php echo $secondary_color; ?>;">Track ID</td>
+			<td><?php echo $row['TRACKID']; ?></td>
+		</tr>
+	</table>
+	<table class="selected_info_various">
+		<tr>
+			<td style="color: <?php echo $secondary_color; ?>;">Permalink</td>
+			<td><a style="color: <?php echo $link_color; ?>;" href="<?php echo $row['RETURN_ARG6']; ?>"><?php echo $row['RETURN_ARG6']; ?></a></td>
+		</tr>
+		<tr>
+			<td style="color: <?php echo $secondary_color; ?>;">API Link</td>
+			<td><a style="color: <?php echo $link_color; ?>;" href="<?php echo $row['RETURN_ARG5']; ?>"><?php echo $row['RETURN_ARG5']; ?></a></td>
+		</tr>
+		<tr>
+			<td style="color: <?php echo $secondary_color; ?>;">Owner</td>
+			<td><a style="color: <?php echo $link_color; ?>;" href="<?php echo $row['RETURN_ARG4']; ?>"><?php echo $row['RETURN_ARG3']; ?></a></td>
+		</tr>
+	</table>
+	<table class="selected_info_various">
+		<tr>
+			<td style="color: <?php echo $secondary_color; ?>;">Artwork</td>
+			<td><a style="color: <?php echo $link_color; ?>;" href="<?php echo $row['RETURN_ARG7']; ?>"><?php echo $row['RETURN_ARG7']; ?></a></td>
+		</tr>
+	</table>
+	<table class="selected_info_various">
+		<tr>
+			<td style="color: <?php echo $secondary_color; ?>;">Added On</td>
+			<td><?php echo date('M. d, Y g:i A',$row['ADDED_ON']); ?></td>
+		</tr>
+		<tr>
+			<td style="color: <?php echo $secondary_color; ?>;">Added By</td>
+			<td><?php echo $row['ADDED_BY']; ?></td>
+		</tr>
+	</table>
 </div>

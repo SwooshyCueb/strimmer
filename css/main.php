@@ -500,3 +500,27 @@ hr {
 .selected_info_artist a {
 	color: #8cf;
 }
+
+.selected_info_various {
+	margin-top: 12px;
+	margin-bottom: 12px;
+	font-size: 10pt;
+	float: left;
+	width: 100%;
+	table-layout: fixed;
+}
+.selected_info_various tr td:nth-child(1) { 
+	width: 20%;
+	font-weight: 700;
+	text-shadow: 0px 1px 2px rgba(0,0,0,0.5);
+	text-align: right;
+	padding-right: 8px;
+}
+.selected_info_various tr td:nth-child(2) { 
+	width: 80%;
+	color: #fff;
+	text-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
