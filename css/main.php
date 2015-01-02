@@ -12,6 +12,29 @@
 	.song_list .song_row td:nth-child(2), .song_list .h_row td:nth-child(2) { display: none; }
 	.song_list .song_row td:nth-child(3), .song_list .h_row td:nth-child(3) { display: none; }
 	.song_list .song_row td:nth-child(4), .song_list .h_row td:nth-child(4) { width: 24px; }
+	.col3 {
+		border: 0 !important;
+		width: 100vw !important;
+	}
+	.col3_bg { width: 100vw !important; }
+	#col3_wrapper {
+		width: calc(100vw - 32px) !important;
+	}
+	.selected_info_title {
+		width: calc(100vw - 140px) !important;
+	}
+	.selected_info_artist {
+		width: calc(100vw - 140px) !important;
+	}
+	.selected_info_various {
+		font-size: 9pt !important;
+	}
+	.selected_info_various tr td:nth-child(1) { 
+		width: 25% !important;
+	}
+	.selected_info_various tr td:nth-child(2) { 
+		width: 75% !important;
+	}
 }
 @media only screen and (min-device-width: 481px) {
 	.col2 .col_wrapper, .wrapper, .song_list { min-width: 1000px !important; }
