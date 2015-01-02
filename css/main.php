@@ -477,6 +477,7 @@ hr {
 .selected_info_art {
 	float: left;
 	padding-right: 8px;
+	box-shadow: 0px 4px 8px rgba(0,0,0,0.4)
 }
 .selected_info_title {
 	color: #fff;
