@@ -50,7 +50,7 @@ function getListRow_Service($row) {
 		die();
 	}
 
-	echo '<tr class="song_row">';
+	echo '<tr class="song_row" id="' . $row['TRACKID'] . '">';
 		echo '<td>';
 			echo '<img src="cache/' . $row['TRACKID'] . '.jpg" class="list_art"/>';
 			echo '<div class="list_info">';

@@ -8,8 +8,11 @@ include dirname(dirname(__FILE__)) . "/settings.php";
 include_once dirname(dirname(__FILE__)) . "/session.php";
 include dirname(dirname(__FILE__)) . "/functions.php";
 
-$query = "SELECT * FROM db_cache WHERE PLAYING=1 LIMIT 1";
+$query = 'SELECT * FROM db_cache WHERE TRACKID="' . $_GET['ID'] . '" LIMIT 1';
 $result = mysqli_query($mysqli,$query);
+if(!mysqli_num_rows($result)) {
+	die("Error in request.");
+}
 $row = mysqli_fetch_array($result);
 
 $filename = dirname(dirname(dirname(__FILE__))) . "/" . "cache/" . $row['TRACKID'] . ".jpg";

@@ -111,6 +111,25 @@ if(!mysqli_num_rows($result)) {
 		$(".col2").load("includes/sections/browser.php");
 		$(".footer_load").load("includes/sections/dynamic/song_info.php");
 
+		$(".wrapper").on('click', '.song_row', function(){
+			var isCol3Visible = $(".col3").is(":visible");
+			var trackID = this.id
+
+			if(isCol3Visible) {
+				$('.col3').toggle("drop", {direction: "right"}, 300, function(){
+					$(".col3").empty()
+					$(".col3").load("includes/sections/selected_info.php?" + $.param({ID: trackID }), function(){
+						$('.col3').toggle("drop", {direction: "right"}, 300);
+					});
+				});
+			} else {
+				$(".col3").empty()
+				$(".col3").load("includes/sections/selected_info.php?" + $.param({ID: trackID }), function(){
+					$('.col3').toggle("drop", {direction: "right"}, 300);
+				});
+			}
+		});
+
 		setInterval(function(){
 			$.get('includes/sections/dynamic/simple/trackid.php', function(data){
 				if(!oldTrackID){
@@ -153,11 +172,6 @@ if(!mysqli_num_rows($result)) {
 					$(".col2").fadeIn(100);
 				})
 			})
-		})
-		$("#test_panel").on("click",function(){
-			$('.col3').toggle("drop", {direction: "right"}, 300);
-			$(".col3").empty();
-			$(".col3").load("includes/sections/selected_info.php")
 		})
 	});
 	</script>
@@ -224,8 +238,6 @@ if(!mysqli_num_rows($result)) {
 					<hr/>
 					<a href="#"><div class="sel_color_sc" id="add_sc"><span class="sel_text"><span class="oi" data-glyph="plus"></span> SoundCloud Track</span></div></a>
 					<a href="#"><div class="sel_color_we" id="add_we"><span class="sel_text"><span class="oi" data-glyph="plus"></span> Weasyl Submission</span></div></a>
-					<hr/>
-					<a href="#"><div class="panel_sel" id="test_panel"><span class="sel_text">.col3 test (info/ctrls)</span></div></a>
 				<?php } ?>
 			</div>
 		</div>
