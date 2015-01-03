@@ -121,15 +121,18 @@ if(!mysqli_num_rows($result)) {
 			var trackID = this.id
 
 			if(isCol3Visible) {
+				$('#col3_wrapper').toggle("drop", {direction: "right"}, 300)
 				$('.col3').toggle("drop", {direction: "right"}, 300, function(){
 					$(".col3").empty()
 					$(".col3").load("includes/sections/selected_info.php?" + $.param({ID: trackID }), function(){
+						$('#col3_wrapper').toggle("drop", {direction: "right"}, 300)
 						$('.col3').toggle("drop", {direction: "right"}, 300);
 					});
 				});
 			} else {
 				$(".col3").empty()
 				$(".col3").load("includes/sections/selected_info.php?" + $.param({ID: trackID }), function(){
+					$('#col3_wrapper').toggle("drop", {direction: "right"}, 300)
 					$('.col3').toggle("drop", {direction: "right"}, 300);
 				});
 			}

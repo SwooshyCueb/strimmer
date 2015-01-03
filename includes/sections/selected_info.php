@@ -114,11 +114,10 @@ if(is_file($filename)) {
 				} else {
 					echo '<div class="col3_button" id="col3b_green" onClick="queue_track(\'' . $row['TRACKID'] . '\', \'queue\', this);"><span class="oi" data-glyph="pulse"></span>Queue</div>';
 				}
+				echo '<div class="col3_button" id="col3b_red" onClick="delete_track(\'' . $row['TRACKID'] . '\', this);"><span class="oi" data-glyph="delete"></span>Remove</div>';
 			?>
-			<div class="col3_button" id="col3b_green"><span class="oi" data-glyph="beaker"></span>Test 1</div>
-			<div class="col3_button" id="col3b_red"><span class="oi" data-glyph="beaker"></span>Test 2</div>
-			<div class="col3_button"><span class="oi" data-glyph="beaker"></span>Test 3</div>
-			<div class="col3_button"><span class="oi" data-glyph="beaker"></span>Test 4</div>
+			<div class="col3_button" id="col3b_disabled"><span class="oi" data-glyph="pencil"></span>Edit Information</div>
+			<div class="col3_button" id="col3b_disabled"><span class="oi" data-glyph="heart"></span>Favorite</div>
 		</div>
 	<?php } ?>
 </div>
@@ -142,8 +141,19 @@ function queue_track(trackID, qmode, element){
 		}
 	})
 }
+function delete_track(trackID, element){
+	$(element).attr('id','col3b_disabled');
+	$.get("includes/queue_song.php?" + $.param({id: trackID}), function(){
+		$('#col3_wrapper').toggle("drop", {direction: "right"}, 300)
+		$('.col3').toggle("drop", {direction: "right"}, 300, function(){
+			$(".col3_closer").fadeOut(100);
+			$(".col3").empty()
+		});
+	})
+}
 $(document).ready(function(){
 	$(".col3_closer").on("click",function(){
+		$('#col3_wrapper').toggle("drop", {direction: "right"}, 300)
 		$('.col3').toggle("drop", {direction: "right"}, 300, function(){
 			$(this).fadeOut(100);
 			$(".col3").empty()

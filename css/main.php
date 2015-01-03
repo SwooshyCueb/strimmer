@@ -496,6 +496,10 @@ hr {
 	z-index: 51;
 	width: 468px;
 	padding: 16px;
+	padding-bottom: 127px;
+	top: 36px;
+	bottom: 0;
+	overflow-y: auto;
 }
 
 .selected_info_art {
