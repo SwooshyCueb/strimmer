@@ -125,7 +125,7 @@ hr {
 .wrapper .col1 {
 	line-height: 30px;
 	background-color: <?php echo $bg_color['col1']; ?>;
-	z-index: 50;
+	z-index: 52;
 }
 .wrapper .col3 {
 	line-height: 30px;
