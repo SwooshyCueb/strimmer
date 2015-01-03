@@ -15,6 +15,12 @@ if(!mysqli_num_rows($result)) {
 }
 $row = mysqli_fetch_array($result);
 
+$query = 'SELECT * FROM play_queue WHERE TRACKID="' . $_GET['ID'] . '" AND !ISNULL(play_queue.ADDED_BY) LIMIT 1';
+$result = mysqli_query($mysqli,$query);
+if(mysqli_num_rows($result)) {
+	$queued = 1;
+}
+
 $filename = dirname(dirname(dirname(__FILE__))) . "/" . "cache/" . $row['TRACKID'] . ".jpg";
 //$filename = dirname(__FILE__) . "/black_test.jpg";
 if(is_file($filename)) {
@@ -26,6 +32,7 @@ if(is_file($filename)) {
 
 	$hex = array();
 	$counts = array();
+	$i = 0;
 
 	foreach ($pixels as $pixel) {
 		$i++;
@@ -99,9 +106,42 @@ if(is_file($filename)) {
 		</tr>
 	</table>
 	<div class="col3_closer"><span class="oi" data-glyph="x"></span></div>
+	<?php if($_SESSION['login']) { ?>
+		<div class="col3_button_wrapper">
+			<?php
+				if(isset($queued)) {
+					echo '<div class="col3_button" id="col3b_red" onClick="queue_track(\'' . $row['TRACKID'] . '\', \'unqueue\', this);"><span class="oi" data-glyph="circle-x"></span>Unqueue</div>';
+				} else {
+					echo '<div class="col3_button" id="col3b_green" onClick="queue_track(\'' . $row['TRACKID'] . '\', \'queue\', this);"><span class="oi" data-glyph="pulse"></span>Queue</div>';
+				}
+			?>
+			<div class="col3_button" id="col3b_green"><span class="oi" data-glyph="beaker"></span>Test 1</div>
+			<div class="col3_button" id="col3b_red"><span class="oi" data-glyph="beaker"></span>Test 2</div>
+			<div class="col3_button"><span class="oi" data-glyph="beaker"></span>Test 3</div>
+			<div class="col3_button"><span class="oi" data-glyph="beaker"></span>Test 4</div>
+		</div>
+	<?php } ?>
 </div>
 
 <script>
+function queue_track(trackID, qmode, element){
+	$(element).attr('id','col3b_disabled');
+	$.get("includes/queue_song.php?" + $.param({ID: trackID, mode: qmode}), function(){
+		switch(qmode) {
+			case "queue":
+				$(element).attr('onclick',"queue_track('" + trackID + "', 'unqueue', this);");
+				$(element).attr('id','col3b_red');
+				$(element).html('<span class="oi" data-glyph="circle-x"></span>Unqueue');
+				break;
+
+			case "unqueue":
+				$(element).attr('onclick',"queue_track('" + trackID + "', 'queue', this);");
+				$(element).attr('id','col3b_green');
+				$(element).html('<span class="oi" data-glyph="pulse"></span>Queue');
+				break;
+		}
+	})
+}
 $(document).ready(function(){
 	$(".col3_closer").on("click",function(){
 		$('.col3').toggle("drop", {direction: "right"}, 300, function(){

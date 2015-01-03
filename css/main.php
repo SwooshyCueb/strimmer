@@ -458,6 +458,7 @@ hr {
 
 .list_svc {
 	width: 24px;
+	height: auto;
 }
 
 .balloon {
@@ -592,4 +593,45 @@ hr {
 	color: #000;
 	background-color: #fff;
 	transition: .25s;
+}
+.col3_button_wrapper {
+	float: left;
+	width: 100%;
+	text-align: center;
+}
+.col3_button {
+	display: inline-block;
+	width: 140px;
+	font-size: 10pt;
+	padding: 0px;
+	margin: 6px;
+	border-radius: 8px;
+	text-align: center;
+	box-shadow: 0px 2px 4px rgba(0,0,0,0.4);
+	background-color: <?php echo $bg_color['dialog_buttons']; ?>;
+	color: <?php echo $font_color['dialog_buttons']; ?>;
+}
+.col3_button:hover {
+	background-color: <?php echo $bg_color['dialog_buttons_hover']; ?>;
+	color: <?php echo $font_color['dialog_buttons_hover']; ?>;
+}
+.col3_button:active {
+	background-color: <?php echo $bg_color['dialog_buttons_clicked']; ?>;
+	color: <?php echo $font_color['dialog_buttons_clicked']; ?>;
+}
+#col3b_green { background-color: #394; }
+#col3b_green:hover { background-color: #3b6; }
+#col3b_green:active {
+	background-color: #000;
+	color: #fff;
+}
+#col3b_red { background-color: #c43; }
+#col3b_red:hover { background-color: #f43; }
+#col3b_red:active {
+	background-color: #000;
+	color: #fff;
+}
+#col3b_disabled {
+	background-color: #444;
+	color: #777;
 }
