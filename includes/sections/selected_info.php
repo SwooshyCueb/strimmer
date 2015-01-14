@@ -143,7 +143,7 @@ function queue_track(trackID, qmode, element){
 }
 function delete_track(trackID, element){
 	$(element).attr('id','col3b_disabled');
-	$.get("includes/queue_song.php?" + $.param({id: trackID}), function(){
+	$.get("includes/delete_song.php?" + $.param({id: trackID}), function(){
 		$('#col3_wrapper').toggle("drop", {direction: "right"}, 300)
 		$('.col3').toggle("drop", {direction: "right"}, 300, function(){
 			$(".col3_closer").fadeOut(100);
