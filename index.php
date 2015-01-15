@@ -227,6 +227,9 @@ if(!mysqli_num_rows($result)) {
 
 
 	<div class="footer">
+		<!-- progressbar is a placeholder for right now -->
+		<div class="progress_bar">
+		</div>
 		<div class="footer_load">
 		</div>
 	</div>

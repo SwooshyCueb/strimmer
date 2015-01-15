@@ -639,3 +639,12 @@ hr {
 	background-color: #444;
 	color: #777;
 }
+
+.footer .progress_bar {
+	width: calc(100vw - 73px);
+	position: fixed;
+	left: 73px;
+	bottom: 69px;
+	height: 3px;
+	background-color: <?php echo $bg_color['col1_hover']; ?>;
+}
