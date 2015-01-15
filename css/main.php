@@ -315,7 +315,6 @@ hr {
 	width: 4%;
 }
 .song_row td:nth-child(4) img {
-	height: 24px;
 	width: 24px;
 }
 .list_info {
@@ -341,7 +340,7 @@ hr {
 	padding-bottom: 2px;
 }
 .overflow_grd {
-	width: calc(100% - 106px);
+	width: calc(100% - 48px);
 	position: absolute;
 	left: 48px;
 	height: 100%;
