@@ -17,6 +17,7 @@
 			$_SESSION['user_id'] = $row['ID'];
 		} else {
 			$query = 'UPDATE user_db SET LASTACTIVE=' . time() . ' WHERE USERNAME="' . $row['USERNAME'] . '"';
+			$_SESSION['LASTACTIVE'] = time();
 			$result = mysqli_query($mysqli,$query);
 		}
 		setcookie(session_name(),session_id(),time()+86400);

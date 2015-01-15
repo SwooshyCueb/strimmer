@@ -57,11 +57,9 @@ function getListRow_Service($row) {
 				echo '<div class="overflow_grd"></div>';
 				if ($_SESSION['login']) {
 					echo '<a href="includes/delete_song.php?id=' . $row['TRACKID'] . '&user=' . $_SESSION['username'] . '"><span class="oi" data-glyph="delete" id="list_delete"></span></a>';
-					// uncomment once LASTACTIVE is tracked again
-					/* if($row['ADDED_ON'] >= $_SESSION['LASTACTIVE']) {
+					if($row['ADDED_ON'] >= $_SESSION['LASTACTIVE']) {
 						echo '<span class="balloon" style="background-color: ' . $balloon_color['new'] . '; color: ' . $balloon_color['font_new'] . ';">NEW</span>';
-					} /*
-
+					}
 					// it's there when we add it, if ever
 					/* if(isset($row['ERROR'])) {
 						echo '<span class="balloon" style="background-color: ' . $balloon_color['error'] . '; color: ' . $balloon_color['font_error'] . ';">ERROR</span>';
