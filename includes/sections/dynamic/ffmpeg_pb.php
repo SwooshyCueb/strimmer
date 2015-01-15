@@ -34,8 +34,11 @@ if($content){
     $progress = round(($time/$duration) * 100);
 
     $temp = $time/$duration;
+
+    $readable_time = floor($time/60) . ":" . sprintf("%02d", floor($time) % 60);
 }
 
 ?>
 
 <div class="progress_bar" style="width: calc(100vw * <?php echo $temp; ?> - 73px);"></div>
+<div class="time"><?php echo $readable_time; ?></div>

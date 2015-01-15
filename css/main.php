@@ -647,3 +647,14 @@ hr {
 	height: 3px;
 	background-color: <?php echo $bg_color['col1_hover']; ?>;
 }
+.footer .time {
+	position: fixed;
+	left: 73px;
+	bottom: 60px;
+	padding: 2px;
+	border-bottom-right-radius: 3px;
+	font-weight: 700;
+	font-size: 7pt;
+	background-color: <?php echo $bg_color['col1_hover']; ?>;
+	color: <?php echo $font_color['col1_hover']; ?>;
+}
