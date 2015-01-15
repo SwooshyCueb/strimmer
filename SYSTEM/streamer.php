@@ -178,7 +178,7 @@
 		$query = 'UPDATE db_cache SET PLAYING=1 WHERE TRACKID="' . $row['TRACKID'] . '"';
 		$result = mysqli_query($mysqli,$query);
 
-		exec($icecast['ffmpeg'] . ' -hide_banner -re -i \'' . $stream_link . '\' -acodec libmp3lame -q ' . $icecast['qual'] . ' -content_type "audio/mpeg3" -metadata title="' . $cmd_str . '" "icecast://source:' . $icecast['pass'] . '@' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mount'] . '"');
+		exec($icecast['ffmpeg'] . ' -hide_banner -re -i \'' . $stream_link . '\' -acodec libmp3lame -q ' . $icecast['qual'] . ' -content_type "audio/mpeg3" -metadata title="' . $cmd_str . '" "icecast://source:' . $icecast['pass'] . '@' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mount'] . '" 1> ../includes/ffmpeg_info.txt 2>&1');
 
 	}
 ?>

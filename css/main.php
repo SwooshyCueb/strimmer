@@ -641,7 +641,6 @@ hr {
 }
 
 .footer .progress_bar {
-	width: calc(100vw - 73px);
 	position: fixed;
 	left: 73px;
 	bottom: 69px;

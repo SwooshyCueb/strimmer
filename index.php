@@ -163,6 +163,10 @@ if(!mysqli_num_rows($result)) {
 			})
 		}, 1000)
 
+		setInterval(function(){
+			$(".pb_load").load("includes/sections/dynamic/ffmpeg_pb.php")
+		}, 1000)
+
 		$("#library").on("click",function(){
 			$('.col1').toggle("drop", {direction: "left"}, 300);
 			$(".col2").fadeOut(100,function(){
@@ -227,8 +231,7 @@ if(!mysqli_num_rows($result)) {
 
 
 	<div class="footer">
-		<!-- progressbar is a placeholder for right now -->
-		<div class="progress_bar">
+		<div class="pb_load">
 		</div>
 		<div class="footer_load">
 		</div>
