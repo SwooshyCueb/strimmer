@@ -56,7 +56,6 @@ function getListRow_Service($row) {
 			echo '<div class="list_info">';
 				echo '<div class="overflow_grd"></div>';
 				if ($_SESSION['login']) {
-					echo '<a href="includes/delete_song.php?id=' . $row['TRACKID'] . '&user=' . $_SESSION['username'] . '"><span class="oi" data-glyph="delete" id="list_delete"></span></a>';
 					if($row['ADDED_ON'] >= $_SESSION['LASTACTIVE']) {
 						echo '<span class="balloon" style="background-color: ' . $balloon_color['new'] . '; color: ' . $balloon_color['font_new'] . ';">NEW</span>';
 					}
