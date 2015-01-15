@@ -33,6 +33,7 @@ if(!mysqli_num_rows($result)) {
 	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="css/main.php"/>
 	<link rel="stylesheet" type="text/css" href="css/open-iconic.css"/>
+	<link rel="stylesheet" type="text/css" href="css/animations.css"/>
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery-ui.js"></script>
 	<script>
@@ -119,6 +120,8 @@ if(!mysqli_num_rows($result)) {
 		$(".wrapper").on('click', '.song_row', function(){
 			var isCol3Visible = $(".col3").is(":visible");
 			var trackID = this.id
+
+			$(this).toggleClass("fadeOut_Left")
 
 			if(isCol3Visible) {
 				$('#col3_wrapper').toggle("drop", {direction: "right"}, 300)
