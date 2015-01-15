@@ -157,6 +157,12 @@ if(!mysqli_num_rows($result)) {
 			})
 		}, 5000)
 
+		setInterval(function(){
+			$.get('includes/sections/dynamic/new_song.php', function(data){
+				$(".song_list").append(data);
+			})
+		}, 1000)
+
 		$("#library").on("click",function(){
 			$('.col1').toggle("drop", {direction: "left"}, 300);
 			$(".col2").fadeOut(100,function(){
