@@ -16,23 +16,21 @@ include dirname(dirname(dirname(__FILE__))) . "/functions.php";
 $query = "SELECT COUNT('TRACKID') FROM db_cache";
 $result = mysqli_query($mysqli,$query);
 $temp = mysqli_fetch_array($result);
+echo $temp[0] . " " . $_SESSION['oldcount'];
 
 if(!isset($_SESSION['oldcount'])) {
 	$_SESSION['oldcount'] = $temp[0];
-	die();
 }
 
 $diff = $temp[0] - $_SESSION['oldcount'];
 if($diff <= 0) {
-	die();
-}
+	$query = "SELECT * FROM db_cache ORDER BY ADDED_ON DESC LIMIT " . $diff;
+	$result = mysqli_query($mysqli,$query);
 
-$query = "SELECT * FROM db_cache ORDER BY ADDED_ON DESC LIMIT " . $diff;
-$result = mysqli_query($mysqli,$query);
-
-if(mysqli_num_rows($result)) {
-	while($row = mysqli_fetch_array($result)) {
-		getListRow_Service($row);
+	if(mysqli_num_rows($result)) {
+		while($row = mysqli_fetch_array($result)) {
+			getListRow_Service($row);
+		}
 	}
 }
 
