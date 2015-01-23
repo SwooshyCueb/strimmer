@@ -159,9 +159,11 @@ function delete_track(trackID, element){
 }
 $(document).ready(function(){
 	$(".col3_closer").on("click",function(){
-		$('#col3_wrapper').toggle("drop", {direction: "right"}, 300)
-		$('.col3').toggle("drop", {direction: "right"}, 300, function(){
-			$(this).fadeOut(100);
+		//$('#col3_wrapper').toggle("drop", {direction: "right"}, 300)
+		$('.col3').removeClass("col3_in")
+		$('.col3').addClass("col3_out")
+		$(".col3").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
+			//$(this).fadeOut(100);
 			$(".col3").empty()
 		});
 	})

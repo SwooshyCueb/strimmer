@@ -93,6 +93,7 @@ hr {
 	top: 36px;
 }
 .wrapper .col1 {
+	opacity: 0;
 	width: 220px;
 	left: -220px;
 	position: fixed;
@@ -110,12 +111,11 @@ hr {
 	overflow-y: hidden;
 }
 .wrapper .col3 {
-	display: none;
 	width: 500px;
 	max-width: 500px;
 	position: fixed;
 	top: 36px;
-	right: 0;
+	right: -500px;
 	border-left: 1px solid <?php echo $border_color['col1']; ?>;
 	height: calc(100vh - 109px);
 	box-shadow: -1px 0px 6px rgba(0,0,0,0.3);
@@ -488,7 +488,7 @@ hr {
 	-ms-filter: blur(25px);
 	filter: blur(25px);
 	margin-left: -50px;
-	margin-top: -50px;
+	margin-top: -14px;
 	opacity: 0.5;
 }
 #col3_wrapper {
@@ -497,7 +497,7 @@ hr {
 	width: 468px;
 	padding: 16px;
 	padding-bottom: 127px;
-	top: 36px;
+	top: 0px;
 	bottom: 0;
 	overflow-y: auto;
 }
@@ -587,7 +587,7 @@ hr {
 	transition: .25s;
 	padding: 4px;
 	position: fixed;
-	top: 36;
+	top: 0;
 	right: 0;
 }
 .col3_closer .oi {

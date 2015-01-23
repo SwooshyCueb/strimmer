@@ -105,6 +105,55 @@ if(!mysqli_num_rows($result)) {
 				opacity: 0;
 			}
 		}
+
+		.col3_in {
+			-webkit-animation: col3_in 0.3s;
+			animation: col3_in 0.3s;
+			-webkit-animation-fill-mode: forwards;
+			animation-fill-mode: forwards;
+		}
+		.col3_out {
+			-webkit-animation: col3_out 0.3s;
+			animation: col3_out 0.3s;
+			-webkit-animation-fill-mode: forwards;
+			animation-fill-mode: forwards;
+		}
+		@-webkit-keyframes col3_in {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+				-webkit-transform: translateX(-500px);
+			}
+		}
+		@keyframes col3_in {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+				transform: translateX(-500px);
+			}
+		}
+		@-webkit-keyframes col3_out {
+			0% {
+				opacity: 1;
+				-webkit-transform: translateX(-500px);
+			}
+			100% {
+				opacity: 0;
+			}
+		}
+		@keyframes col3_out {
+			0% {
+				opacity: 1;
+				transform: translateX(-500px);
+			}
+			100% {
+				opacity: 0;
+			}
+		}
 	</style>
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery-ui.js"></script>
@@ -197,23 +246,42 @@ if(!mysqli_num_rows($result)) {
 		$(".footer_load").load("includes/sections/dynamic/song_info.php");
 
 		$(".wrapper").on('click', '.song_row', function(){
-			var isCol3Visible = $(".col3").is(":visible");
+			//var isCol3Visible = $(".col3").is(":visible");
 			var trackID = this.id
 
-			if(isCol3Visible) {
-				$('#col3_wrapper').toggle("drop", {direction: "right"}, 300)
-				$('.col3').toggle("drop", {direction: "right"}, 300, function(){
+/*
+			if($('.col1').hasClass("col1_in")) {
+				$('.col1').removeClass("col1_in")
+				$('.col1').addClass("col1_out")
+			} else {
+				$('.col1').removeClass("col1_out")
+				$('.col1').addClass("col1_in")
+			}
+*/
+			//if(isCol3Visible) {
+			if($('.col3').hasClass("col3_in")) {
+				//$('#col3_wrapper').toggle("drop", {direction: "right"}, 300)
+				//$('#col3_wrapper').removeClass("col3_in")
+				//$('#col3_wrapper').addClass("col3_out")
+				$('.col3').removeClass("col3_in")
+				$('.col3').addClass("col3_out")
+				$(".col3").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
+				//$('.col3').toggle("drop", {direction: "right"}, 300, function(){
 					$(".col3").empty()
 					$(".col3").load("includes/sections/selected_info.php?" + $.param({ID: trackID }), function(){
-						$('#col3_wrapper').toggle("drop", {direction: "right"}, 300)
-						$('.col3').toggle("drop", {direction: "right"}, 300);
+						//$('#col3_wrapper').removeClass("col3_out")
+						//$('#col3_wrapper').addClass("col3_in")
+						$('.col3').removeClass("col3_out")
+						$('.col3').addClass("col3_in")
 					});
 				});
 			} else {
 				$(".col3").empty()
 				$(".col3").load("includes/sections/selected_info.php?" + $.param({ID: trackID }), function(){
-					$('#col3_wrapper').toggle("drop", {direction: "right"}, 300)
-					$('.col3').toggle("drop", {direction: "right"}, 300);
+					//$('#col3_wrapper').removeClass("col3_out")
+					//$('#col3_wrapper').addClass("col3_in")
+					$('.col3').removeClass("col3_out")
+					$('.col3').addClass("col3_in")
 				});
 			}
 		});
