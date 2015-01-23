@@ -2,6 +2,10 @@
 
 // http://stackoverflow.com/questions/11441517/ffmpeg-progress-bar-encoding-percentage-in-php
 
+if(!is_file(dirname(dirname(dirname(__FILE__))) . "/ffmpeg_info.txt")) {
+    die();
+}
+
 $content = @file_get_contents(dirname(dirname(dirname(__FILE__))) . "/ffmpeg_info.txt");
 
 if($content){
