@@ -16,14 +16,16 @@ include dirname(dirname(dirname(__FILE__))) . "/functions.php";
 $query = "SELECT COUNT('TRACKID') FROM db_cache";
 $result = mysqli_query($mysqli,$query);
 $temp = mysqli_fetch_array($result);
-echo $temp[0] . " " . $_SESSION['oldcount'];
+//echo "QUER CHK: " . $temp[0] . " " . $_SESSION['oldcount'] . "<br/>";
 
-if(!isset($_SESSION['oldcount'])) {
-	$_SESSION['oldcount'] = $temp[0];
-}
+//if(!isset($_SESSION['oldcount'])) {
+//	$_SESSION['oldcount'] = $temp[0];
+//}
+//echo "BLNK CHK: " . $temp[0] . " " . $_SESSION['oldcount'] . "<br/>";
 
 $diff = $temp[0] - $_SESSION['oldcount'];
-if($diff <= 0) {
+//echo "DIFF GET: " . $temp[0] . " " . $_SESSION['oldcount'] . "<br/>";
+if($diff > 0) {
 	$query = "SELECT * FROM db_cache ORDER BY ADDED_ON DESC LIMIT " . $diff;
 	$result = mysqli_query($mysqli,$query);
 
@@ -33,7 +35,9 @@ if($diff <= 0) {
 		}
 	}
 }
+//echo "DIFF CHK: " . $temp[0] . " " . $_SESSION['oldcount'] . "<br/>";
 
 $_SESSION['oldcount'] = $temp[0];
+//echo "SCRPT DN: " . $temp[0] . " " . $_SESSION['oldcount'] . "<br/>";
 
 ?>
