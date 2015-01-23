@@ -33,7 +33,30 @@ if(!mysqli_num_rows($result)) {
 	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="css/main.php"/>
 	<link rel="stylesheet" type="text/css" href="css/open-iconic.css"/>
-	<link rel="stylesheet" type="text/css" href="css/animations.css"/>
+	<style>
+		.song_row_deleteanim {
+			-webkit-animation: song_row_deleteanim 0.5s;
+			animation: song_row_deleteanim 0.5s;
+		}
+		@-webkit-keyframes song_row_deleteanim {
+			0% {
+				opacity: 1;
+			}
+			100% {
+				opacity: 0;
+				-webkit-transform: translateX(-1000px);
+			}
+		}
+		@keyframes song_row_deleteanim {
+			0% {
+				opacity: 1;
+			}
+			100% {
+				opacity: 0;
+				transform: translateX(-1000px);
+			}
+		}
+	</style>
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery-ui.js"></script>
 	<script>
@@ -121,8 +144,6 @@ if(!mysqli_num_rows($result)) {
 			var isCol3Visible = $(".col3").is(":visible");
 			var trackID = this.id
 
-			$(this).toggleClass("fadeOut_Left")
-
 			if(isCol3Visible) {
 				$('#col3_wrapper').toggle("drop", {direction: "right"}, 300)
 				$('.col3').toggle("drop", {direction: "right"}, 300, function(){
@@ -140,6 +161,8 @@ if(!mysqli_num_rows($result)) {
 				});
 			}
 		});
+
+		//$("#someSelector").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){ ... });
 
 		setInterval(function(){
 			$.get('includes/sections/dynamic/simple/trackid.php', function(data){

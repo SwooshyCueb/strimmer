@@ -142,8 +142,14 @@ function queue_track(trackID, qmode, element){
 	})
 }
 function delete_track(trackID, element){
+	var tID = trackID
 	$(element).attr('id','col3b_disabled');
-	$.get("includes/delete_song.php?" + $.param({id: trackID}), function(){
+	$.get("includes/delete_song.php?" + $.param({id: trackID}), function(trackID){
+		//$(".song_row[id='" + tID + "']").css("font-weight","bold")
+		$(".song_row[id='" + tID + "']").toggleClass("song_row_deleteanim")
+		$(".song_row[id='" + tID + "']").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
+			$(".song_row[id='" + tID + "']").remove()
+		})
 		$('#col3_wrapper').toggle("drop", {direction: "right"}, 300)
 		$('.col3').toggle("drop", {direction: "right"}, 300, function(){
 			$(".col3_closer").fadeOut(100);
