@@ -45,6 +45,7 @@ body {
 	font-weight: 400;
 	font-size: 12pt;
 	color: <?php echo $font_color['body']; ?>;
+	overflow-x: hidden;
 }
 
 hr {
@@ -92,8 +93,8 @@ hr {
 	top: 36px;
 }
 .wrapper .col1 {
-	display: none;
 	width: 220px;
+	left: -220px;
 	position: fixed;
 	top: 36px;
 	border-right: 1px solid <?php echo $border_color['col1']; ?>;
