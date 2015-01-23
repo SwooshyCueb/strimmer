@@ -1,16 +1,29 @@
 <div class="dialog">
-	<form name='url-sc-form' id='url-sc-form' action="includes/backends/soundcloud.php" method="POST">
+	<form name='url-sc-form' id='url-sc-form'>
 		<div style="width: 500px;">
 			<span style="text-align: left;">Track URL</span>
 			<div style="float: right;">
-				<input type="text" name="sc_url" style="width: 404px;" required>
+				<input class="sc_url" type="text" name="sc_url" style="width: 404px;" required>
 			</div>
 		</div>
 		<input type="hidden" name="mode" value="add">
 		<div class="dialog_buttons">
-			<span class="button" onClick="document.forms['url-sc-form'].submit();">Add Track</span>
+			<span class="button" onClick="submitTrack();">Add Track</span>
 			<span class="button" id="close_button_dg">Cancel</span>
 		</div>
 	</form>
 </div>
 <div class="dialog_bg"></div>
+
+<script>
+	function submitTrack() {
+		$.post("includes/backends/soundcloud.php", {mode: "add", sc_url: $(".sc_url").val()})
+		.done(function(data){
+			$(".dialog").empty()
+			$(".dialog").append(data)
+		})
+	}
+	function button_retry() {
+		$(".dialog").load("includes/dialog/soundcloud.html")
+	}
+</script>

@@ -14,24 +14,7 @@ function soundcloud_resolveFromURL($track_url) {
 		$output = curl_exec($curl);
 		curl_close($curl);
 
-		return $output;
-	}
-}
-
-function soundcloud_resolveFromID($track_id) {
-	if(isset($track_id)) {
-		include dirname(dirname(__FILE__)) . "/settings.php";
-
-		$url = "http://api.soundcloud.com/tracks/" . $track_id . ".json?client_id=" . $sc_api_key;
-
-		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $url);
-		curl_setopt($curl, CURLOPT_HEADER, 0);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-		$output = curl_exec($curl);
-		curl_close($curl);
-
+		//echo "<pre>" . var_export($output,true) . "</pre><br/><br/>";
 		return $output;
 	}
 }
@@ -46,6 +29,7 @@ function soundcloud_getStreamVars($location) {
 		$output = curl_exec($curl);
 		curl_close($curl);
 
+		//echo "<pre>" . var_export($output,true) . "</pre><br/><br/>";
 		return $output;
 	}
 }

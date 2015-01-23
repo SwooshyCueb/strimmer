@@ -9,6 +9,27 @@ if($_SESSION['login'] == FALSE) {
 	die();
 }
 
+function getDialog($msg,$buttons) {
+	echo $msg;
+	echo '<div class="dialog_buttons">';
+		foreach ($buttons as $button) {
+			switch ($button) {
+				case 'ok':
+					echo '<span class="button" id="close_button_dg">OK</span>';
+					break;
+
+				case 'add':
+					echo '<span class="button" id="retry_button_dg" onClick="button_retry();">Try again</span>';
+					break;
+				
+				default:
+					echo '<span class="button" id="close_button_dg">Cancel</span>';
+					break;
+			}
+		}
+	echo '</div>';
+}
+
 if(isset($_POST['mode'])) {
 	if(isset($_POST['sc_url'])) {
 		switch ($_POST['mode']) {
@@ -30,7 +51,10 @@ if(isset($_POST['mode'])) {
 					$user_vars = $stream_vars['user'];
 
 					if(!isset($stream_vars['stream_url'])) {
-						header("Location: " . $_SERVER['HTTP_REFERER']);
+						$msg = "No stream URL could be obtained from " . $_POST['sc_url'] . ".";
+						$buttons[1] = "ok";
+						$buttons[2] = "add";
+						echo(getDialog($msg,$buttons));
 						exit;
 					}
 					// track id, title, owner account, stream url, permalink id
@@ -78,7 +102,12 @@ if(isset($_POST['mode'])) {
 						' . $time . '
 						)';
 					$result = mysqli_query($mysqli,$query);
-					header("Location: " . $_SERVER['HTTP_REFERER']);
+
+					$msg = "Your track has been successfully added.";
+					$buttons[1] = "ok";
+					$buttons[2] = "add";
+					echo(getDialog($msg,$buttons));
+					//header("Location: " . $_SERVER['HTTP_REFERER']);
 					exit;
 				}
 
