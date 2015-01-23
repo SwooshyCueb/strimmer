@@ -56,6 +56,55 @@ if(!mysqli_num_rows($result)) {
 				transform: translateX(-1000px);
 			}
 		}
+
+		.col1_in {
+			-webkit-animation: col1_in 0.3s;
+			animation: col1_in 0.3s;
+			-webkit-animation-fill-mode: forwards;
+			animation-fill-mode: forwards;
+		}
+		.col1_out {
+			-webkit-animation: col1_out 0.3s;
+			animation: col1_out 0.3s;
+			-webkit-animation-fill-mode: forwards;
+			animation-fill-mode: forwards;
+		}
+		@-webkit-keyframes col1_in {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+				-webkit-transform: translateX(220px);
+			}
+		}
+		@keyframes col1_in {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+				transform: translateX(220px);
+			}
+		}
+		@-webkit-keyframes col1_out {
+			0% {
+				opacity: 1;
+				-webkit-transform: translateX(220px);
+			}
+			100% {
+				opacity: 0;
+			}
+		}
+		@keyframes col1_out {
+			0% {
+				opacity: 1;
+				transform: translateX(220px);
+			}
+			100% {
+				opacity: 0;
+			}
+		}
 	</style>
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery-ui.js"></script>
@@ -124,7 +173,14 @@ if(!mysqli_num_rows($result)) {
 			})
 		})
 		$("#col1_toggle").on("click",function(){
-			$('.col1').toggle("drop", {direction: "left"}, 300);
+			//$('.col1').toggle("drop", {direction: "left"}, 300);
+			if($('.col1').hasClass("col1_in")) {
+				$('.col1').removeClass("col1_in")
+				$('.col1').addClass("col1_out")
+			} else {
+				$('.col1').removeClass("col1_out")
+				$('.col1').addClass("col1_in")
+			}
 		})
 		$("#drop_logout").on("click",function(){
 			window.location.href = "includes/logout.php";
