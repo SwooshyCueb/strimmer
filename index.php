@@ -154,6 +154,112 @@ if(!mysqli_num_rows($result)) {
 				opacity: 0;
 			}
 		}
+
+		.dialog_in {
+			-webkit-animation: dialog_in 0.3s;
+			animation: dialog_in 0.3s;
+			-webkit-animation-fill-mode: forwards;
+			animation-fill-mode: forwards;
+		}
+		.dialog_out {
+			-webkit-animation: dialog_out 0.3s;
+			animation: dialog_out 0.3s;
+			-webkit-animation-fill-mode: forwards;
+			animation-fill-mode: forwards;
+		}
+		@-webkit-keyframes dialog_in {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+				-webkit-transform: translateY(-200px);
+			}
+		}
+		@keyframes dialog_in {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(-200px);
+			}
+		}
+		@-webkit-keyframes dialog_out {
+			0% {
+				opacity: 1;
+				-webkit-transform: translateY(-200px);
+			}
+			100% {
+				opacity: 0;
+			}
+		}
+		@keyframes dialog_out {
+			0% {
+				opacity: 1;
+				transform: translateY(-200px);
+			}
+			100% {
+				opacity: 0;
+			}
+		}
+
+		.fadein_full {
+			-webkit-animation: fadein 0.3s;
+			animation: fadein 0.3s;
+			-webkit-animation-fill-mode: forwards;
+			animation-fill-mode: forwards;
+		}
+		.fadeout_full {
+			-webkit-animation: fadeout 0.3s;
+			animation: fadeout 0.3s;
+			-webkit-animation-fill-mode: forwards;
+			animation-fill-mode: forwards;
+		}
+		.fadein_half {
+			-webkit-animation: fadeinh 0.3s;
+			animation: fadeinh 0.3s;
+			-webkit-animation-fill-mode: forwards;
+			animation-fill-mode: forwards;
+		}
+		.fadeout_half {
+			-webkit-animation: fadeouth 0.3s;
+			animation: fadeouth 0.3s;
+			-webkit-animation-fill-mode: forwards;
+			animation-fill-mode: forwards;
+		}
+		@-webkit-keyframes fadein {
+			0% { opacity: 0; }
+			100% { opacity: 1; }
+		}
+		@keyframes fadein {
+			0% { opacity: 0; }
+			100% { opacity: 1; }
+		}
+		@-webkit-keyframes fadeout {
+			0% { opacity: 1; }
+			100% { opacity: 0; }
+		}
+		@keyframes fadeout {
+			0% { opacity: 1; }
+			100% { opacity: 0; }
+		}
+		@-webkit-keyframes fadeinh {
+			0% { opacity: 0; }
+			100% { opacity: 0.5; }
+		}
+		@keyframes fadeinh {
+			0% { opacity: 0; }
+			100% { opacity: 0.5; }
+		}
+		@-webkit-keyframes fadeouth {
+			0% { opacity: 0.5; }
+			100% { opacity: 0; }
+		}
+		@keyframes fadeouth {
+			0% { opacity: 0.5; }
+			100% { opacity: 0; }
+		}
 	</style>
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery-ui.js"></script>
@@ -197,39 +303,24 @@ if(!mysqli_num_rows($result)) {
 		$("#add_sc").on("click",function(){
 			$(".dialog_load_spot").empty()
 			$(".dialog_load_spot").load("includes/dialog/soundcloud.html", function() {
-				$(".dialog").hide()
-				$(".dialog_bg").hide()
-				$(".dialog").toggle("drop", {direction: "down"}, 300)
-				$(".dialog_bg").fadeIn(200)
+				toggleDialogAnim();
 			})
 		})
 		$("#add_we").on("click",function(){
 			$(".dialog_load_spot").empty()
 			$(".dialog_load_spot").load("includes/dialog/weasyl.html", function() {
-				$(".dialog").hide()
-				$(".dialog_bg").hide()
-				$(".dialog").toggle("drop", {direction: "down"}, 300)
-				$(".dialog_bg").fadeIn(200)
+				toggleDialogAnim();
 			})
 		})
 		$("#drop_set").on("click",function(){
 			$(".dialog_load_spot").empty()
 			$(".dialog_load_spot").load("includes/dialog/settings.php", function() {
-				$(".dialog").hide()
-				$(".dialog_bg").hide()
-				$(".dialog").toggle("drop", {direction: "down"}, 300);
-				$(".dialog_bg").fadeIn(200)
+				toggleDialogAnim();
 			})
 		})
 		$("#col1_toggle").on("click",function(){
 			//$('.col1').toggle("drop", {direction: "left"}, 300);
-			if($('.col1').hasClass("col1_in")) {
-				$('.col1').removeClass("col1_in")
-				$('.col1').addClass("col1_out")
-			} else {
-				$('.col1').removeClass("col1_out")
-				$('.col1').addClass("col1_in")
-			}
+			toggleCol1Anim();
 		})
 		$("#drop_logout").on("click",function(){
 			window.location.href = "includes/logout.php";
@@ -238,10 +329,10 @@ if(!mysqli_num_rows($result)) {
 			window.location.href = "login/";
 		})
 		$(".dialog_load_spot").on("click", "#close_button_dg", function(){
-			$(".dialog").toggle("drop", {direction: "down"}, 300);
-			$(".dialog_bg").fadeOut(200)
+			toggleDialogAnim();
 		})
 		// we need to add $_GET['user'] back to this eventually
+		toggleCol2Anim(1)
 		$(".col2").load("includes/sections/browser.php");
 		$(".footer_load").load("includes/sections/dynamic/song_info.php");
 
@@ -306,6 +397,7 @@ if(!mysqli_num_rows($result)) {
 
 		setInterval(function(){
 			$.get('includes/sections/dynamic/new_song.php', function(data){
+				console.log(data)
 				$(".song_list").append(data);
 			})
 		}, 1000)
@@ -315,51 +407,99 @@ if(!mysqli_num_rows($result)) {
 		}, 1000)
 
 		$("#library").on("click",function(){
-			$('.col1').toggle("drop", {direction: "left"}, 300);
-			$(".col2").fadeOut(100,function(){
+			toggleCol1Anim()
+			toggleCol2Anim()
+			$(".col2").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
 				$(".col2").empty();
 				$(".col2").load("includes/sections/browser.php", function(){
-					$(".col2").fadeIn(100);
+					toggleCol2Anim(1);
 				})
 			})
 		})
 		$("#history").on("click",function(){
-			$('.col1').toggle("drop", {direction: "left"}, 300);
-			$(".col2").fadeOut(100,function(){
+			toggleCol1Anim()
+			toggleCol2Anim()
+			$(".col2").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
 				$(".col2").empty();
 				$(".col2").load("includes/sections/history.php", function(){
-					$(".col2").fadeIn(100);
+					toggleCol2Anim(1);
 				})
 			})
 		})
 		$("#queue").on("click",function(){
-			$('.col1').toggle("drop", {direction: "left"}, 300);
-			$(".col2").fadeOut(100,function(){
+			toggleCol1Anim()
+			toggleCol2Anim()
+			$(".col2").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
 				$(".col2").empty();
 				$(".col2").load("includes/sections/queue.php", function(){
-					$(".col2").fadeIn(100);
+					toggleCol2Anim(1);
 				})
 			})
 		})
 		$("#myitems").on("click",function(){
-			$('.col1').toggle("drop", {direction: "left"}, 300);
-			$(".col2").fadeOut(100,function(){
+			toggleCol1Anim()
+			toggleCol2Anim()
+			$(".col2").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
 				$(".col2").empty();
 				$(".col2").load("includes/sections/browser.php?" + $.param({user: usern}), function(){
-					$(".col2").fadeIn(100);
+					toggleCol2Anim(1);
 				})
 			})
 		})
 		$("#userlist").on("click",function(){
-			$('.col1').toggle("drop", {direction: "left"}, 300);
-			$(".col2").fadeOut(100,function(){
+			toggleCol1Anim()
+			toggleCol2Anim()
+			$(".col2").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
 				$(".col2").empty();
 				$(".col2").load("includes/sections/userlist.php", function(){
-					$(".col2").fadeIn(100);
+					toggleCol2Anim(1);
 				})
 			})
 		})
 	});
+
+	function toggleCol1Anim() {
+		if($('.col1').hasClass("col1_in")) {
+			$('.col1').removeClass("col1_in")
+			$('.col1').addClass("col1_out")
+		} else {
+			$('.col1').removeClass("col1_out")
+			$('.col1').addClass("col1_in")
+		}
+	}
+
+	function toggleCol2Anim(skip) {
+		if($('.col2').hasClass("fadein_full")) {
+			$('.col2').removeClass("fadein_full")
+			$('.col2').addClass("fadeout_full")
+			console.log("COL2 - IN")
+		} else {
+			if(skip != 1) {
+				$('.col2').removeClass("fadeout_full")
+				$('.col2').addClass("fadein_full")
+				console.log("COL2 - OUT (NS)")
+			}
+		}
+		if(skip == 1) {
+			$('.col2').removeClass("fadeout_full")
+			$('.col2').addClass("fadein_full")
+			console.log("COL2 - IN (S)")
+		}
+	}
+
+	function toggleDialogAnim() {
+		if($('.dialog').hasClass("dialog_in")) {
+			$('.dialog').removeClass("dialog_in")
+			$('.dialog').addClass("dialog_out")
+			$('.dialog_bg').removeClass("fadein_half")
+			$('.dialog_bg').addClass("fadeout_half")
+		} else {
+			$('.dialog').removeClass("dialog_out")
+			$('.dialog').addClass("dialog_in")
+			$('.dialog_bg').removeClass("fadeout_half")
+			$('.dialog_bg').addClass("fadein_half")
+		}
+	}
 	</script>
 </head>
 
