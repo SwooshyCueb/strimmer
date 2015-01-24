@@ -4,11 +4,15 @@
 	include_once dirname(dirname(__FILE__)) . "/includes/settings.php";
 	include_once dirname(dirname(__FILE__)) . "/includes/session.php";
 
+	// including the default theme as well in case something isn't defined
+	include "themes/default.php";
+
 	if(!isset($_SESSION['theme'])) {
 		$_SESSION['theme'] = "default";
 	}
 
 	if(is_file("themes/" . $_SESSION['theme'] . ".php")) {
+		// this should overwrite the default variables
 		include "themes/" . htmlspecialchars($_SESSION['theme']) . ".php";
 	} else {
 		include "themes/default.php";
@@ -412,7 +416,6 @@ hr {
 	top: 0;
 	left: 0;
 	background-color: rgba(0,0,0,0.7);
-	filter: blur(10px);
 }
 .dialog_buttons {
 	width: 100%;
