@@ -5,7 +5,7 @@ if ((stripos(($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']), 'index.php') !==
 }
 
 include dirname(dirname(dirname(__FILE__))) . "/settings.php";
-include_once dirname(dirname(dirname(__FILE__))) . "/session.php";
+include dirname(dirname(dirname(__FILE__))) . "/session.php";
 include dirname(dirname(dirname(__FILE__))) . "/functions.php";
 
 /*if(isset($_GET['user'])) {
@@ -31,7 +31,7 @@ if($diff > 0) {
 
 	if(mysqli_num_rows($result)) {
 		while($row = mysqli_fetch_array($result)) {
-			getListRow_Service($row);
+			getListRow_Service($row,"default","");
 		}
 	}
 }

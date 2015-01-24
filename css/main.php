@@ -194,6 +194,14 @@ hr {
 	background-color: <?php echo $service_color['weasyl']; ?> !important;
 	color: <?php echo $service_color['weasyl_hover']; ?> !important;
 }
+.sel_color_jm {
+	color: <?php echo $service_color['jamendo']; ?> !important;
+	transition: .05s;
+}
+.sel_color_jm:hover {
+	background-color: <?php echo $service_color['jamendo']; ?> !important;
+	color: <?php echo $service_color['jamendo_hover']; ?> !important;
+}
 
 .col1 .col_wrapper {
 	padding: 0px;

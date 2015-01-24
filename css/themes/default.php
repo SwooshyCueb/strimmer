@@ -55,6 +55,8 @@ $service_color['soundcloud'] = "#f60";
 $service_color['soundcloud_hover'] = "#fff";
 $service_color['weasyl'] = "#980000";
 $service_color['weasyl_hover'] = "#fff";
+$service_color['jamendo'] = "#522a5b";
+$service_color['jamendo_hover'] = "#fff";
 
 $balloon_color['general'] = "#0af";
 $balloon_color['new'] = "#2a5";

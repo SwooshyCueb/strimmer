@@ -1,0 +1,29 @@
+<div class="dialog">
+	<form name='url-sc-form' id='url-sc-form'>
+		<div style="width: 300px;">
+			<span style="text-align: left;">Track ID#</span>
+			<div style="float: right;">
+				<input class="jm_id" type="text" name="jm_id" style="width: 204px;" required>
+			</div>
+		</div>
+		<input type="hidden" name="mode" value="add">
+		<div class="dialog_buttons">
+			<span class="button" onClick="submitTrack();">Add Track</span>
+			<span class="button" id="close_button_dg">Cancel</span>
+		</div>
+	</form>
+</div>
+<div class="dialog_bg"></div>
+
+<script>
+	function submitTrack() {
+		$.post("includes/backends/jamendo.php", {mode: "add", jm_id: $(".jm_id").val()})
+		.done(function(data){
+			$(".dialog").empty()
+			$(".dialog").append(data)
+		})
+	}
+	function button_retry() {
+		$(".dialog").load("includes/dialog/jamendo.html")
+	}
+</script>
