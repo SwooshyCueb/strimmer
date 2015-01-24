@@ -44,7 +44,7 @@ switch($_GET['page']) {
 					</tr>
 				<?php
 					while($row = mysqli_fetch_array($result)) {
-						getListRow_Service($row);
+						getListRow_Service($row,$_GET['page']);
 					}
 				} else {
 					echo "<p>Specified user " . $_GET['user'] . " does not exist.</p>";
@@ -67,7 +67,7 @@ switch($_GET['page']) {
 			<table class="song_list">
 				<tr class="h_row">
 					<td>Song</td>
-					<td>Added by</td>
+					<td>Played by</td>
 					<td>Played on</td>
 					<td></td>
 				</tr>
@@ -78,7 +78,7 @@ switch($_GET['page']) {
 					if(mysqli_num_rows($result) > 0) {
 						$song = mysqli_fetch_array($result);
 						$song['PLAYED_ON'] = $row['PLAYED_ON'];
-						getListRow_Service($song);
+						getListRow_Service($song,$_GET['page'],$row);
 					}
 				}
 			?>
@@ -99,8 +99,8 @@ switch($_GET['page']) {
 			<table class="song_list">
 					<tr class="h_row">
 						<td>Up next</td>
-						<td>Added by</td>
-						<td>Added on</td>
+						<td>Queued by</td>
+						<td>Queued on</td>
 						<td></td>
 					</tr>
 					<?php
@@ -108,7 +108,7 @@ switch($_GET['page']) {
 						$query = 'SELECT * FROM db_cache WHERE TRACKID="' . $row['TRACKID'] . '"';
 						$result = mysqli_query($mysqli,$query);
 						if(mysqli_num_rows($result) > 0) {
-							getListRow_Service(mysqli_fetch_array($result));
+							getListRow_Service(mysqli_fetch_array($result),$_GET['page'],$row);
 						}
 					}
 				?>
