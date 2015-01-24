@@ -104,6 +104,10 @@ if(is_file($filename)) {
 			<td style="color: <?php echo $secondary_color; ?>;">Added By</td>
 			<td><?php echo $row['ADDED_BY']; ?></td>
 		</tr>
+		<tr>
+			<td style="color: <?php echo $secondary_color; ?>;">Play Count</td>
+			<td><?php echo number_format($row['PLAY_COUNT']) . " times"; ?></td>
+		</tr>
 	</table>
 	<div class="col3_closer"><span class="oi" data-glyph="x"></span></div>
 	<?php if($_SESSION['login']) { ?>
