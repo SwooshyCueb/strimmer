@@ -56,7 +56,7 @@ function getListRow_Service($row) {
 			echo '<div class="list_info">';
 				echo '<div class="overflow_grd"></div>';
 				if ($_SESSION['login']) {
-					if($row['ADDED_ON'] >= $_SESSION['LASTACTIVE']) {
+					if($row['ADDED_ON'] + 1 >= $_SESSION['LASTACTIVE']) {
 						echo '<span class="balloon" style="background-color: ' . $balloon_color['new'] . '; color: ' . $balloon_color['font_new'] . ';">NEW</span>';
 					}
 					// it's there when we add it, if ever
