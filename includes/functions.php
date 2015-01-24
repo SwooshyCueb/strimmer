@@ -58,12 +58,41 @@ function getListRow_Service($row,$page,$additional_data) {
 
 	echo '<tr class="song_row" id="' . $row['TRACKID'] . '">';
 
-	switch($page) {
-		case "default":
-			echo '<td>';
-				echo '<img src="cache/' . $row['TRACKID'] . '.jpg" class="list_art"/>';
-				echo '<div class="list_info">';
-					echo '<div class="overflow_grd"></div>';
+		switch($page) {
+			case "default":
+				$col2_text = $row['ADDED_BY'];
+				$col3_text = date('M. d, Y g:i A',$row['ADDED_ON']);
+				break;
+
+			case "queue":
+				if(!isset($additional_data['ADDED_BY'])) {
+					//this is blank for whatever reason??
+					//$added_by = $prog_title;
+					$col2_text = "Strimmer";
+				} else {
+					$col2_text = $additional_data['ADDED_BY'];
+				}
+				$col3_text = date('M. d, Y g:i A',$additional_data['ADDED_ON']);
+				break;
+
+			case "history":
+				if(!isset($additional_data['ADDED_BY'])) {
+					//this is blank for whatever reason??
+					//$added_by = $prog_title;
+					$col2_text = "Strimmer";
+				} else {
+					$col2_text = $additional_data['ADDED_BY'];
+				}
+				$col3_text = date('M. d, Y g:i A',$additional_data['PLAYED_ON']);
+				break;
+		}
+
+		?>
+		<td>
+			<img src="cache/<?php echo $row['TRACKID']; ?>.jpg" class="list_art"/>
+			<div class="list_info">
+				<div class="overflow_grd"></div>
+				<?php
 					if ($_SESSION['login']) {
 						if($row['ADDED_ON'] + 1 >= $_SESSION['LASTACTIVE']) {
 							echo '<span class="balloon" style="background-color: ' . $balloon_color['new'] . '; color: ' . $balloon_color['font_new'] . ';">NEW</span>';
@@ -73,75 +102,16 @@ function getListRow_Service($row,$page,$additional_data) {
 							echo '<span class="balloon" style="background-color: ' . $balloon_color['error'] . '; color: ' . $balloon_color['font_error'] . ';">ERROR</span>';
 						} */
 					}
-					echo '<div class="list_title" style="z-index: 0;">' . $row['RETURN_ARG2'] . '</div>';
-					echo '<div class="list_artist" style="z-index: 0;"><a href="' . $row['RETURN_ARG4'] . '">' . $row['RETURN_ARG3'] . '</a></div>';
-				echo '</div>';
-			echo '</td>';
-			echo '<td>' . $row['ADDED_BY'] . '</td>';
-			echo '<td>' . date('M. d, Y g:i A',$row['ADDED_ON']) . '</td>';
-			echo '<td><img src="assets/services/' . $row['SERVICE'] . '.png" class="list_svc"></td>';
-			break;
+				?>
+				<div class="list_title" style="z-index: 0;"><?php echo $row['RETURN_ARG2']; ?></div>
+				<div class="list_artist" style="z-index: 0;"><a href="<?php echo $row['RETURN_ARG4']; ?>"><?php echo $row['RETURN_ARG3']; ?></a></div>
+			</div>
+		</td>
+		<td><?php echo $col2_text; ?></td>
+		<td><?php echo $col3_text; ?></td>
+		<td><img src="assets/services/<?php echo $row['SERVICE']; ?>.png" class="list_svc"></td>
 
-		case "queue":
-			echo '<td>';
-				echo '<img src="cache/' . $row['TRACKID'] . '.jpg" class="list_art"/>';
-				echo '<div class="list_info">';
-					echo '<div class="overflow_grd"></div>';
-					if ($_SESSION['login']) {
-						if($row['ADDED_ON'] + 1 >= $_SESSION['LASTACTIVE']) {
-							echo '<span class="balloon" style="background-color: ' . $balloon_color['new'] . '; color: ' . $balloon_color['font_new'] . ';">NEW</span>';
-						}
-						// it's there when we add it, if ever
-						/* if(isset($row['ERROR'])) {
-							echo '<span class="balloon" style="background-color: ' . $balloon_color['error'] . '; color: ' . $balloon_color['font_error'] . ';">ERROR</span>';
-						} */
-					}
-					echo '<div class="list_title" style="z-index: 0;">' . $row['RETURN_ARG2'] . '</div>';
-					echo '<div class="list_artist" style="z-index: 0;"><a href="' . $row['RETURN_ARG4'] . '">' . $row['RETURN_ARG3'] . '</a></div>';
-				echo '</div>';
-			echo '</td>';
-			if(!isset($additional_data['ADDED_BY'])) {
-				//this is blank for whatever reason??
-				//$added_by = $prog_title;
-				$added_by = "Strimmer";
-			} else {
-				$added_by = $additional_data['ADDED_BY'];
-			}
-			echo '<td>' . $added_by . '</td>';
-			echo '<td>' . date('M. d, Y g:i A',$additional_data['ADDED_ON']) . '</td>';
-			echo '<td><img src="assets/services/' . $row['SERVICE'] . '.png" class="list_svc"></td>';
-			break;
-
-		case "history":
-			echo '<td>';
-				echo '<img src="cache/' . $row['TRACKID'] . '.jpg" class="list_art"/>';
-				echo '<div class="list_info">';
-					echo '<div class="overflow_grd"></div>';
-					if ($_SESSION['login']) {
-						if($row['ADDED_ON'] + 1 >= $_SESSION['LASTACTIVE']) {
-							echo '<span class="balloon" style="background-color: ' . $balloon_color['new'] . '; color: ' . $balloon_color['font_new'] . ';">NEW</span>';
-						}
-						// it's there when we add it, if ever
-						/* if(isset($row['ERROR'])) {
-							echo '<span class="balloon" style="background-color: ' . $balloon_color['error'] . '; color: ' . $balloon_color['font_error'] . ';">ERROR</span>';
-						} */
-					}
-					echo '<div class="list_title" style="z-index: 0;">' . $row['RETURN_ARG2'] . '</div>';
-					echo '<div class="list_artist" style="z-index: 0;"><a href="' . $row['RETURN_ARG4'] . '">' . $row['RETURN_ARG3'] . '</a></div>';
-				echo '</div>';
-			echo '</td>';
-			if(!isset($additional_data['ADDED_BY'])) {
-				//this is blank for whatever reason??
-				//$added_by = $prog_title;
-				$added_by = "Strimmer";
-			} else {
-				$added_by = $additional_data['ADDED_BY'];
-			}
-			echo '<td>' . $added_by . '</td>';
-			echo '<td>' . date('M. d, Y g:i A',$additional_data['PLAYED_ON']) . '</td>';
-			echo '<td><img src="assets/services/' . $row['SERVICE'] . '.png" class="list_svc"></td>';
-			break;
-	}
-
-	echo '</tr>';
+	</tr>
+<?php
 }
+?>

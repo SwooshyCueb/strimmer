@@ -44,7 +44,7 @@ switch($_GET['page']) {
 					</tr>
 				<?php
 					while($row = mysqli_fetch_array($result)) {
-						getListRow_Service($row,$_GET['page']);
+						getListRow_Service($row,$_GET['page'],"");
 					}
 				} else {
 					echo "<p>Specified user " . $_GET['user'] . " does not exist.</p>";
