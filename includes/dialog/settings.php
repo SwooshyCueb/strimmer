@@ -27,6 +27,8 @@
 					?>
 				</select>
 			</div>
+			<br/>
+			<br/>
 			<span style="text-align: left;">Theme</span>
 			<div style="float: right;">
 				<select name="theme" style="width: 404px;" required>

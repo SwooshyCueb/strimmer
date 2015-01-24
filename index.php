@@ -513,6 +513,7 @@ if(!mysqli_num_rows($result)) {
 			$('.dialog_bg').addClass("fadeout_half")
 			$(".dialog_bg").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
 				$('.dialog_bg').css("z-index","-999")
+				$('.dialog').css("z-index","-998")
 			})
 		} else {
 			$('.dialog').removeClass("dialog_out")
@@ -520,6 +521,7 @@ if(!mysqli_num_rows($result)) {
 			$('.dialog_bg').removeClass("fadeout_half")
 			$('.dialog_bg').addClass("fadein_half")
 			$('.dialog_bg').css("z-index","399")
+			$('.dialog').css("z-index","400")
 		}
 	}
 	</script>
