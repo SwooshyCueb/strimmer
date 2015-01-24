@@ -16,6 +16,10 @@ function getLongService($service) {
 		case 'WYZL':
 			return "Weasyl";
 			break;
+
+		case 'JMND':
+			return "Jamendo";
+			break;
 		
 		default:
 			return "N/A";
