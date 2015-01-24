@@ -335,6 +335,9 @@ if(!mysqli_num_rows($result)) {
 		$(".dialog_load_spot").on("click", "#close_button_dg", function(){
 			toggleDialogAnim();
 		})
+		$(".dialog_load_spot").on("click", ".dialog_bg", function(){
+			toggleDialogAnim();
+		})
 		// we need to add $_GET['user'] back to this eventually
 		toggleCol2Anim(1)
 		$(".col2").load("includes/sections/browser.php");
@@ -412,6 +415,7 @@ if(!mysqli_num_rows($result)) {
 
 		$("#library").on("click",function(){
 			toggleCol1Anim()
+			col3LeaveAnim()
 			toggleCol2Anim()
 			$(".col2").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
 				$(".col2").empty();
@@ -422,6 +426,7 @@ if(!mysqli_num_rows($result)) {
 		})
 		$("#history").on("click",function(){
 			toggleCol1Anim()
+			col3LeaveAnim()
 			toggleCol2Anim()
 			$(".col2").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
 				$(".col2").empty();
@@ -432,6 +437,7 @@ if(!mysqli_num_rows($result)) {
 		})
 		$("#queue").on("click",function(){
 			toggleCol1Anim()
+			col3LeaveAnim()
 			toggleCol2Anim()
 			$(".col2").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
 				$(".col2").empty();
@@ -442,6 +448,7 @@ if(!mysqli_num_rows($result)) {
 		})
 		$("#myitems").on("click",function(){
 			toggleCol1Anim()
+			col3LeaveAnim()
 			toggleCol2Anim()
 			$(".col2").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
 				$(".col2").empty();
@@ -452,6 +459,7 @@ if(!mysqli_num_rows($result)) {
 		})
 		$("#userlist").on("click",function(){
 			toggleCol1Anim()
+			col3LeaveAnim()
 			toggleCol2Anim()
 			$(".col2").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
 				$(".col2").empty();
@@ -485,6 +493,16 @@ if(!mysqli_num_rows($result)) {
 		if(skip == 1) {
 			$('.col2').removeClass("fadeout_full")
 			$('.col2').addClass("fadein_full")
+		}
+	}
+
+	function col3LeaveAnim() {
+		if($('.col3').hasClass("col3_in")) {
+			$('.col3').removeClass("col3_in")
+			$('.col3').addClass("col3_out")
+			$(".col3").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
+				$(".col3").empty()
+			})
 		}
 	}
 
