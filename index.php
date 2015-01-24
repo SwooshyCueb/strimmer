@@ -404,7 +404,6 @@ if(!mysqli_num_rows($result)) {
 
 		setInterval(function(){
 			$.get('includes/sections/dynamic/new_song.php', function(data){
-				console.log(data)
 				$(".song_list").append(data);
 			})
 		}, 1000)
