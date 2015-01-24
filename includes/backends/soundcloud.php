@@ -19,7 +19,7 @@ function getDialog($msg,$buttons) {
 					break;
 
 				case 'add':
-					echo '<span class="button" id="retry_button_dg" onClick="button_retry();">Try again</span>';
+					echo '<span class="button" id="retry_button_dg" onClick="button_retry();">Add another</span>';
 					break;
 				
 				default:
