@@ -340,7 +340,7 @@ if(!mysqli_num_rows($result)) {
 		})
 		// we need to add $_GET['user'] back to this eventually
 		toggleCol2Anim(1)
-		$(".col2").load("includes/sections/browser.php");
+		$(".col2").load("includes/sections/view.php?" + $.param({page: "default"}))
 		$(".footer_load").load("includes/sections/dynamic/song_info.php");
 
 		$(".wrapper").on('click', '.song_row', function(){
@@ -418,7 +418,7 @@ if(!mysqli_num_rows($result)) {
 			toggleCol2Anim()
 			$(".col2").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
 				$(".col2").empty();
-				$(".col2").load("includes/sections/browser.php", function(){
+				$(".col2").load("includes/sections/view.php?" + $.param({page: "default"}), function(){
 					toggleCol2Anim(1);
 				})
 			})
@@ -429,7 +429,7 @@ if(!mysqli_num_rows($result)) {
 			toggleCol2Anim()
 			$(".col2").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
 				$(".col2").empty();
-				$(".col2").load("includes/sections/history.php", function(){
+				$(".col2").load("includes/sections/view.php?" + $.param({page: "history"}), function(){
 					toggleCol2Anim(1);
 				})
 			})
@@ -440,7 +440,7 @@ if(!mysqli_num_rows($result)) {
 			toggleCol2Anim()
 			$(".col2").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
 				$(".col2").empty();
-				$(".col2").load("includes/sections/queue.php", function(){
+				$(".col2").load("includes/sections/view.php?" + $.param({page: "queue"}), function(){
 					toggleCol2Anim(1);
 				})
 			})
@@ -451,7 +451,7 @@ if(!mysqli_num_rows($result)) {
 			toggleCol2Anim()
 			$(".col2").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
 				$(".col2").empty();
-				$(".col2").load("includes/sections/browser.php?" + $.param({user: usern}), function(){
+				$(".col2").load("includes/sections/view.php?" + $.param({user: usern, page: "default"}), function(){
 					toggleCol2Anim(1);
 				})
 			})
