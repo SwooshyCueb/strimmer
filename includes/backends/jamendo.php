@@ -96,7 +96,7 @@ if(isset($_POST['mode'])) {
 						"' . $result_vars['name'] . '",
 						"' . $result_vars['artist_name'] . '",
 						"' . "https://jamendo.com/artist/" . $result_vars['artist_id'] . '",
-						"' . $result_vars['audio'] . '",
+						"' . preg_replace("/\?/", "/?", $result_vars['audio']) . '",
 						"' . $result_vars['shareurl'] . '",
 						"' . $result_vars['album_image'] . '",
 						"' . $_SESSION['username'] . '",
