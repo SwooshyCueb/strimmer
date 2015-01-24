@@ -374,6 +374,24 @@ hr {
 	background: linear-gradient(to left, <?php echo $bg_color['list_hover']; ?>, transparent 10%);
 }
 
+.playing {
+	color: <?php echo $font_color['col1_hover']; ?> !important;
+	background-color: <?php echo $bg_color['col1_hover']; ?> !important;
+}
+.playing .overflow_grd {
+	background: linear-gradient(to left, <?php echo $bg_color['col1_hover']; ?>, transparent 10%) !important;
+}
+.playing:hover {
+	color: <?php echo $font_color['col1_hover']; ?> !important;
+	background-color: <?php echo $bg_color['col1_hover']; ?> !important;
+}
+.playing:hover .overflow_grd {
+	background: linear-gradient(to left, <?php echo $bg_color['col1_hover']; ?>, transparent 10%) !important;
+}
+.playing a {
+	color: <?php echo $font_color['col1_hover']; ?> !important;
+}
+
 .dropdown {
 	background-color: <?php echo $bg_color['user']; ?>;
 	border: 1px solid <?php echo $border_color['user']; ?>;

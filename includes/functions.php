@@ -56,7 +56,13 @@ function getListRow_Service($row,$page,$additional_data) {
 		die();
 	}
 
-	echo '<tr class="song_row" id="' . $row['TRACKID'] . '">';
+	if($row['PLAYING'] == 1) {
+		$classes = "song_row playing";
+	} else {
+		$classes = "song_row";
+	}
+
+	echo '<tr class="' . $classes . '" id="' . $row['TRACKID'] . '">';
 
 		switch($page) {
 			case "default":

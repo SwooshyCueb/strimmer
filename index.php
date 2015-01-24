@@ -392,6 +392,10 @@ if(!mysqli_num_rows($result)) {
 					oldTrackID = data;
 				}
 				if(oldTrackID != data){
+					if(data) {
+						$(".song_row[id='" + oldTrackID + "']").removeClass("playing")
+						$(".song_row[id='" + data + "']").addClass("playing")
+					}
 					$(".footer_load").fadeOut(100, function(){
 						$(".footer_load").load("includes/sections/dynamic/song_info.php", function(){
 							$(".footer_load").fadeIn(100);
