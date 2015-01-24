@@ -1,6 +1,18 @@
 <?php
 	header("Content-type: text/css");
-	include "themes/default.php";
+
+	include_once dirname(dirname(__FILE__)) . "/includes/settings.php";
+	include_once dirname(dirname(__FILE__)) . "/includes/session.php";
+
+	if(!isset($_SESSION['theme'])) {
+		$_SESSION['theme'] = "default";
+	}
+
+	if(is_file("themes/" . $_SESSION['theme'] . ".php")) {
+		include "themes/" . htmlspecialchars($_SESSION['theme']) . ".php";
+	} else {
+		include "themes/default.php";
+	}
 ?>
 
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,700);

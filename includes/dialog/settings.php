@@ -12,7 +12,7 @@
 ?>
 
 <div class="dialog">
-	<form name='mpd-set-form' id='mpd-set-form' action="includes/settings.php" method="post">
+	<form name='mpd-set-form' id='mpd-set-form' action="includes/change_settings.php" method="post">
 		<div style="width: 500px;">
 			<span style="text-align: left;">Timezone</span>
 			<div style="float: right;">
@@ -23,6 +23,21 @@
 								echo '<option value="' . $timezone . '" selected>' . $timezone . '</option>';
 							else
 								echo '<option value="' . $timezone . '">' . $timezone . '</option>';
+						}
+					?>
+				</select>
+			</div>
+			<span style="text-align: left;">Theme</span>
+			<div style="float: right;">
+				<select name="theme" style="width: 404px;" required>
+					<?php
+						$directory = array_diff(scandir(dirname(dirname(dirname(__FILE__))) . "/" . "css/themes"), array('..', '.'));
+						foreach($directory as $file) {
+							$file = str_replace(".php","",$file);
+							if($file == $row['THEME'])
+								echo '<option value="' . $file . '" selected>' . $file . '</option>';
+							else
+								echo '<option value="' . $file . '">' . $file . '</option>';
 						}
 					?>
 				</select>

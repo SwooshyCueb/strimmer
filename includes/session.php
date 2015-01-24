@@ -7,7 +7,7 @@
 		$_SESSION['login'] = FALSE;
 		$_SESSION['username'] = "guest";
 	}
-	$query = 'SELECT USERNAME,TIMEZONE,ID FROM user_db WHERE USERNAME="' . $_SESSION['username'] . '"';
+	$query = 'SELECT USERNAME,TIMEZONE,ID,THEME FROM user_db WHERE USERNAME="' . $_SESSION['username'] . '"';
 	$result = mysqli_query($mysqli,$query);
 	$row = mysqli_fetch_array($result);
 	if(!isset($row['USERNAME'])) {
@@ -18,6 +18,7 @@
 		} else {
 			$query = 'UPDATE user_db SET LASTACTIVE=' . time() . ' WHERE USERNAME="' . $row['USERNAME'] . '"';
 			$_SESSION['LASTACTIVE'] = time();
+			$_SESSION['theme'] = $row['THEME'];
 			$result = mysqli_query($mysqli,$query);
 		}
 		setcookie(session_name(),session_id(),time()+86400);
