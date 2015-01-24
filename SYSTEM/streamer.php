@@ -144,6 +144,7 @@
 		putenv("ICHOST=" . $icecast['host']);
 		putenv("ICPORT=" . $icecast['port']);
 		putenv("ICMOUNT=" . $icecast['mount']);
+		putenv("ICMOUNT_LQ=" . $icecast['mountlq']);
 		putenv("ICADMIN_USER=" . $icecast['admin_user']);
 		putenv("ICADMIN_PASS=" . $icecast['admin_pass']);
 
@@ -179,7 +180,7 @@
 		$query = 'UPDATE db_cache SET PLAYING=1,PLAY_COUNT=' . $playcount . ' WHERE TRACKID="' . $row['TRACKID'] . '"';
 		$result = mysqli_query($mysqli,$query);
 
-		exec($icecast['ffmpeg'] . ' -hide_banner -re -i \'' . $stream_link . '\' -acodec libmp3lame -q ' . $icecast['qual'] . ' -content_type "audio/mpeg3" -metadata title="' . $cmd_str . '" "icecast://source:' . $icecast['pass'] . '@' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mount'] . '" 1> ../includes/ffmpeg_info.txt 2>&1');
+		exec($icecast['ffmpeg'] . ' -hide_banner -re -i \'' . $stream_link . '\' -acodec libmp3lame -q ' . $icecast['qual'] . ' -content_type "audio/mpeg3" "icecast://source:' . $icecast['pass'] . '@' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mount'] . '" -acodec libmp3lame -q ' . $icecast['quallq'] . ' -content_type "audio/mpeg3" "icecast://source:' . $icecast['pass'] . '@' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mountlq'] . '" 1> ../includes/ffmpeg_info.txt 2>&1');
 
 	}
 ?>
