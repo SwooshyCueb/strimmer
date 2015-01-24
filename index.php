@@ -170,37 +170,41 @@ if(!mysqli_num_rows($result)) {
 		@-webkit-keyframes dialog_in {
 			0% {
 				opacity: 0;
+				-webkit-transform: translate(-50%, -30%);
 			}
 			100% {
 				opacity: 1;
-				-webkit-transform: translateY(-200px);
+				-webkit-transform: translate(-50%, -50%);
 			}
 		}
 		@keyframes dialog_in {
 			0% {
 				opacity: 0;
+				transform: translate(-50%, -30%);
 			}
 			100% {
 				opacity: 1;
-				transform: translateY(-200px);
+				transform: translate(-50%, -50%);
 			}
 		}
 		@-webkit-keyframes dialog_out {
 			0% {
 				opacity: 1;
-				-webkit-transform: translateY(-200px);
+				-webkit-transform: translate(-50%, -50%);
 			}
 			100% {
 				opacity: 0;
+				-webkit-transform: translate(-50%, -30%);
 			}
 		}
 		@keyframes dialog_out {
 			0% {
 				opacity: 1;
-				transform: translateY(-200px);
+				transform: translate(-50%, -50%);
 			}
 			100% {
 				opacity: 0;
+				transform: translate(-50%, -30%);
 			}
 		}
 
@@ -472,18 +476,15 @@ if(!mysqli_num_rows($result)) {
 		if($('.col2').hasClass("fadein_full")) {
 			$('.col2').removeClass("fadein_full")
 			$('.col2').addClass("fadeout_full")
-			console.log("COL2 - IN")
 		} else {
 			if(skip != 1) {
 				$('.col2').removeClass("fadeout_full")
 				$('.col2').addClass("fadein_full")
-				console.log("COL2 - OUT (NS)")
 			}
 		}
 		if(skip == 1) {
 			$('.col2').removeClass("fadeout_full")
 			$('.col2').addClass("fadein_full")
-			console.log("COL2 - IN (S)")
 		}
 	}
 
@@ -493,11 +494,15 @@ if(!mysqli_num_rows($result)) {
 			$('.dialog').addClass("dialog_out")
 			$('.dialog_bg').removeClass("fadein_half")
 			$('.dialog_bg').addClass("fadeout_half")
+			$(".dialog_bg").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
+				$('.dialog_bg').css("z-index","-999")
+			})
 		} else {
 			$('.dialog').removeClass("dialog_out")
 			$('.dialog').addClass("dialog_in")
 			$('.dialog_bg').removeClass("fadeout_half")
 			$('.dialog_bg').addClass("fadein_half")
+			$('.dialog_bg').css("z-index","399")
 		}
 	}
 	</script>
