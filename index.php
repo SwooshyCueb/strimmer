@@ -27,7 +27,7 @@ if(!mysqli_num_rows($result)) {
 <html>
 
 <head>
-	<title><?php echo $prog_title; ?></title>
+	<title><?php echo $prog_title; ?> - Library</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
@@ -273,6 +273,7 @@ if(!mysqli_num_rows($result)) {
 		if(isset($_SESSION['username'])) {
 			echo 'var usern = "' . $_SESSION['username'] . '";';
 		}
+		echo 'var prog_title = "' . $prog_title . '";';
 	?>
 
 	$(document).ready(function(){
@@ -430,6 +431,7 @@ if(!mysqli_num_rows($result)) {
 				$(".col2").empty();
 				$(".col2").load("includes/sections/view.php?" + $.param({page: "default"}), function(){
 					toggleCol2Anim(1);
+					setWindowTitle("Library");
 				})
 			})
 		})
@@ -441,6 +443,7 @@ if(!mysqli_num_rows($result)) {
 				$(".col2").empty();
 				$(".col2").load("includes/sections/view.php?" + $.param({page: "history"}), function(){
 					toggleCol2Anim(1);
+					setWindowTitle("Play History");
 				})
 			})
 		})
@@ -452,6 +455,7 @@ if(!mysqli_num_rows($result)) {
 				$(".col2").empty();
 				$(".col2").load("includes/sections/view.php?" + $.param({page: "queue"}), function(){
 					toggleCol2Anim(1);
+					setWindowTitle("Play Queue");
 				})
 			})
 		})
@@ -463,6 +467,7 @@ if(!mysqli_num_rows($result)) {
 				$(".col2").empty();
 				$(".col2").load("includes/sections/view.php?" + $.param({user: usern, page: "default"}), function(){
 					toggleCol2Anim(1);
+					setWindowTitle("My Items");
 				})
 			})
 		})
@@ -474,6 +479,7 @@ if(!mysqli_num_rows($result)) {
 				$(".col2").empty();
 				$(".col2").load("includes/sections/userlist.php", function(){
 					toggleCol2Anim(1);
+					setWindowTitle("Userlist");
 				})
 			})
 		})
@@ -485,10 +491,15 @@ if(!mysqli_num_rows($result)) {
 				$(".col2").empty();
 				$(".col2").load("includes/sections/statistics.php", function(){
 					toggleCol2Anim(1);
+					setWindowTitle("Statistics");
 				})
 			})
 		})
 	});
+
+	function setWindowTitle(view) {
+		document.title = prog_title + " - " + view;
+	}
 
 	function toggleCol1Anim() {
 		if($('.col1').hasClass("col1_in")) {
