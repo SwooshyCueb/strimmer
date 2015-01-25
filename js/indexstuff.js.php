@@ -1,6 +1,6 @@
 var oldTrackID;
 <?php
-	include dirname(__FILE__) . "/includes/settings.php";
+	include dirname(dirname(__FILE__)) . "/includes/settings.php";
 
 	if(isset($_SESSION['username'])) {
 		echo 'var usern = "' . $_SESSION['username'] . '";';
