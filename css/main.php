@@ -69,6 +69,12 @@ hr {
 	border-bottom: 1px solid #999;
 }
 
+h1 {
+	font-weight: 700;
+	font-size: 14pt;
+	line-height: 32px;
+}
+
 .header {
 	background-color: <?php echo $bg_color['header']; ?>;
 	color: <?php echo $font_color['header']; ?>;
@@ -605,7 +611,7 @@ hr {
 	margin: 8px;
 	text-align: center;
 	background-color: <?php echo $bg_color['list_evenrows']; ?>;
-	box-shadow: 0px 2px 4px rgba(0,0,0,0.4)
+	box-shadow: 0px 2px 4px rgba(0,0,0,0.4);
 }
 .userdiv:hover {
 	background-color: <?php echo $bg_color['list_hover']; ?>;
@@ -698,4 +704,49 @@ hr {
 	font-size: 7pt;
 	background-color: <?php echo $bg_color['col1_hover']; ?>;
 	color: <?php echo $font_color['col1_hover']; ?>;
+}
+
+.graph_bar {
+	background-color: <?php echo $bg_color['col1_hover']; ?>;
+	text-align: right;
+	height: 24px;
+}
+.graph_bar_caption {
+	color: <?php echo $font_color['col1_hover']; ?>;
+	padding-right: 4px;
+}
+
+.stats_section {
+	padding: 16px;
+	margin: 16px;
+	background-color: <?php echo $bg_color['list_hover']; ?>;
+	color: <?php echo $font_color['list_hover']; ?>;
+	box-shadow: 0px 2px 4px rgba(0,0,0,0.4);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.gen_stats {
+	width: 100%;
+	table-layout: fixed;
+	line-height: 24px;
+}
+.gen_stats tr td:nth-child(1) { 
+	width: 144px;
+	font-weight: 700;
+	text-align: right;
+	padding-right: 8px;
+}
+.gen_stats tr td:nth-child(2) { 
+	width: calc(100% - 144px);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.graph_bar_caption {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: clip;
 }

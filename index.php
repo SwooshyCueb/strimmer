@@ -477,6 +477,17 @@ if(!mysqli_num_rows($result)) {
 				})
 			})
 		})
+		$("#statistics").on("click",function(){
+			toggleCol1Anim()
+			col3LeaveAnim()
+			toggleCol2Anim()
+			$(".col2").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
+				$(".col2").empty();
+				$(".col2").load("includes/sections/statistics.php", function(){
+					toggleCol2Anim(1);
+				})
+			})
+		})
 	});
 
 	function toggleCol1Anim() {
@@ -586,9 +597,9 @@ if(!mysqli_num_rows($result)) {
 				<a href="#"><div class="panel_sel" id="library"><span class="sel_text"><span class="oi" data-glyph="headphones"></span> Library</span></div></a>
 				<a href="#"><div class="panel_sel" id="queue"><span class="sel_text"><span class="oi" data-glyph="list"></span> Play Queue</span></div></a>
 				<a href="#"><div class="panel_sel" id="history"><span class="sel_text"><span class="oi" data-glyph="book"></span> Play History</span></div></a>
-
+				<hr/>
+				<a href="#"><div class="panel_sel" id="statistics"><span class="sel_text"><span class="oi" data-glyph="graph"></span> Statistics</span></div></a>
 				<?php if ($_SESSION['login']) { ?>
-					<hr/>
 					<a href="#"><div class="panel_sel" id="userlist"><span class="sel_text"><span class="oi" data-glyph="people"></span> Userlist</span></div></a>
 				<?php } ?>
 
