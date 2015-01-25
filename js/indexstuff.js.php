@@ -102,13 +102,20 @@ $(document).ready(function(){
 			$('.col3').addClass("col3_out")
 			$(".col3").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
 			//$('.col3').toggle("drop", {direction: "right"}, 300, function(){
-				$(".col3").empty()
-				$(".col3").load("includes/sections/selected_info.php?" + $.param({ID: trackID }), function(){
-					//$('#col3_wrapper').removeClass("col3_out")
-					//$('#col3_wrapper').addClass("col3_in")
-					$('.col3').removeClass("col3_out")
-					$('.col3').addClass("col3_in")
-				});
+				if($('.col3').hasClass("col3_out")) {
+					$(".col3").empty()
+					if ($('.col3').attr("track") === trackID) {
+						$('.col3').removeAttr("track")
+						} else {
+						$(".col3").load("includes/sections/selected_info.php?" + $.param({ID: trackID }), function(){
+							//$('#col3_wrapper').removeClass("col3_out")
+							//$('#col3_wrapper').addClass("col3_in")
+							$('.col3').removeClass("col3_out")
+							$('.col3').addClass("col3_in")
+							$('.col3').attr("track", trackID)
+						});
+					}
+				}
 			});
 		} else {
 			$(".col3").empty()
@@ -117,6 +124,7 @@ $(document).ready(function(){
 				//$('#col3_wrapper').addClass("col3_in")
 				$('.col3').removeClass("col3_out")
 				$('.col3').addClass("col3_in")
+				$('.col3').attr("track", trackID)
 			});
 		}
 	});
