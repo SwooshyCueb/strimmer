@@ -25,9 +25,9 @@ $filename = dirname(dirname(dirname(__FILE__))) . "/" . "cache/" . $row['TRACKID
 //$filename = dirname(__FILE__) . "/black_test.jpg";
 if(is_file($filename)) {
 	$image = new Imagick($filename);
-	$image->setImageAlphaChannel(Imagick::ALPHACHANNEL_DEACTIVATE);
 	$image->quantizeImage(6,Imagick::COLORSPACE_RGB,0,false,false);
 	$image->gammaImage(3);
+	//$image->setImageAlphaChannel(Imagick::ALPHACHANNEL_DEACTIVATE);
 	$pixels = $image->getImageHistogram();
 
 	$hex = array();
