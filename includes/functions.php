@@ -27,16 +27,60 @@ function getLongService($service) {
 	}
 }
 
-function validateStream($url) {
+function getStreamInfo($url) {
 	$ffprobeoutarr = [];
-	exec($icecast['ffprobe'] . ' -hide_banner \'' . $url . '\' 2>&1', $ffprobeoutarr);
+	exec($icecast['ffprobe'] . ' -hide_banner -show_streams \'' . $url . '\'', $ffprobeoutarr);
 	$ffprobeout = implode("\n", $ffprobeoutarr);
-	$audiostreams = [];
-	$valid = preg_match_all("/Stream #[0-9]+:[0-9]+: Audio: (.+), ([0-9]+ Hz), .+ ([0-9]+ kb\/s)/", $ffprobeout, $audiostreams);
-	if ($valid) {
-		return True;
-	} else {
+
+	$streams = [];
+	$streamidx = 0;
+	$instreamblock = False;
+	foreach ($ffprobeoutarr as $line)
+	{
+		if ($instreamblock)
+		{
+			if ($line === "[/STREAM]")
+			{
+				$streamidx = $streamidx + 1;
+				$instreamblock = False;
+			} else {
+				$data = explode("=", $line, 2);
+				if (strpos($data[0], ':') !== FALSE)
+				{
+					$data0 = explode(":", $data[0], 2);
+					$streams[$streamidx][$data0[0]][$data0[1]] = $data[1];
+				} else {
+					$streams[$streamidx][$data[0]] = $data[1];
+				}
+			}
+		} else {
+			if ($line === "[STREAM]")
+			{
+				$instreamblock = True;
+			}
+		}
+	}
+	if ($streamidx == 0)
+	{
 		return False;
+	} else {
+		return $streams;
+	}
+}
+
+function validateStream($streaminfo) {
+	$validstreams = 0;
+	foreach ($streaminfo as $stream)
+	{
+		if ($stream["codec_type"] === "audio")
+		{
+			$validstreams = $validstreams + 1;
+		}
+	}
+	if ($validstreams == 0) {
+		return False;
+	} else {
+		return True;
 	}
 }
 
