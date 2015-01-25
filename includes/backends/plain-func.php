@@ -43,3 +43,35 @@ function getFormatInfo($url) {
 	}
 	return False;
 }
+
+function getTitle($formatinfo)
+{
+	return $formatinfo["TAG"]["title"];
+}
+
+function getArtist($formatinfo)
+{
+	return $formatinfo["TAG"]["artist"];
+}
+
+function getAlbum($formatinfo)
+{
+	return $formatinfo["TAG"]["album"];
+}
+
+function getDate($formatinfo)
+{
+	return $formatinfo["TAG"]["date"];
+}
+
+function getBitrate($formatinfo)
+{
+	return $formatinfo["bit_rate"];
+}
+
+function getLength($formatinfo)
+{
+	return $formatinfo["duration"];
+}
+
+?>
