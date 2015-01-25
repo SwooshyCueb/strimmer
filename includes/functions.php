@@ -27,6 +27,19 @@ function getLongService($service) {
 	}
 }
 
+function validateStream($url) {
+	$ffprobeoutarr = [];
+	exec($icecast['ffprobe'] . ' -hide_banner -i \'' . $stream_link . '\'', $ffprobeout);
+	$ffprobeout = implode("\n", $ffprobeoutarr);
+	$audiostreams = [];
+	$valid = preg_match_all("/Stream #[0-9]+:[0-9]+: Audio: (.+), ([0-9]+ Hz), .+ ([0-9]+ kb\/s)/", $ffprobeout, $audiostreams);
+	if ($valid) {
+		return True;
+	} else {
+		return False;
+	}
+}
+
 //
 // --= ALL LIST ROWS WILL BE DRAWN BY THIS FUNCTION =--
 //
