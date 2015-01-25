@@ -30,8 +30,6 @@ function getLongService($service) {
 function getStreamInfo($url) {
 	$ffprobeoutarr = [];
 	exec($icecast['ffprobe'] . ' -hide_banner -show_streams \'' . $url . '\'', $ffprobeoutarr);
-	$ffprobeout = implode("\n", $ffprobeoutarr);
-
 	$streams = [];
 	$streamidx = 0;
 	$instreamblock = False;
