@@ -42,6 +42,12 @@ function getListRow_Service($row,$page,$additional_data) {
 
 	$filename = dirname(dirname(__FILE__)) . "/cache" . "/" . $row['TRACKID'] . ".jpg";
 	if(!file_exists($filename)) {
+		if (!file_exists(dirname(dirname(__FILE__)) . "/cache"))
+		{
+    		mkdir(dirname(dirname(__FILE__)) . "/cache", 0765, true);
+    		// For whatever reason, imagemagick can't write images to this folder
+    		// if we don't have exec perms
+		}
 		$image = new Imagick();
 		$image->readImage($row['RETURN_ARG7']);
 		$image->setFormat("jpg");
