@@ -66,7 +66,7 @@ body {
 
 hr {
 	border: 0;
-	border-bottom: 1px solid #999;
+	border-bottom: 1px solid <?php echo $border_color['hr']; ?>;
 }
 
 h1 {
