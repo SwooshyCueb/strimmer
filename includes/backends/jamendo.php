@@ -110,6 +110,18 @@ if(isset($_POST['mode'])) {
 					echo(getDialog($msg,$buttons));
 					//header("Location: " . $_SERVER['HTTP_REFERER']);
 					exit;
+				} else {
+					$query = 'SELECT TRACKID FROM db_cache WHERE TRACKID="JMND' . $jm_trk_id . '" LIMIT 1';
+					$result = mysqli_query($mysqli,$query);
+					$row = mysqli_fetch_array($result);
+					
+					if(isset($row['TRACKID'])) {
+						$msg = "This track already exists in the library.";
+						$buttons[1] = "ok";
+						$buttons[2] = "add";
+						echo(getDialog($msg,$buttons));
+						exit;
+					}
 				}
 
 				break;

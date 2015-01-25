@@ -37,8 +37,8 @@ if(isset($_POST['mode'])) {
 
 				if($result) {
 					$query = 'INSERT INTO db_cache ( TRACKID,SERVICE,RETURN_ARG1,RETURN_ARG2,RETURN_ARG3,RETURN_ARG4,RETURN_ARG5,RETURN_ARG6,RETURN_ARG7,ADDED_BY,ADDED_ON ) VALUES (
-						"WYZL' . $wzl_sub_id . '",
 						"WYZL",
+						"WYZL' . $wzl_sub_id . '",
 						'  . $wzl_sub_id . ',
 						"' . $sub_data['title'] . '",
 						"' . $sub_data['owner'] . '",
@@ -50,9 +50,20 @@ if(isset($_POST['mode'])) {
 						' . $time . '
 						)';
 					$result = mysqli_query($mysqli,$query);
+					exec("mpc -h " . $mpd['password'] . "@" . $mpd['host'] . " -p " . $mpd['port'] . " add " . $sub_data['media']['submission'][0]['url']);
+				} else {
+					$query = 'SELECT TRACKID FROM db_cache WHERE TRACKID="WYZL' . $wzl_sub_id . '" LIMIT 1';
+					$result = mysqli_query($mysqli,$query);
+					$row = mysqli_fetch_array($result);
+					
+					if(isset($row['TRACKID'])) {
+						$msg = "This track already exists in the library.";
+						$buttons[1] = "ok";
+						$buttons[2] = "add";
+						echo(getDialog($msg,$buttons));
+						exit;
+					}
 				}
-				header("Location: " . $_SERVER['HTTP_REFERER']);
-				exit;
 			
 			default:
 				break;
