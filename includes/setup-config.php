@@ -32,6 +32,7 @@ if ((!empty($_POST)) && ($_POST['setup'] == 'config')) {
 	$config_str = preg_replace("/(icecast\['admin_user'\] = )\".+(\";)/", "\\1\"" . $_POST['ic_admin_user'] . "\\2", $config_str);
 	$config_str = preg_replace("/(icecast\['admin_pass'\] = )\".+(\";)/", "\\1\"" . $_POST['ic_admin_pass'] . "\\2", $config_str);
 	$config_str = preg_replace("/(icecast\['ffmpeg'\] = )\".+(\";)/", "\\1\"" . $_POST['ic_ffmpeg'] . "\\2", $config_str);
+	$config_str = preg_replace("/(icecast\['ffprobe'\] = )\".+(\";)/", "\\1\"" . $_POST['ic_ffprobe'] . "\\2", $config_str);
 
 	$config_str = preg_replace("/(sc_api_key = )\".+(\";)/", "\\1\"" . $_POST['sc_key'] . "\\2", $config_str);
 
@@ -143,6 +144,9 @@ Password for accessing admin functions of Icecast.<br /><br /></div>
 <div>Transcoder:
 <input type="text" name="ic_ffmpeg" value="ffmpeg"><br />
 Audio conversion utility for transcoding source tracks. Must be ffmpeg compatible (ex: ffmpeg, avconv). Must be in PATH or an absolute path.<br /><br /></div>
+<div>Transcoder:
+<input type="text" name="ic_ffprobe" value="ffprobe"><br />
+Utility for fetching information about source tracks. Must be ffprobe compatible (ex: ffprobe, avprobe). Must be in PATH or an absolute path.<br /><br /></div>
 <hr />
 <h2>Soundcloud</h2>
 <div>API Key:

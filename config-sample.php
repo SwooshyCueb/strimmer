@@ -45,6 +45,8 @@ $icecast['admin_user'] = "strimmer_user";
 $icecast['admin_pass'] = "ICECAST_ADMIN_PASS_HERE";
 // ffmpeg compatible transcoder
 $icecast['ffmpeg'] = "ffmpeg";
+// ffprobe compatible stream information viewer
+$icecast['ffprobe'] = "ffprobe";
 // Public stream URL
 $icecast['url'] = 'http://' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mount'];
 
