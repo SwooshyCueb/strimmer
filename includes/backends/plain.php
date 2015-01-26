@@ -33,18 +33,12 @@ function getDialog($msg,$buttons) {
 function getInfoDialog($title, $artist, $ID) {
 	?>
 	<form name='info-dl-form' id='info-dl-form'>
-		<div style="width: 700px;">
+		<div style="width: 500px;">
 			<div style="text-align: left;">Please provide some information about this track.</div><br />
-			<div style="width: 500px; float: left;">
-				<div style="text-align: left;">Title:</div>
-				<div><input class="plain_title_str" type="text" name="plain_title_str" style="width: 500px;" value="<?php echo htmlspecialchars($title, ENT_COMPAT); ?>" required><br/></div>
-				<div style="text-align: left;">Artist:</div>
-				<div><input class="plain_artist_str" type="text" name="plain_artist_str" style="width: 500px;" value="<?php echo htmlspecialchars($artist, ENT_COMPAT); ?>" required><br/></div>
-			</div>
-			<div style="width: 200px; float: right; text-align: center;">
-				<img src="cache/<?php echo $ID; ?>.jpg" style="margin: 5px;"><br />
-				<input class="dl_art" type="file" name="dl_art">
-			</div>
+			<div style="text-align: left;">Title:</div>
+			<div><input class="plain_title_str" type="text" name="plain_title_str" style="width: 500px;" value="<?php echo htmlspecialchars($title, ENT_COMPAT); ?>" required><br/></div>
+			<div style="text-align: left;">Artist:</div>
+			<div><input class="plain_artist_str" type="text" name="plain_artist_str" style="width: 500px;" value="<?php echo htmlspecialchars($artist, ENT_COMPAT); ?>" required><br/></div>
 			<input type="hidden" name="mode" value="info">
 			<input class="dl_url" type="hidden" name="dl_url" value="<?php echo htmlspecialchars($_POST['dl_url'], ENT_COMPAT); ?>">
 			<input class="dl_id" type="hidden" name="dl_id" value="<?php echo $ID; ?>">
