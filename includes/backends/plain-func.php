@@ -74,4 +74,11 @@ function getLength($formatinfo)
 	return $formatinfo["duration"];
 }
 
+function generateID($formatinfo)
+{
+	$formatstring = implode("\n", $formatinfo);
+	$ID = "UNDF" . dechex(crc32($formatstring));
+	return $ID;
+}
+
 ?>
