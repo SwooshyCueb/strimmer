@@ -95,7 +95,13 @@ function dumpAlbumArt($url, $ID)
 		{
 			mkdir(dirname(dirname(dirname(__FILE__))) . "/cache/plain", 0765, true);
 		}
-		exec($icecast['ffmpeg'] . ' -hide_banner -i \'' . $url . '\' -an -vcodec copy \'' . dirname(dirname(dirname(__FILE__))) . "/cache/plain/" . $ID . '.jpg\'');
+		$retval = 0;
+		$toss = [];
+		exec($icecast['ffmpeg'] . ' -hide_banner -i \'' . $url . '\' -an -vcodec copy \'' . dirname(dirname(dirname(__FILE__))) . "/cache/plain/" . $ID . '.jpg\'', $toss, $retval);
+		if ($retval)
+		{
+			return False;
+		}
 		$image = new Imagick();
 		$image->readImage(dirname(dirname(dirname(__FILE__))) . "/cache/plain/" . $ID . '.jpg');
 		$image->setFormat("jpg");
@@ -106,6 +112,7 @@ function dumpAlbumArt($url, $ID)
 		$image->clear();
 		unlink(dirname(dirname(dirname(__FILE__))) . "/cache/plain/" . $ID . '.jpg');
 	}
+	return True;
 }
 
 ?>

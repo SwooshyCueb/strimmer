@@ -145,7 +145,16 @@ function getListRow_Service($row,$page,$additional_data) {
 			$image->writeImage($filename);
 			$image->clear();
 		} else {
-			placeholderAlbumArt($row['TRACKID'], $row['ADDED_BY']);
+			if ($row['SERVICE'] === "UNDF")
+			{
+				include dirname(__FILE__) . "/backends/plain-func.php";
+				if (!dumpAlbumArt($row['RETURN_ARG5'], $row['TRACKID']))
+				{
+					placeholderAlbumArt($row['TRACKID'], $row['ADDED_BY']);
+				}		
+			} else {
+				placeholderAlbumArt($row['TRACKID'], $row['ADDED_BY']);
+			}
 		}
 	}
 	// sublime is saying /cache/ is escaped, so it's separated in case
