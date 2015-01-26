@@ -51,10 +51,17 @@ function hypem_getInfo($url) {
 	// And now we fetch the contents of the JSON script block
 	$trackpage = new DomDocument;
 
+	// Don't display warnings.
+	$errlvl = error_reporting();
+	error_reporting($errlvl & ~E_WARNING);
+
 	$trackpage->validateOnParse = true;
 	$trackpage->loadHTML($trackpage_str);
 
 	$trackdata = $trackpage->getElementById("displayList-data")->textContent;
+
+	error_reporting($errlvl);
+
 	$trackdata = json_decode($trackdata, true);
 
 	// And here we actually get the link to the audio file.

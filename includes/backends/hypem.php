@@ -50,21 +50,22 @@ if(isset($_POST['mode'])) {
 					/* 
 						track id	RETURN_ARG1
 						title		RETURN_ARG2
+						artist		RETURN_ARG3
 						owner link	RETURN_ARG4
 						stream url	RETURN_ARG5
 						permalink	RETURN_ARG6
-						art link	RETURN_ARG7
 					*/
 
 					// dump album art
 
-					$query = 'INSERT INTO db_cache ( TRACKID,SERVICE,RETURN_ARG1,RETURN_ARG2,RETURN_ARG4,RETURN_ARG5,RETURN_ARG6,ADDED_BY,ADDED_ON ) VALUES (
+					$query = 'INSERT INTO db_cache ( TRACKID,SERVICE,RETURN_ARG1,RETURN_ARG2,RETURN_ARG3,RETURN_ARG4,RETURN_ARG5,RETURN_ARG6,ADDED_BY,ADDED_ON ) VALUES (
 						"HYPE' . $hypem_track["id"] . '",
 						"HYPE",
-						' . $hypem_track["id"] . ',
+						"' . $hypem_track["id"] . '",
 						"' . $hypem_track['title'] . '",
-						"' . $user_vars['permalink_url'] . '",
+						"' . $hypem_track['artist'] . '",
 						"#",
+						"' . $hypem_track['url'] . '",
 						"' . $_POST['hypem_url'] . '",
 						"' . $_SESSION['username'] . '",
 						' . $time . '
