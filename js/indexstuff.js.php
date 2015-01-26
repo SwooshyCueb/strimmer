@@ -1,3 +1,6 @@
+<?php
+	header("Content-Type:application/x-javascript");
+?>
 var oldTrackID;
 <?php
 	include dirname(dirname(__FILE__)) . "/includes/settings.php";
