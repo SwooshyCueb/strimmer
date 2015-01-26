@@ -31,6 +31,28 @@ function getLongService($service) {
 	}
 }
 
+function getUserAvatarFilename($username)
+{
+	$avvy_loc = dirname(dirname(__FILE__)) . '/includes/avatars/';
+	if (!file_exists($avvy_loc . $username . ".jpg"))
+	{
+		return "guest.jpg";
+	} else {
+		return $username . ".jpg";
+	}
+}
+
+function getUserAvatarFile($username)
+{
+	$avvy_loc = dirname(dirname(__FILE__)) . '/includes/avatars/';
+	return $avvy_loc . getUserAvatarFilename($username);
+}
+
+function placeholderAlbumArt($trackID, $added_by)
+{
+	copy(getUserAvatarFile($added_by), dirname(dirname(__FILE__)) . "/cache" . "/" . $trackID . ".jpg");
+}
+
 //
 // Stream information functions
 // At the moment, these are only used in the plain backend.
@@ -112,14 +134,19 @@ function getListRow_Service($row,$page,$additional_data) {
     		// For whatever reason, imagemagick can't write images to this folder
     		// if we don't have exec perms
 		}
-		$image = new Imagick();
-		$image->readImage($row['RETURN_ARG7']);
-		$image->setFormat("jpg");
-		$image->setImageCompression(Imagick::COMPRESSION_JPEG);
-		$image->setImageCompressionQuality(97);
-		$image->thumbnailImage(100,100);
-		$image->writeImage($filename);
-		$image->clear();
+		if ($row['RETURN_ARG7'])
+		{
+			$image = new Imagick();
+			$image->readImage($row['RETURN_ARG7']);
+			$image->setFormat("jpg");
+			$image->setImageCompression(Imagick::COMPRESSION_JPEG);
+			$image->setImageCompressionQuality(97);
+			$image->thumbnailImage(100,100);
+			$image->writeImage($filename);
+			$image->clear();
+		} else {
+			placeholderAlbumArt($row['TRACKID'], $row['ADDED_BY']);
+		}
 	}
 	// sublime is saying /cache/ is escaped, so it's separated in case
 	// unsure if it /actually is/ but w/e
