@@ -54,4 +54,8 @@ $icecast['url'] = 'http://' . $icecast['host'] . ':' . $icecast['port'] . '/' . 
 // API key
 $sc_api_key = "YOUR_SOUNDCLOUD_API_KEY_HERE";
 
+// -- JAMENDO --
+//API key
+$jm_api_key = "YOUR_JAMENDO_API_KEY_HERE";
+
 ?>
