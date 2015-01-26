@@ -20,6 +20,10 @@ function getLongService($service) {
 		case 'JMND':
 			return "Jamendo";
 			break;
+
+		case 'UNDF':
+			return "None";
+			break;
 		
 		default:
 			return "N/A";
@@ -27,6 +31,11 @@ function getLongService($service) {
 	}
 }
 
+//
+// Stream information functions
+// At the moment, these are only used in the plain backend.
+// They could be useful in other backehnds, however, so we're keeping them in the global functions file.
+//
 function getStreamInfo($url) {
 	$ffprobeoutarr = [];
 	exec($icecast['ffprobe'] . ' -hide_banner -show_streams \'' . $url . '\'', $ffprobeoutarr);
