@@ -81,4 +81,31 @@ function generateID($formatinfo)
 	return $ID;
 }
 
+function dumpAlbumArt($url, $ID)
+{
+	if (!file_exists(dirname(dirname(dirname(__FILE__))) . "/cache/" . $ID . '.jpg'))
+	{
+		if (!file_exists(dirname(dirname(dirname(__FILE__))) . "/cache"))
+		{
+			mkdir(dirname(dirname(dirname(__FILE__))) . "/cache", 0765, true);
+			// For whatever reason, imagemagick can't write images to this folder
+			// if we don't have exec perms
+		}
+		if (!file_exists(dirname(dirname(dirname(__FILE__))) . "/cache/plain"))
+		{
+			mkdir(dirname(dirname(dirname(__FILE__))) . "/cache/plain", 0765, true);
+		}
+		exec($icecast['ffmpeg'] . ' -hide_banner -i \'' . $url . '\' -an -vcodec copy ' . dirname(dirname(dirname(__FILE__))) . "/cache/plain/" . $ID . '.jpg');
+		$image = new Imagick();
+		$image->readImage(dirname(dirname(dirname(__FILE__))) . "/cache/plain/" . $ID . '.jpg');
+		$image->setFormat("jpg");
+		$image->setImageCompression(Imagick::COMPRESSION_JPEG);
+		$image->setImageCompressionQuality(97);
+		$image->thumbnailImage(100,100);
+		$image->writeImage(dirname(dirname(dirname(__FILE__))) . "/cache/" . $ID . '.jpg');
+		$image->clear();
+		unlink(dirname(dirname(dirname(__FILE__))) . "/cache/plain/" . $ID . '.jpg');
+	}
+}
+
 ?>
