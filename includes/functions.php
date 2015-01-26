@@ -24,6 +24,10 @@ function getLongService($service) {
 		case 'UNDF':
 			return "None";
 			break;
+
+		case 'HYPE':
+			return "Hype Machine";
+			break;
 		
 		default:
 			return "N/A";

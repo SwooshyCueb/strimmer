@@ -1,0 +1,29 @@
+<div class="dialog">
+	<form name='url-hypem-form' id='url-hypem-form'>
+		<div style="width: 500px;">
+			<span style="text-align: left;">Track URL</span>
+			<div style="float: right;">
+				<input class="hypem_url" type="text" name="hypem_url" style="width: 404px;" required>
+			</div>
+		</div>
+		<input type="hidden" name="mode" value="add">
+		<div class="dialog_buttons">
+			<span class="button" onClick="submitTrack();">Add Track</span>
+			<span class="button" id="close_button_dg">Cancel</span>
+		</div>
+	</form>
+</div>
+<div class="dialog_bg"></div>
+
+<script>
+	function submitTrack() {
+		$.post("includes/backends/hypem.php", {mode: "add", hypem_url: $(".hypem_url").val()})
+		.done(function(data){
+			$(".dialog").empty()
+			$(".dialog").append(data)
+		})
+	}
+	function button_retry() {
+		$(".dialog").load("includes/dialog/hypem.html")
+	}
+</script>

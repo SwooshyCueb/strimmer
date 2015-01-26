@@ -37,6 +37,9 @@ if ((!empty($_POST)) && ($_POST['setup'] == 'config')) {
 	$config_str = preg_replace("/(sc_api_key = )\".+(\";)/", "\\1\"" . $_POST['sc_key'] . "\\2", $config_str);
 	$config_str = preg_replace("/(jm_api_key = )\".+(\";)/", "\\1\"" . $_POST['jm_key'] . "\\2", $config_str);
 
+	$config_str = preg_replace("/(hypem\['user'\] = )\".+(\";)/", "\\1\"" . $_POST['hypem_user'] . "\\2", $config_str);
+	$config_str = preg_replace("/(hypem\['pass'\] = )\".+(\";)/", "\\1\"" . $_POST['hypem_pass'] . "\\2", $config_str);
+
 	$newconfig_fh = fopen(dirname(dirname(__FILE__)) . "/config-working.php", "w");
 
 	if ($newconfig_fh == FALSE) {
@@ -156,6 +159,12 @@ Utility for fetching information about source tracks. Must be ffprobe compatible
 <h2>Jamendo</h2>
 <div>API Key:
 <input type="text" name="jm_key" value=""><br /><br /></div>
+<hr />
+<h2>Hype Machine</h2>
+<div>Username:
+<input type="text" name="hypem_user" value=""><br /><br /></div>
+<div>Password:
+<input type="password" name="hypem_pass" value=""><br /><br /></div>
 <input type="submit" name="submit" value="Submit">
 </form>
 <br /><br />The configuration can always be changed later in config.php. Debugging and logging settings can also be accessed here.

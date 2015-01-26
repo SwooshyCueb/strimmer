@@ -58,4 +58,10 @@ $sc_api_key = "YOUR_SOUNDCLOUD_API_KEY_HERE";
 //API key
 $jm_api_key = "YOUR_JAMENDO_API_KEY_HERE";
 
+// -- HYPE MACHINE --
+// Username
+$hypem['user'] = "YOUR_HYPE_MACHINE_USERNAME_HERE";
+// Password
+$hypem['pass'] = "YOUR_HYPE_MACHINE_PASSWORD_HERE";
+
 ?>
