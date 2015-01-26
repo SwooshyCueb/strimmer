@@ -19,7 +19,7 @@ $result = mysqli_query($mysqli,$query);
 				continue;
 			}
 			echo '<div class="userdiv" id="' . $row['USERNAME'] . '">';
-				echo '<img class="userdiv_av" src="includes/avatars/' . $row['USERNAME'] . '.jpg"/>';
+				echo '<img class="userdiv_av" src="locdata/images/avatars/' . $row['USERNAME'] . '.jpg"/>';
 				echo '<div class="userdiv_name">' . $row['USERNAME'] . '</div>';
 			echo '</div>';
 		}

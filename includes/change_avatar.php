@@ -12,7 +12,7 @@
 	}
 	$name = $_FILES['userfile']['name'];
 	$tmpfile = $_FILES['userfile']['tmp_name'];
-	$fname = "avatars/" . $_POST['username'] . ".jpg";
+	$fname = dirname(dirname(__FILE__)) . "/locdata/images/avatars/" . $_POST['username'] . ".jpg";
 	$image = new Imagick();
 	$image->readImage($tmpfile);
 	$image->setFormat("jpg");

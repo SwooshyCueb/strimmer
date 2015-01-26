@@ -33,7 +33,7 @@ function getLongService($service) {
 
 function getUserAvatarFilename($username)
 {
-	$avvy_loc = dirname(dirname(__FILE__)) . '/includes/avatars/';
+	$avvy_loc = dirname(dirname(__FILE__)) . '/locdata/images/avatars/';
 	if (!file_exists($avvy_loc . $username . ".jpg"))
 	{
 		return "guest.jpg";
@@ -44,7 +44,7 @@ function getUserAvatarFilename($username)
 
 function getUserAvatarFile($username)
 {
-	$avvy_loc = dirname(dirname(__FILE__)) . '/includes/avatars/';
+	$avvy_loc = dirname(dirname(__FILE__)) . '/locdata/images/avatars/';
 	return $avvy_loc . getUserAvatarFilename($username);
 }
 

@@ -9,7 +9,7 @@ LICENSING
 ---
 Parts of this project have different licensing:
 
->> `includes/avatars/guest.png`
+>> `locdata/images/avatars/guest.png`
 >
 >     Copyright 2002-2008  
 >     Krzysztof Franek   

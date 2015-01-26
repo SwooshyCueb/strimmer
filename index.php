@@ -278,7 +278,7 @@ if(!mysqli_num_rows($result)) {
 		</div>
 		<div class="right">
 			<div class="user">
-				<img src="includes/avatars/<?php echo $_SESSION['username']; ?>.jpg"/><span class="username"><?php echo $_SESSION['username']; ?></span>
+				<img src="locdata/images/avatars/<?php echo $_SESSION['username']; ?>.jpg"/><span class="username"><?php echo $_SESSION['username']; ?></span>
 			</div>
 		</div>
 	</div>
