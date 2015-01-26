@@ -1,0 +1,16 @@
+<div class="dialog">
+	<form name='url-sc-form' id='url-plain-form' action="includes/backends/plain.php" method="post">
+		<div style="width: 500px;">
+			<div style="text-align: left;">Track URL</div>
+			<div>
+				<input type="text" name="plain_url_str" style="width: 500px;" required>
+			</div>
+		</div>
+		<input type="hidden" name="mode" value="add">
+		<div class="dialog_buttons">
+			<span class="button" onClick="document.forms['url-plain-form'].submit();">Add Track</span>
+			<span class="button" id="close_button_dg">Cancel</span>
+		</div>
+	</form>
+</div>
+<div class="dialog_bg"></div>
