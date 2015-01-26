@@ -59,6 +59,7 @@ function placeholderAlbumArt($trackID, $added_by)
 // They could be useful in other backehnds, however, so we're keeping them in the global functions file.
 //
 function getStreamInfo($url) {
+	include dirname(__FILE__) . "/settings.php";
 	$ffprobeoutarr = [];
 	exec($icecast['ffprobe'] . ' -hide_banner -show_streams \'' . $url . '\'', $ffprobeoutarr);
 	$streams = [];

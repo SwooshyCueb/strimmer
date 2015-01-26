@@ -1,5 +1,7 @@
 <?php
 
+include dirname(dirname(__FILE__)) . "/settings.php";
+
 function getFirstPlayableStream($streaminfo)
 {
 	foreach ($streaminfo as $stream)
@@ -13,6 +15,7 @@ function getFirstPlayableStream($streaminfo)
 }
 
 function getFormatInfo($url) {
+	include dirname(dirname(__FILE__)) . "/settings.php";
 	$ffprobeoutarr = [];
 	exec($icecast['ffprobe'] . ' -hide_banner -show_format \'' . $url . '\'', $ffprobeoutarr);
 	$format = [];
@@ -59,10 +62,10 @@ function getAlbum($formatinfo)
 	return $formatinfo["TAG"]["album"];
 }
 
-function getDate($formatinfo)
-{
-	return $formatinfo["TAG"]["date"];
-}
+//function getDate($formatinfo)
+//{
+//	return $formatinfo["TAG"]["date"];
+//}
 
 function getBitrate($formatinfo)
 {
@@ -76,13 +79,14 @@ function getLength($formatinfo)
 
 function generateID($formatinfo)
 {
-	$formatstring = implode("\n", $formatinfo);
+	$formatstring = json_encode($formatinfo);
 	$ID = "UNDF" . dechex(crc32($formatstring));
 	return $ID;
 }
 
 function dumpAlbumArt($url, $ID)
 {
+	include dirname(dirname(__FILE__)) . "/settings.php";
 	if (!file_exists(dirname(dirname(dirname(__FILE__))) . "/cache/" . $ID . '.jpg'))
 	{
 		if (!file_exists(dirname(dirname(dirname(__FILE__))) . "/cache"))

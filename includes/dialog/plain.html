@@ -1,16 +1,43 @@
 <div class="dialog">
-	<form name='url-sc-form' id='url-plain-form' action="includes/backends/plain.php" method="post">
-		<div style="width: 500px;">
-			<div style="text-align: left;">Track URL</div>
-			<div>
-				<input type="text" name="plain_url_str" style="width: 500px;" required>
+	<form name='url-dl-form' id='url-dl-form'>
+		<div style="width: 700px;">
+			<span style="text-align: left;">Track URL</span>
+			<div style="float: right;">
+				<input class="dl_url" type="text" name="dl_url" style="width: 604px;" required>
 			</div>
 		</div>
 		<input type="hidden" name="mode" value="add">
 		<div class="dialog_buttons">
-			<span class="button" onClick="document.forms['url-plain-form'].submit();">Add Track</span>
+			<span class="button" onClick="submitTrack();">Add Track</span>
 			<span class="button" id="close_button_dg">Cancel</span>
 		</div>
 	</form>
 </div>
 <div class="dialog_bg"></div>
+
+<script>
+	function submitTrack() {
+		$.post("includes/backends/plain.php", {mode: "add", dl_url: $(".dl_url").val()})
+		.done(function(data){
+			$(".dialog").empty()
+			$(".dialog").append(data)
+		})
+	}
+	function submitInfo() {
+		$.post("includes/backends/plain.php", {
+			mode: "info",
+			dl_url: $(".dl_url").val(),
+			dl_id:  $(".dl_id").val(),
+			plain_title_str: $(".plain_title_str").val(),
+			plain_artist_str: $(".plain_artist_str").val()
+			// Not updating album art just yet...
+		})
+		.done(function(data){
+			$(".dialog").empty()
+			$(".dialog").append(data)
+		})
+	}
+	function button_retry() {
+		$(".dialog").load("includes/dialog/plain.html")
+	}
+</script>

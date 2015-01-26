@@ -112,10 +112,8 @@
 				break;
 
 			case 'WYZL':
-				$stream_link = $row['RETURN_ARG5'];
-				break;
-
 			case 'JMND':
+			case 'UNDF':
 				$stream_link = $row['RETURN_ARG5'];
 				break;
 
