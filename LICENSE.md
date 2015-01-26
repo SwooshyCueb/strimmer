@@ -1,8 +1,8 @@
 LICENSING
 ==================================
 
-> Copyright 2014 Markus Kitsinger &lt;<root@swooshalicio.us>&gt;  
-> Copyright 2014 TheBlackParrot  
+> Copyright 2014-2015 Markus Kitsinger &lt;<root@swooshalicio.us>&gt;  
+> Copyright 2014-2015 TheBlackParrot  
 >
 > This project is subject to the terms of the Mozilla Public License, v. 2.0.
 
