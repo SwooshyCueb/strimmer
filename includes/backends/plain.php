@@ -64,7 +64,7 @@ if(isset($_POST['mode'])) {
 				$stream_data = getStreamInfo($_POST['dl_url']);
 				if (!validateStream($stream_data))
 				{
-					$msg = "The URL you provided does not appear to be streamable: " . $_POST['sc_url'] . ".";
+					$msg = "The URL you provided does not appear to be streamable: " . $_POST['dl_url'] . ".";
 					$buttons[1] = "ok";
 					$buttons[2] = "add";
 					echo(getDialog($msg,$buttons));
