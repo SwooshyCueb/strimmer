@@ -57,6 +57,8 @@ $service_color['weasyl'] = "#980000";
 $service_color['weasyl_hover'] = "#fff";
 $service_color['jamendo'] = "#522a5b";
 $service_color['jamendo_hover'] = "#fff";
+$service_color['plain'] = "#727272";
+$service_color['plain_hover'] = "#fff";
 
 $balloon_color['general'] = "#2196F3";
 $balloon_color['new'] = "#4CAF50";

@@ -208,6 +208,14 @@ h1 {
 	background-color: <?php echo $service_color['jamendo']; ?> !important;
 	color: <?php echo $service_color['jamendo_hover']; ?> !important;
 }
+.sel_color_dl {
+	color: <?php echo $service_color['plain']; ?> !important;
+	transition: .05s;
+}
+.sel_color_dl:hover {
+	background-color: <?php echo $service_color['plain']; ?> !important;
+	color: <?php echo $service_color['plain_hover']; ?> !important;
+}
 
 .col1 .col_wrapper {
 	padding: 0px;
