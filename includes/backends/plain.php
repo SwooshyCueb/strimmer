@@ -40,7 +40,7 @@ function getInfoDialog($title, $artist, $ID) {
 			<div style="text-align: left;">Artist:</div>
 			<div><input class="plain_artist_str" type="text" name="plain_artist_str" style="width: 500px;" value="<?php echo htmlspecialchars($artist, ENT_COMPAT); ?>" required><br/></div>
 			<input type="hidden" name="mode" value="info">
-			<input class="dl_url" type="hidden" name="dl_url" value="<?php echo htmlspecialchars($_POST['dl_url'], ENT_COMPAT); ?>">
+			<input class="dl_url" type="hidden" name="dl_url" value="<?php echo htmlspecialchars(str_replace(" ", "%20", $_POST['dl_url']), ENT_COMPAT); ?>">
 			<input class="dl_id" type="hidden" name="dl_id" value="<?php echo $ID; ?>">
 			<div class="dialog_buttons" style="display: inline-block;">
 				<span class="button" onClick="submitInfo();">OK</span>
@@ -55,7 +55,8 @@ if(isset($_POST['mode'])) {
 	if(isset($_POST['dl_url'])) {
 		switch ($_POST['mode']) {
 			case 'add':
-				$stream_data = getStreamInfo($_POST['dl_url']);
+				$plain_url = str_replace(" ", "%20", $_POST['dl_url']);
+				$stream_data = getStreamInfo($plain_url);
 				if (!validateStream($stream_data))
 				{
 					$msg = "The URL you provided does not appear to be streamable: " . $_POST['dl_url'] . ".";
@@ -65,10 +66,10 @@ if(isset($_POST['mode'])) {
 					exit;
 				}
 				$stream_data = getFirstPlayableStream($stream_data);
-				$format_data = getFormatInfo($_POST['dl_url']);
+				$format_data = getFormatInfo($plain_url);
 				$dl_trk_id = generateID($format_data);
 
-				if(!dumpAlbumArt($_POST['dl_url'], $dl_trk_id))
+				if(!dumpAlbumArt($plain_url, $dl_trk_id))
 				{
 					placeholderAlbumArt($dl_trk_id, $_SESSION['username']);
 				}
@@ -76,7 +77,7 @@ if(isset($_POST['mode'])) {
 				$dl_trk_title = getTitle($format_data);
 				if(!$dl_trk_title)
 				{
-					$dl_trk_title = basename($_POST['dl_url']);
+					$dl_trk_title = basename($plain_url);
 				}
 				$dl_trk_artist = getArtist($format_data);
 				if(!$dl_trk_artist)
