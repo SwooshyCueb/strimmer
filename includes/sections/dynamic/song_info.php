@@ -12,7 +12,7 @@ $query = "SELECT * FROM db_cache WHERE PLAYING=1 LIMIT 1";
 $result = mysqli_query($mysqli,$query);
 $row = mysqli_fetch_array($result);
 
-$query = "SELECT ADDED_BY FROM play_history LIMIT 1";
+$query = "SELECT ADDED_BY FROM play_history ORDER BY PLAYED_ON DESC LIMIT 1";
 $result = mysqli_query($mysqli,$query);
 $queue = mysqli_fetch_array($result);
 
@@ -32,7 +32,7 @@ $queue = mysqli_fetch_array($result);
 	?>
 
 	var delay = 7500;
-	var info_timer = null;
+
 	if(!queued_by || queued_by == "") {
 		queued_by = "Strimmer"
 	}
@@ -70,7 +70,7 @@ $queue = mysqli_fetch_array($result);
 		}
 	}
 	if(info_timer) {
-		cancelInterval(info_timer);
+		clearInterval(info_timer);
 	}
 	info_timer = setInterval(toggleFooterInfo,delay)
 	toggleFooterInfo();
