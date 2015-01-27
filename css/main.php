@@ -105,7 +105,7 @@ body {
 	font-weight: 400;
 	font-size: 12pt;
 	color: <?php echo $font_color['body']; ?>;
-	overflow-x: hidden;
+	overflow: hidden;
 }
 
 hr {
