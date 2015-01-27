@@ -2,6 +2,7 @@
 	header("Content-Type:application/x-javascript");
 ?>
 var oldTrackID;
+var info_timer;
 <?php
 	include dirname(dirname(__FILE__)) . "/includes/settings.php";
 
