@@ -1,5 +1,7 @@
 <?php
 
+$theme_options['use_borders'] = true;
+
 // rgb, rgba, and hex values with 3 or 6 digits are valid
 
 $font_color['body'] = "#fdf6e3";

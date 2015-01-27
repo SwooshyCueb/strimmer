@@ -17,6 +17,12 @@
 	} else {
 		include "themes/default.php";
 	}
+
+	if($theme_settings['use_borders']) {
+		$height_scale = "109px";
+	} else {
+		$height_scale = "108px";
+	}
 ?>
 
 @import url(http://fonts.googleapis.com/css?family=Roboto:100,300,400,700);
@@ -151,12 +157,14 @@ h1 {
 	left: -220px;
 	position: fixed;
 	top: 36px;
+	<?php if($theme_options['use_borders']) { ?>
 	border-right: 1px solid <?php echo $border_color['col1']; ?>;
-	height: calc(100vh - 109px);
+	<?php } ?>
+	height: calc(100vh - <?php echo $height_scale; ?>);
 	box-shadow: 1px 0px 6px rgba(0,0,0,0.3);
 }
 .wrapper .col2 {
-	height: calc(100vh - 109px);
+	height: calc(100vh - <?php echo $height_scale; ?>);
 	font-size: 10pt;
 	position: absolute;
 	right: 0;
@@ -169,8 +177,10 @@ h1 {
 	position: fixed;
 	top: 36px;
 	right: -500px;
+	<?php if($theme_options['use_borders']) { ?>
 	border-left: 1px solid <?php echo $border_color['col1']; ?>;
-	height: calc(100vh - 109px);
+	<?php } ?>
+	height: calc(100vh - <?php echo $height_scale; ?>);
 	box-shadow: -1px 0px 6px rgba(0,0,0,0.3);
 	z-index: 51;
 	background-color: #000;
@@ -292,7 +302,9 @@ h1 {
 }
 
 .footer {
+	<?php if($theme_options['use_borders']) { ?>
 	border-top: 1px solid <?php echo $border_color['footer']; ?>;
+	<?php } ?>
 	background-color: <?php echo $bg_color['footer']; ?>;
 	z-index: 100;
 	position: fixed;
@@ -303,7 +315,7 @@ h1 {
 	padding: 8px;
 	padding-left: 0;
 	color: <?php echo $font_color['footer']; ?>;
-	box-shadow: inset 0px 8px 8px rgba(0,0,0,0.25);
+	box-shadow: inset 0px 8px 8px rgba(0,0,0,0.15);
 }
 .footer a {
 	color: <?php echo $font_color['link_footer']; ?>;
@@ -746,6 +758,7 @@ h1 {
 	bottom: 0px;
 	height: 1px;
 	background-color: <?php echo $bg_color['col1_hover']; ?>;
+	box-shadow: 0px 0px 8px <?php echo $bg_color['col1_hover']; ?>;
 }
 .footer .time {
 	position: fixed;
