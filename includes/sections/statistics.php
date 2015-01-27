@@ -33,7 +33,7 @@ $total_users = $row[0] - 1;
 ?>
 <div class="col_wrapper" id="userlist_wrapper">
 	<div style="margin: auto; width: 100%; line-height: 24px;">
-		<div style="width: calc(100% / 3); float: left;">
+		<div class="stats_section_wrapper">
 			<div class="stats_section">
 				<h1>Top Played Tracks</h1>
 				<?php
@@ -52,7 +52,7 @@ $total_users = $row[0] - 1;
 				?>
 			</div>
 		</div>
-		<div style="width: calc(100% / 3); float: left;">
+		<div class="stats_section_wrapper">
 			<div class="stats_section">
 				<h1>Top User Contributions</h1>
 				<?php
@@ -71,7 +71,7 @@ $total_users = $row[0] - 1;
 				?>
 			</div>
 		</div>
-		<div style="width: calc(100% / 3); float: left;">
+		<div class="stats_section_wrapper">
 			<div class="stats_section">
 				<h1>Top Services</h1>
 				<?php

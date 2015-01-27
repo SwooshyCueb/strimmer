@@ -88,9 +88,16 @@
 		bottom: 14px;
 		font-size: 8pt !important;
 	}
+	.stats_section_wrapper {
+		width: 100% !important;
+	}
 }
 @media only screen and (min-device-width: 481px) {
 	.col2 .col_wrapper, .wrapper, .song_list { min-width: 1000px !important; }
+	.stats_section_wrapper {
+		width: calc(100% / 3);
+		float: left;
+	}
 }
 
 body {
