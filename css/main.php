@@ -19,7 +19,8 @@
 	}
 ?>
 
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
+@import url(http://fonts.googleapis.com/css?family=Roboto:100,300,400,700);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300);
 
 @media only screen and (max-device-width: 480px) {
 	.col2, .col_wrapper, .wrapper, { max-width: 100vw; min-width: 0 !important; }
@@ -299,13 +300,15 @@ h1 {
 	top: -8px;
 }
 .np_title {
-	font-size: 14pt;
-	font-weight: 700;
-	line-height: 20pt;
+	font-size: 18pt;
+	font-weight: 300;
+	line-height: 24pt;
 }
 .np_artist {
-	font-size: 11pt;
-	line-height: 14pt;
+	font-size: 11pt !important;
+	line-height: 18pt;
+	font-family: "Roboto Condensed";
+	font-weight: 300;
 }
 .np_who {
 	font-size: 8pt;
