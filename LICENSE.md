@@ -28,13 +28,15 @@ Parts of this project have different licensing:
 >     This file is subject to the terms of the GNU Free Documentation License, v. 1.2.
 >
 > ---
->> `js/jquery.js` and `js/jquery-ui.js`
+>> `js/jquery.js` and `js/jquery.mobile-1.4.5.js`
 > 
->     Copyright 2005, 2013, 2014 jQuery Foundation, Inc. and other contributors
+>     Copyright 2005, 2010, 2013, 2014 jQuery Foundation, Inc. and other contributors
 >
 >     These files are subject to the terms of the MIT License.
 >
 > ---
 >> SoundCloud and the SoundCloud logo are registered trademarks of Soundcloud Limited.
+>> Jamendo and the Jamendo logo are registered trademarks of Jamendo SA.
+>> Weasyl and the Weasyl logo are registered trademarks of Weasyl LLC.
 
 The full text of all relevant licenses are available in the LICENSE folder.

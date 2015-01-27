@@ -77,6 +77,14 @@ $(document).ready(function(){
 			toggleDialogAnim();
 		})
 	})
+	$("body").on("swiperight",function(){
+		toggleCol1Anim();
+	})
+	$("body").on("swipeleft",function(){
+		if($(".col1").hasClass("col1_in")) {
+			toggleCol1Anim();
+		}
+	})
 	$("#col1_toggle").on("click",function(){
 		//$('.col1').toggle("drop", {direction: "left"}, 300);
 		toggleCol1Anim();

@@ -266,7 +266,7 @@ if(!mysqli_num_rows($result)) {
 		}
 	</style>
 	<script src="js/jquery.js"></script>
-	<script src="js/jquery-ui.js"></script>
+	<script src="js/jquery.mobile-1.4.5.js"></script>
 	<script src="js/indexstuff.js.php"></script>
 </head>
 
