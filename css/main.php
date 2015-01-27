@@ -328,6 +328,7 @@ h1 {
 .list_info a {
 	color: <?php echo $font_color['link_list']; ?>;
 	text-decoration: none;
+	font-family: "Roboto Condensed";
 }
 .list_info a:hover {
 	color: <?php echo $font_color['link_list_hover']; ?>;
