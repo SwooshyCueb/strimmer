@@ -52,6 +52,36 @@
 	.selected_info_various tr td:nth-child(2) { 
 		width: 75% !important;
 	}
+	.footer .time {
+		left: 0 !important;
+		bottom: 0 !important;
+		line-height: 20px !important;
+		height: 20px !important;
+		width: 72px !important;
+		color: #fff !important;
+		z-index: 500;
+		background-color: rgba(0,0,0,0.5) !important;
+		text-align: center !important;
+	}
+	.footer .time_elapsed {
+		font-size: 10pt !important;
+	}
+	.footer .time_duration {
+		font-size: 8pt !important;
+	}
+	.np_title {
+		position: fixed;
+		left: 80px;
+		bottom: 32px;
+		font-weight: 400 !important;
+		font-size: 14pt !important;
+	}
+	.np_artist {
+		position: fixed;
+		left: 80px;
+		bottom: 14px;
+		font-size: 8pt !important;
+	}
 }
 @media only screen and (min-device-width: 481px) {
 	.col2 .col_wrapper, .wrapper, .song_list { min-width: 1000px !important; }
@@ -263,7 +293,6 @@ h1 {
 
 .footer {
 	border-top: 1px solid <?php echo $border_color['footer']; ?>;
-	box-shadow: 0px 0px 6px rgba(0,0,0,0.3);
 	background-color: <?php echo $bg_color['footer']; ?>;
 	z-index: 100;
 	position: fixed;
@@ -274,6 +303,7 @@ h1 {
 	padding: 8px;
 	padding-left: 0;
 	color: <?php echo $font_color['footer']; ?>;
+	box-shadow: inset 0px 8px 8px rgba(0,0,0,0.25);
 }
 .footer a {
 	color: <?php echo $font_color['link_footer']; ?>;
@@ -303,12 +333,16 @@ h1 {
 	font-size: 18pt;
 	font-weight: 300;
 	line-height: 24pt;
+	white-space: nowrap;
+	overflow: hidden;
 }
 .np_artist {
 	font-size: 11pt !important;
 	line-height: 18pt;
 	font-family: "Roboto Condensed";
 	font-weight: 300;
+	white-space: nowrap;
+	overflow: hidden;
 }
 .np_who {
 	font-size: 8pt;
