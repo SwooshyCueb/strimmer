@@ -40,9 +40,10 @@ if($content){
     $temp = $time/$duration;
 
     $readable_time = floor($time/60) . ":" . sprintf("%02d", floor($time) % 60);
+    $readable_duration = floor($duration/60) . ":" . sprintf("%02d", floor($duration) % 60);
 }
 
 ?>
 
 <div class="progress_bar" style="width: calc(100vw * <?php echo $temp; ?> - 73px);"></div>
-<div class="time"><?php echo $readable_time; ?></div>
+<div class="time"><span class="time_elapsed"><?php echo $readable_time; ?> / </span><span class="time_duration"><?php echo $readable_duration; ?></span></div>

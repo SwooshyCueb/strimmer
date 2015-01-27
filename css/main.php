@@ -708,21 +708,24 @@ h1 {
 
 .footer .progress_bar {
 	position: fixed;
-	left: 73px;
-	bottom: 69px;
-	height: 3px;
+	left: 72px;
+	bottom: 0px;
+	height: 1px;
 	background-color: <?php echo $bg_color['col1_hover']; ?>;
 }
 .footer .time {
 	position: fixed;
-	left: 73px;
-	bottom: 60px;
-	padding: 2px;
-	border-bottom-right-radius: 3px;
-	font-weight: 700;
-	font-size: 7pt;
-	background-color: <?php echo $bg_color['col1_hover']; ?>;
-	color: <?php echo $font_color['col1_hover']; ?>;
+	text-align: right;
+	right: 16px;
+	height: 72px;
+	line-height: 72px;
+	bottom: 0px;
+	font-weight: 300;
+	font-size: 24pt;
+	color: <?php echo $font_color['footer']; ?>;
+}
+.footer .time .time_duration {
+	font-size: 18pt;
 }
 
 .graph_bar {
