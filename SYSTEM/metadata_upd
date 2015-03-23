@@ -3,3 +3,5 @@
 sleep 5
 curl -u "$ICADMIN_USER:$ICADMIN_PASS" --get --data "mount=/$ICMOUNT&mode=updinfo" --data-urlencode "song=$1" "http://$ICHOST:$ICPORT/admin/metadata"
 curl -u "$ICADMIN_USER:$ICADMIN_PASS" --get --data "mount=/$ICMOUNT_LQ&mode=updinfo" --data-urlencode "song=$1" "http://$ICHOST:$ICPORT/admin/metadata"
+curl -u "$ICADMIN_USER:$ICADMIN_PASS" --get --data "mount=/$ICMOUNT_OPUS&mode=updinfo" --data-urlencode "song=$1" "http://$ICHOST:$ICPORT/admin/metadata"
+curl -u "$ICADMIN_USER:$ICADMIN_PASS" --get --data "mount=/$ICMOUNT_LQ_OPUS&mode=updinfo" --data-urlencode "song=$1" "http://$ICHOST:$ICPORT/admin/metadata"

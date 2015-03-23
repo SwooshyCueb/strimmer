@@ -326,8 +326,10 @@ if(!mysqli_num_rows($result)) {
 				<?php } ?>
 
 				<hr/>
-				<a href="<?php echo $icecast['url']; ?>"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="play-circle"></span> Listen</span></div></a>
-				<a href="http://theblackparrot.us:8000/streamlq.mp3"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="play-circle"></span> Listen (LQ)</span></div></a>
+				<a href="<?php echo $icecast['url']; ?>"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="play-circle"></span> Listen (MP3)</span></div></a>
+				<a href="<?php echo $icecast['url_lq']; ?>"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="play-circle"></span> Listen (LQ MP3)</span></div></a>
+				<a href="<?php echo $icecast['url_opus']; ?>"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="play-circle"></span> Listen (Opus)</span></div></a>
+				<a href="<?php echo $icecast['url_opuslq']; ?>"><div class="panel_sel"><span class="sel_text"><span class="oi" data-glyph="play-circle"></span> Listen (LQ Opus)</span></div></a>
 
 				<?php if ($_SESSION['login']) { ?>
 					<hr/>
