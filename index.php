@@ -336,6 +336,7 @@ if(!mysqli_num_rows($result)) {
 					<a href="#"><div class="sel_color_sc" id="add_sc"><span class="sel_text"><span class="oi" data-glyph="plus"></span> SoundCloud Track</span></div></a>
 					<a href="#"><div class="sel_color_we" id="add_we"><span class="sel_text"><span class="oi" data-glyph="plus"></span> Weasyl Submission</span></div></a>
 					<a href="#"><div class="sel_color_hypem" id="add_hypem"><span class="sel_text"><span class="oi" data-glyph="plus"></span> Hypem Track</span></div></a>
+					<a href="#"><div class="sel_color_yt" id="add_yt"><span class="sel_text"><span class="oi" data-glyph="plus"></span> YouTube Video</span></div></a>
 				<?php } ?>
 				<hr/>
 				<a href="#"><div class="panel_sel" id="about"><span class="sel_text"><span class="oi" data-glyph="star"></span> About</span></div></a>

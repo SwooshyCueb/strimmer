@@ -71,6 +71,12 @@ $(document).ready(function(){
 			toggleDialogAnim();
 		})
 	})
+	$("#add_yt").on("click",function(){
+		$(".dialog_load_spot").empty()
+		$(".dialog_load_spot").load("includes/dialog/youtube.html", function() {
+			toggleDialogAnim();
+		})
+	})
 	$("#drop_set").on("click",function(){
 		$(".dialog_load_spot").empty()
 		$(".dialog_load_spot").load("includes/dialog/settings.php", function() {

@@ -28,6 +28,10 @@ function getLongService($service) {
 		case 'HYPE':
 			return "Hype Machine";
 			break;
+
+		case 'YTUB':
+			return "YouTube";
+			break;
 		
 		default:
 			return "N/A";

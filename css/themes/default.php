@@ -63,6 +63,8 @@ $service_color['plain'] = "#727272";
 $service_color['plain_hover'] = "#fff";
 $service_color['hypem'] = "#83c441";
 $service_color['hypem_hover'] = "#fff";
+$service_color['yt'] = "#d52423";
+$service_color['yt_hover'] = "#fff";
 
 $balloon_color['general'] = "#0af";
 $balloon_color['new'] = "#2a5";

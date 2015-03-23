@@ -1,5 +1,6 @@
 <?php
 	include_once dirname(dirname(__FILE__)) . "/includes/settings.php";
+	include_once dirname(dirname(__FILE__)) . "/includes/backends/yt-func.php";
 	include_once dirname(dirname(__FILE__)) . "/config.php";
 
 	$time = 0;
@@ -118,6 +119,10 @@
 				$stream_link = $row['RETURN_ARG5'];
 				break;
 
+			case 'YTUB':
+				$stream_link = getYouTubeData($row['RETURN_ARG5'],"StreamLink");
+				break;
+
 			default:
 				$stream_link = $row['RETURN_ARG5'];
 				break;
@@ -184,7 +189,9 @@
 		$query = 'UPDATE db_cache SET PLAYING=1,PLAY_COUNT=' . $playcount . ' WHERE TRACKID="' . $row['TRACKID'] . '"';
 		$result = mysqli_query($mysqli,$query);
 
-		exec($icecast['ffmpeg'] . ' -hide_banner -re -i \'' . $stream_link . '\' -acodec libmp3lame -q ' . $icecast['qual'] . ' -content_type "audio/mpeg3" "icecast://source:' . $icecast['pass'] . '@' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mount'] . '" -acodec libmp3lame -q ' . $icecast['quallq'] . ' -content_type "audio/mpeg3" "icecast://source:' . $icecast['pass'] . '@' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mountlq'] . '" 1> ../includes/ffmpeg_info.txt 2>&1');
+		exec($icecast['ffmpeg'] . ' -hide_banner -re -i \'' . $stream_link . '\' -codec:a libmp3lame -codec:v none -strict -2 -q ' . $icecast['qual'] . ' -content_type "audio/mpeg3" "icecast://source:' . $icecast['pass'] . '@' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mount'] . '" -codec:a libmp3lame -codec:v none -strict -2 -q ' . $icecast['quallq'] . ' -content_type "audio/mpeg3" "icecast://source:' . $icecast['pass'] . '@' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mountlq'] . '" 1> ../includes/ffmpeg_info.txt 2>&1');
+		// needed to start logging commands as of the YouTube update
+		file_put_contents(dirname(__FILE__) . "/ffmpeg_log.txt",$icecast['ffmpeg'] . ' -hide_banner -re -i \'' . $stream_link . '\' -codec:a libmp3lame -codec:v none -strict -2 -q ' . $icecast['qual'] . ' -content_type "audio/mpeg3" "icecast://source:' . $icecast['pass'] . '@' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mount'] . '" -codec:a libmp3lame -codec:v none -strict -2 -q ' . $icecast['quallq'] . ' -content_type "audio/mpeg3" "icecast://source:' . $icecast['pass'] . '@' . $icecast['host'] . ':' . $icecast['port'] . '/' . $icecast['mountlq'] . '" 1> ../includes/ffmpeg_info.txt 2>&1');
 
 	}
 ?>

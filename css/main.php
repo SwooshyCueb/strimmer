@@ -272,6 +272,14 @@ h1 {
 	background-color: <?php echo $service_color['hypem']; ?> !important;
 	color: <?php echo $service_color['hypem_hover']; ?> !important;
 }
+.sel_color_yt {
+	color: <?php echo $service_color['yt']; ?> !important;
+	transition: .05s;
+}
+.sel_color_yt:hover {
+	background-color: <?php echo $service_color['yt']; ?> !important;
+	color: <?php echo $service_color['yt_hover']; ?> !important;
+}
 
 .col1 .col_wrapper {
 	padding: 0px;
