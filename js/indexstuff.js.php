@@ -83,6 +83,12 @@ $(document).ready(function(){
 			toggleDialogAnim();
 		})
 	})
+	$("#export_db").on("click",function(){
+		$(".dialog_load_spot").empty()
+		$(".dialog_load_spot").load("includes/dialog/export_dg.php", function() {
+			toggleDialogAnim();
+		})
+	})
 	$("body").on("swiperight",function(){
 		toggleCol1Anim();
 	})
