@@ -227,6 +227,11 @@ function getListRow_Service($row,$page,$additional_data) {
 							echo '<span class="balloon" style="background-color: ' . $balloon_color['error'] . '; color: ' . $balloon_color['font_error'] . ';">ERROR</span>';
 						} */
 					}
+					if(isset($row['ERRORCODE'])) {
+						if(stripos("302 200 201 203",$row['ERRORCODE']) === false) {
+							echo '<span class="balloon" style="background-color: ' . $balloon_color['error'] . '; color: ' . $balloon_color['font_error'] . ';">' . $row['ERRORCODE'] . '</span>';	
+						}
+					}
 				?>
 				<div class="list_title" style="z-index: 0;"><?php echo $row['RETURN_ARG2']; ?></div>
 				<div class="list_artist" style="z-index: 0;"><a href="<?php echo $row['RETURN_ARG4']; ?>"><?php echo $row['RETURN_ARG3']; ?></a></div>

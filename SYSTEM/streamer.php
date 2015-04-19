@@ -139,11 +139,13 @@
 		$httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 		if($httpCode == 404) {
 			echo "RETURNED 404: " . $stream_link;
-			// should we go ahead and remove the track from the DB, or mark it with a warning?
 			$time = 0;
 			curl_close($curl);
 			continue;
 		}
+
+		$query = 'UPDATE db_cache SET ERRORCODE=' . $httpCode . ' WHERE TRACKID="' . $row['TRACKID'] . '"';
+		mysqli_query($mysqli,$query);
 
 		curl_close($curl);
 
