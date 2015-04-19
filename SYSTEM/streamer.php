@@ -137,15 +137,16 @@
 		$output = curl_exec($curl);
 
 		$httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+		
+		$query = 'UPDATE db_cache SET ERRORCODE=' . $httpCode . ' WHERE TRACKID="' . $row['TRACKID'] . '"';
+		mysqli_query($mysqli,$query);
+
 		if($httpCode == 404) {
 			echo "RETURNED 404: " . $stream_link;
 			$time = 0;
 			curl_close($curl);
 			continue;
 		}
-
-		$query = 'UPDATE db_cache SET ERRORCODE=' . $httpCode . ' WHERE TRACKID="' . $row['TRACKID'] . '"';
-		mysqli_query($mysqli,$query);
 
 		curl_close($curl);
 
