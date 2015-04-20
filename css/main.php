@@ -169,6 +169,8 @@ h1 {
 	<?php } ?>
 	height: calc(100vh - <?php echo $height_scale; ?>);
 	box-shadow: 1px 0px 6px rgba(0,0,0,0.3);
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 .wrapper .col2 {
 	height: calc(100vh - <?php echo $height_scale; ?>);

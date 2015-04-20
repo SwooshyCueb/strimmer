@@ -293,9 +293,13 @@ function toggleCol1Anim() {
 	if($('.col1').hasClass("col1_in")) {
 		$('.col1').removeClass("col1_in")
 		$('.col1').addClass("col1_out")
+		$('.col2').removeClass("col2-from_col1-in")
+		$('.col2').addClass("col2-from_col1-out")
 	} else {
 		$('.col1').removeClass("col1_out")
 		$('.col1').addClass("col1_in")
+		$('.col2').removeClass("col2-from_col1-out")
+		$('.col2').addClass("col2-from_col1-in")
 	}
 }
 

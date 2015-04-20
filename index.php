@@ -63,9 +63,21 @@ if(!mysqli_num_rows($result)) {
 			-webkit-animation-fill-mode: forwards;
 			animation-fill-mode: forwards;
 		}
+		.col2-from_col1-in {
+			-webkit-animation: col2-from_col1-in 0.3s;
+			animation: col2-from_col1-in 0.3s;
+			-webkit-animation-fill-mode: forwards;
+			animation-fill-mode: forwards;
+		}
 		.col1_out {
 			-webkit-animation: col1_out 0.3s;
 			animation: col1_out 0.3s;
+			-webkit-animation-fill-mode: forwards;
+			animation-fill-mode: forwards;
+		}
+		.col2-from_col1-out {
+			-webkit-animation: col2-from_col1-out 0.3s;
+			animation: col2-from_col1-out 0.3s;
 			-webkit-animation-fill-mode: forwards;
 			animation-fill-mode: forwards;
 		}
@@ -87,6 +99,20 @@ if(!mysqli_num_rows($result)) {
 				transform: translateX(220px);
 			}
 		}
+		@-webkit-keyframes col2-from_col1-in {
+			0% {
+			}
+			100% {
+				-webkit-transform: translateX(220px);
+			}
+		}
+		@keyframes col2-from_col1-in {
+			0% {
+			}
+			100% {
+				transform: translateX(220px);
+			}
+		}
 		@-webkit-keyframes col1_out {
 			0% {
 				opacity: 1;
@@ -103,6 +129,20 @@ if(!mysqli_num_rows($result)) {
 			}
 			100% {
 				opacity: 0;
+			}
+		}
+		@-webkit-keyframes col2-from_col1-out {
+			0% {
+				-webkit-transform: translateX(220px);
+			}
+			100% {
+			}
+		}
+		@keyframes col2-from_col1-out {
+			0% {
+				transform: translateX(220px);
+			}
+			100% {
 			}
 		}
 
