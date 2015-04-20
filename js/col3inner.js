@@ -16,6 +16,24 @@ function queue_track(trackID, qmode, element){
 		}
 	})
 }
+function favorite_track(trackID, qmode, element){
+	$(element).attr('id','col3b_disabled');
+	$.get("includes/favorite_song.php?" + $.param({ID: trackID, mode: qmode}), function(){
+		switch(qmode) {
+			case "favorite":
+				$(element).attr('onclick',"favorite_track('" + trackID + "', 'unfavorite', this);");
+				$(element).attr('id','col3b_red');
+				$(element).html('<span class="oi" data-glyph="thumb-down"></span>Unfavorite');
+				break;
+
+			case "unfavorite":
+				$(element).attr('onclick',"favorite_track('" + trackID + "', 'favorite', this);");
+				$(element).attr('id','col3b_pink');
+				$(element).html('<span class="oi" data-glyph="thumb-up"></span>Favorite');
+				break;
+		}
+	})
+}
 function delete_track(trackID, element){
 	var tID = trackID
 	$(element).attr('id','col3b_disabled');

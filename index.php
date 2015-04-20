@@ -353,6 +353,7 @@ if(!mysqli_num_rows($result)) {
 			<div class="col_wrapper">
 				<?php if ($_SESSION['login']) { ?>
 					<a href="#"><div class="panel_sel" id="myitems"><span class="sel_text"><span class="oi" data-glyph="person"></span> My Items</span></div></a>
+					<a href="#"><div class="panel_sel" id="favorites"><span class="sel_text"><span class="oi" data-glyph="thumb-up"></span> Favorites</span></div></a>
 					<hr/>
 				<?php } ?>
 

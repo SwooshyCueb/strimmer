@@ -57,6 +57,53 @@ switch($_GET['page']) {
 
 		break;
 
+	//favorites
+	case "favorites":
+		$user_nonexistant = 0;
+		$query = 'SELECT FAVORITES FROM user_db WHERE ID=' . $_SESSION['user_id'];
+		$result = mysqli_query($mysqli,$query);
+		if(mysqli_num_rows($result)) {
+			$temp = mysqli_fetch_array($result);
+			$faves = explode(";",$temp['FAVORITES']);
+		} else {
+			$user_nonexistant = 1;
+		}
+
+		?>
+
+		<div class="col_wrapper">
+			<table class="song_list">
+			<?php
+				if(!$user_nonexistant) {
+				?>
+					<tr class="h_row">
+						<td>Song</td>
+						<td>Added by</td>
+						<td>Added on</td>
+						<td></td>
+					</tr>
+				<?php
+					foreach ($faves as $trackid) {
+						if(isset($trackid)) {
+							if($trackid != "") {
+								$query = 'SELECT * FROM db_cache WHERE TRACKID="' . $trackid . '"';
+								$result = mysqli_query($mysqli,$query);
+								$row = mysqli_fetch_array($result);
+								getListRow_Service($row,$_GET['page'],"");
+							}
+						}
+					}
+				} else {
+					echo "<p>User apparently doesn't exist, check the session.</p>";
+				}
+			?>
+			</table>
+		</div>
+
+		<?php
+
+		break;
+
 	//play history page (history.php)
 	case "history":
 		$query = "SELECT * FROM play_history ORDER BY PLAYED_ON DESC";

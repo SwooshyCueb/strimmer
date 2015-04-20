@@ -247,6 +247,18 @@ $(document).ready(function(){
 			})
 		})
 	})
+	$("#favorites").on("click",function(){
+		toggleCol1Anim()
+		col3LeaveAnim()
+		toggleCol2Anim()
+		$(".col2").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
+			$(".col2").empty();
+			$(".col2").load("includes/sections/view.php?" + $.param({page: "favorites"}), function(){
+				toggleCol2Anim(1);
+				setWindowTitle("Favorites");
+			})
+		})
+	})
 	$("#userlist").on("click",function(){
 		toggleCol1Anim()
 		col3LeaveAnim()

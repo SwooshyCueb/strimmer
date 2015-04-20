@@ -21,6 +21,19 @@ if(mysqli_num_rows($result)) {
 	$queued = 1;
 }
 
+if($_SESSION['login']) {
+	$query = 'SELECT FAVORITES FROM user_db WHERE ID=' . $_SESSION['user_id'];
+	$result = mysqli_query($mysqli,$query);
+	if(mysqli_num_rows($result)) {
+		$temp = mysqli_fetch_array($result);
+		$faves = explode(";",$temp['FAVORITES']);
+
+		if(in_array($_GET['ID'],$faves)) {
+			$faved = 1;
+		}
+	}
+}
+
 $filename = dirname(dirname(dirname(__FILE__))) . "/" . "cache/" . $row['TRACKID'] . ".jpg";
 //$filename = dirname(__FILE__) . "/black_test.jpg";
 if(is_file($filename)) {
@@ -118,10 +131,16 @@ if(is_file($filename)) {
 				} else {
 					echo '<div class="col3_button" id="col3b_green" onClick="queue_track(\'' . $row['TRACKID'] . '\', \'queue\', this);"><span class="oi" data-glyph="pulse"></span>Queue</div>';
 				}
+
+				if(isset($faved)) {
+					echo '<div class="col3_button" id="col3b_red" onClick="favorite_track(\'' . $row['TRACKID'] . '\', \'unfavorite\', this);"><span class="oi" data-glyph="thumb-down"></span>Unfavorite</div>';
+				} else {
+					echo '<div class="col3_button" id="col3b_pink" onClick="favorite_track(\'' . $row['TRACKID'] . '\', \'favorite\', this);"><span class="oi" data-glyph="thumb-up"></span>Favorite</div>';
+				}
+				
 				echo '<div class="col3_button" id="col3b_red" onClick="delete_track(\'' . $row['TRACKID'] . '\', this);"><span class="oi" data-glyph="delete"></span>Remove</div>';
 			?>
 			<div class="col3_button" id="col3b_disabled"><span class="oi" data-glyph="pencil"></span>Edit Information</div>
-			<div class="col3_button" id="col3b_disabled"><span class="oi" data-glyph="heart"></span>Favorite</div>
 		</div>
 	<?php } ?>
 </div>

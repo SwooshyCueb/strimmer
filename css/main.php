@@ -765,6 +765,12 @@ h1 {
 	background-color: #000;
 	color: #fff;
 }
+#col3b_pink { background-color: #F06292; }
+#col3b_pink:hover { background-color: #F48FB1; }
+#col3b_pink:active {
+	background-color: #000;
+	color: #fff;
+}
 #col3b_disabled {
 	background-color: #444;
 	color: #777;

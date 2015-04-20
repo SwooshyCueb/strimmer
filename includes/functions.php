@@ -184,6 +184,7 @@ function getListRow_Service($row,$page,$additional_data) {
 	echo '<tr class="' . $classes . '" id="' . $row['TRACKID'] . '">';
 
 		switch($page) {
+			case "favorites":
 			case "default":
 				$col2_text = $row['ADDED_BY'];
 				$col3_text = date('M. d, Y g:i A',$row['ADDED_ON']);
