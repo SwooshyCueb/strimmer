@@ -772,9 +772,11 @@ h1 {
 	position: fixed;
 	left: 72px;
 	bottom: 0px;
-	height: 1px;
+	height: 72px;
 	background-color: <?php echo $bg_color['col1_hover']; ?>;
-	box-shadow: 0px 0px 8px <?php echo $bg_color['col1_hover']; ?>;
+	/*box-shadow: 0px 0px 8px <?php echo $bg_color['col1_hover']; ?>;*/
+	opacity: 0.5;
+	z-index: -1;
 }
 .footer .time {
 	position: fixed;
