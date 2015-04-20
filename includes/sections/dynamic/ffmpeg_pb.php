@@ -45,5 +45,5 @@ if($content){
 
 ?>
 
-<div class="progress_bar" style="width: calc(100vw * <?php echo $temp; ?> - 73px);"></div>
+<div class="progress_bar" style="width: calc((-73px + 100%) * <?php echo $temp; ?>);"></div>
 <div class="time"><span class="time_elapsed"><?php echo $readable_time; ?> / </span><span class="time_duration"><?php echo $readable_duration; ?></span></div>

@@ -775,7 +775,7 @@ h1 {
 	height: 72px;
 	background-color: <?php echo $bg_color['col1_hover']; ?>;
 	/*box-shadow: 0px 0px 8px <?php echo $bg_color['col1_hover']; ?>;*/
-	opacity: 0.5;
+	opacity: 0.2;
 	z-index: -1;
 }
 .footer .time {
