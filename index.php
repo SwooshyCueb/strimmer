@@ -383,6 +383,7 @@ if(!mysqli_num_rows($result)) {
 				<?php } ?>
 				<hr/>
 				<a href="#"><div class="panel_sel" id="about"><span class="sel_text"><span class="oi" data-glyph="star"></span> About</span></div></a>
+				<a href="#"><div class="panel_sel" id="dmca"><span class="sel_text"><span class="oi" data-glyph="circle-x"></span> DMCA Removal</span></div></a>
 				<?php if ($_SESSION['login']) { ?>
 					<a href="#"><div class="panel_sel" id="export_db"><span class="sel_text"><span class="oi" data-glyph="data-transfer-download"></span> Export Library</span></div></a>
 				<?php } ?>

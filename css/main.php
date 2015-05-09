@@ -121,6 +121,11 @@ h1 {
 strong {
 	font-weight: 700;
 }
+h2 {
+	font-weight: 700;
+	font-size: 12pt;
+	line-height: 32px;
+}
 
 .header {
 	background-color: <?php echo $bg_color['header']; ?>;
@@ -847,4 +852,11 @@ strong {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: clip;
+}
+
+.dmca-table {
+	width: 100%;
+}
+.dmca-table tr td {
+	padding: 4px;
 }

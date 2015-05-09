@@ -295,6 +295,18 @@ $(document).ready(function(){
 			})
 		})
 	})
+	$("#dmca").on("click",function(){
+		toggleCol1Anim()
+		col3LeaveAnim()
+		toggleCol2Anim()
+		$(".col2").one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
+			$(".col2").empty();
+			$(".col2").load("includes/sections/dmca.php", function(){
+				toggleCol2Anim(1);
+				setWindowTitle("DMCA/Removal Request Information");
+			})
+		})
+	})
 });
 
 function setWindowTitle(view) {
