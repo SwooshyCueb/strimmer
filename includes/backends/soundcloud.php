@@ -37,6 +37,27 @@ if(isset($_POST['mode'])) {
 				$time = time();
 				$resolved_vars = json_decode(soundcloud_resolveFromURL($_POST['sc_url']),true);
 				$stream_vars = json_decode(soundcloud_getStreamVars($resolved_vars['location']),true);
+				$curl = curl_init();
+				curl_setopt($curl, CURLOPT_URL, $stream_vars['stream_url'] . "?client_id=" . $sc_api_key);
+				curl_setopt($curl, CURLOPT_FOLLOWLOCATION, false);
+				curl_setopt($curl, CURLOPT_HEADER, true);  
+				curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (X11; Linux x86_64; rv:21.0) Gecko/20100101 Firefox/21.0");
+				$output = curl_exec($curl);
+
+				$httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+				$goodCodes = array(302,200,201,203);
+				//if(stripos("302 200 201 203",$row['ERRORCODE']) === false) {
+				if(!in_array($httpCode,$goodCodes)) {
+					$msg = "Error with API request on " . $_POST['sc_url'] . "<br/><strong>Error code</strong>: " . $httpCode;
+					$buttons[1] = "ok";
+					$buttons[2] = "add";
+					echo(getDialog($msg,$buttons));
+					exit;
+				}
+				$httpCode = "";
+				curl_close($curl);
+
 				$sc_trk_id = $stream_vars['id'];
 				$query = 'INSERT INTO db ( TRACKID,SERVICE,SERVICE_ARG1,ADDED_BY,ADDED_ON ) VALUES (
 					"SDCL' . $sc_trk_id . '",
@@ -57,6 +78,7 @@ if(isset($_POST['mode'])) {
 						echo(getDialog($msg,$buttons));
 						exit;
 					}
+
 					// track id, title, owner account, stream url, permalink id
 					/* 
 						track id	RETURN_ARG1
@@ -82,7 +104,7 @@ if(isset($_POST['mode'])) {
 					$output = curl_exec($curl);
 
 					$httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-					if($httpCode == 403) {
+					if(!in_array($httpCode,$goodCodes)) {
 						$artwork_url = $user_vars['avatar_url'];
 					}
 

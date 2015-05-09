@@ -147,11 +147,15 @@ function getListRow_Service($row,$page,$additional_data) {
 		{
 			$image = new Imagick();
 			$image->readImage($row['RETURN_ARG7']);
-			$image->setFormat("jpg");
-			$image->setImageCompression(Imagick::COMPRESSION_JPEG);
-			$image->setImageCompressionQuality(97);
-			$image->thumbnailImage(100,100);
-			$image->writeImage($filename);
+			if($image->valid()) {
+				$image->setFormat("jpg");
+				$image->setImageCompression(Imagick::COMPRESSION_JPEG);
+				$image->setImageCompressionQuality(97);
+				$image->thumbnailImage(100,100);
+				$image->writeImage($filename);
+			} else {
+				placeholderAlbumArt($row['TRACKID'], $row['ADDED_BY']);
+			}
 			$image->clear();
 		} else {
 			if ($row['SERVICE'] === "UNDF")

@@ -118,6 +118,9 @@ h1 {
 	font-size: 14pt;
 	line-height: 32px;
 }
+strong {
+	font-weight: 700;
+}
 
 .header {
 	background-color: <?php echo $bg_color['header']; ?>;
