@@ -141,8 +141,28 @@
 		$query = 'UPDATE db_cache SET ERRORCODE=' . $httpCode . ' WHERE TRACKID="' . $row['TRACKID'] . '"';
 		mysqli_query($mysqli,$query);
 
-		if($httpCode == 404) {
-			echo "RETURNED 404: " . $stream_link;
+		$goodCodes = array(302,200,201,203);
+		if(!in_array($httpCode,$goodCodes)) {
+			if($email['alerts_enabled']) {
+				$subject = '[Strimmer] Attempted to play a faulty track (' . $row['TRACKID'] . ')';
+
+				$message =  "This is an automated message from Strimmer. If you do not wish to see these messages, please disable them in your configuration file.\r\n";
+				$message .= "\r\n";
+				$message .= "The following track, " . $row['RETURN_ARG2'] . " by " . $row['RETURN_ARG3'] . " on " . $row['SERVICE'] . " [" . $row['TRACKID'] . "] has returned an error code of " . $httpCode . ".\r\n";
+				$message .= "The track was skipped and has been tagged with the error code. It will no longer be played by Strimmer until the issue is resolved.";
+
+				$headers   = array();
+				$headers[] = "MIME-Version: 1.0";
+				$headers[] = "Content-type: text/plain; charset=iso-8859-1";
+				$headers[] = "From: {$email['from']}";
+				$headers[] = "Reply-To: {$email['to']}";
+				$headers[] = "Subject: {$subject}";
+				$headers[] = "X-Mailer: PHP/".phpversion();
+
+				mail($email['to'], $subject, $message, implode("\r\n", $headers));
+			}
+
+			echo "RETURNED $httpCode: " . $stream_link;
 			$time = 0;
 			curl_close($curl);
 			continue;

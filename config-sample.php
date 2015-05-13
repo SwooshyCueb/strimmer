@@ -3,6 +3,11 @@
 $prog_title = "Strimmer";
 $prog_title_short = "strimmer";
 
+// -- Email settings --
+$email['alerts_enabled'] = 0;
+$email['to'] = "example@example.com";
+$email['from'] = "example@example.com";
+
 // -- Debug settings --
 // see http://php.net/manual/en/errorfunc.configuration.php
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
