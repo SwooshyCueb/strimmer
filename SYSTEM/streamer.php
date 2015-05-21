@@ -7,6 +7,7 @@
 	$previous_song = "";
 	$good_track_found = 0;
 	$goodCodes = array(302,200,201,203);
+	$serviceCodes = array(500,502,503,504);
 
 	while(true) {
 		if(time() - $time <= 10) {
@@ -78,7 +79,7 @@
 				// make sure the track hasn't been detected as faulty before queueing it
 				while(!$good_track_found) {
 					if(isset($temp_row['ERRORCODE'])) {
-						if(!in_array($temp_row['ERRORCODE'],$goodCodes)) {
+						if(!in_array($temp_row['ERRORCODE'],$goodCodes) && !in_array($temp_row['ERRORCODE'],$serviceCodes)) {
 							$query = "SELECT * FROM db_cache LIMIT 1 OFFSET " . mt_rand(0,$rand_max);
 							$result = mysqli_query($mysqli,$query);
 							$temp_row = mysqli_fetch_array($result);
@@ -130,15 +131,20 @@
 		$query = 'UPDATE db_cache SET ERRORCODE=' . $httpCode . ' WHERE TRACKID="' . $row['TRACKID'] . '"';
 		mysqli_query($mysqli,$query);
 
-		$goodCodes = array(302,200,201,203);
 		if(!in_array($httpCode,$goodCodes)) {
 			if($email['alerts_enabled']) {
-				$subject = '[Strimmer] Attempted to play a faulty track (' . $row['TRACKID'] . ')';
-
 				$message =  "This is an automated message from Strimmer. If you do not wish to see these messages, please disable them in your configuration file.\r\n";
 				$message .= "\r\n";
 				$message .= "The following track, " . $row['RETURN_ARG2'] . " by " . $row['RETURN_ARG3'] . " on " . $row['SERVICE'] . " [" . $row['TRACKID'] . "] has returned an error code of " . $httpCode . ".\r\n";
-				$message .= "The track was skipped and has been tagged with the error code. It will no longer be played by Strimmer until the issue is resolved.";
+
+				if(in_array($httpCode,$serviceCodes) && !in_array($httpCode,$goodCodes)) {
+					$subject = '[Strimmer] Service interruption detected (' . $row['TRACKID'] . ')';
+					$message .= "This appears to be a service interruption. The track has been flagged with a warning corresponding with the error code. Strimmer will continue to play the track and will resolve the warning the next time the track is queued.";
+				}
+				if(!in_array($httpCode,$goodCodes) && !in_array($httpCode,$serviceCodes)) {
+					$subject = '[Strimmer] Attempted to play a faulty track (' . $row['TRACKID'] . ')';
+					$message .= "The track was skipped and has been tagged with the error code. It will no longer be played by Strimmer until the issue is resolved.";
+				}
 
 				$headers   = array();
 				$headers[] = "MIME-Version: 1.0";

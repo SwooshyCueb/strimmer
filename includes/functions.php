@@ -232,9 +232,15 @@ function getListRow_Service($row,$page,$additional_data) {
 							echo '<span class="balloon" style="background-color: ' . $balloon_color['error'] . '; color: ' . $balloon_color['font_error'] . ';">ERROR</span>';
 						} */
 					}
+
+					$goodCodes = array(302,200,201,203);
+					$serviceCodes = array(500,502,503,504);
 					if(isset($row['ERRORCODE'])) {
-						if(stripos("302 200 201 203",$row['ERRORCODE']) === false) {
+						if(!in_array($row['ERRORCODE'],$goodCodes) && !in_array($row['ERRORCODE'],$serviceCodes)) {
 							echo '<span class="balloon" style="background-color: ' . $balloon_color['error'] . '; color: ' . $balloon_color['font_error'] . ';">' . $row['ERRORCODE'] . '</span>';	
+						}
+						if(!in_array($row['ERRORCODE'],$goodCodes) && in_array($row['ERRORCODE'],$serviceCodes)) {
+							echo '<span class="balloon" style="background-color: ' . $balloon_color['general'] . '; color: ' . $balloon_color['font_general'] . ';">' . $row['ERRORCODE'] . '</span>';	
 						}
 					}
 				?>
