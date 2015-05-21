@@ -5,41 +5,13 @@
 
 	$time = 0;
 	$previous_song = "";
+	$good_track_found = 0;
+	$goodCodes = array(302,200,201,203);
 
 	while(true) {
-		//emergency end
 		if(time() - $time <= 10) {
 			sleep(15);
 		}
-
-		/* OLD STREAMER CODE, KEEPING IN CASE OF THINGS
-		// PRE-PLAY-QUEUE UPDATE
-		// seems a tad tad bit less optimized, but it should be more randomized now.
-		$query = "SELECT COUNT(*) FROM db_cache";
-		$result = mysqli_query($mysqli,$query);
-		$temp = mysqli_fetch_array($result);
-		// initial index in OFFSET is 0, so we have to take 1 off
-		$rand_max = $temp[0] - 1;
-
-		$query = "SELECT * FROM db_cache LIMIT 1 OFFSET " . mt_rand(0,$rand_max);
-		$result = mysqli_query($mysqli,$query);
-
-		if(!isset($result)) {
-			echo "NO SQL RESULT GIVEN";
-			break;
-		}
-		
-		$row = mysqli_fetch_array($result);
-
-		// temporary fix to the repetition issue
-		// this'll have to be reworked when we add in the play queue
-		while($row['TRACKID'] == $previous_song) {
-			// had to add this in place of $query so it stays random
-			// we REALLY need to get the play queue going ffs
-			$result = mysqli_query($mysqli,"SELECT * FROM db_cache LIMIT 1 OFFSET " . mt_rand(0,$rand_max));
-			$row = mysqli_fetch_array($result);
-		}
-		*/
 
 		// BECAUSE I CAN'T CONCENTRATE (delete this later)
 		// get the row count in the main cache
@@ -102,6 +74,23 @@
 				$query = "SELECT * FROM db_cache LIMIT 1 OFFSET " . mt_rand(0,$rand_max);
 				$result = mysqli_query($mysqli,$query);
 				$temp_row = mysqli_fetch_array($result);
+
+				// make sure the track hasn't been detected as faulty before queueing it
+				while(!$good_track_found) {
+					if(isset($temp_row['ERRORCODE'])) {
+						if(!in_array($temp_row['ERRORCODE'],$goodCodes)) {
+							$query = "SELECT * FROM db_cache LIMIT 1 OFFSET " . mt_rand(0,$rand_max);
+							$result = mysqli_query($mysqli,$query);
+							$temp_row = mysqli_fetch_array($result);
+						} else {
+							$good_track_found = 1;
+						}
+					} else {
+						$good_track_found = 1;
+					}
+				}
+				$good_track_found = 0;
+
 				$query = 'INSERT INTO play_queue ( TRACKID, SERVICE, ADDED_ON ) VALUES ( "' . $temp_row['TRACKID'] . '", "' . $temp_row['SERVICE'] . '", ' . time() . ')';
 				$result = mysqli_query($mysqli,$query);
 			}
